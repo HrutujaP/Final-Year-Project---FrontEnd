@@ -14,14 +14,13 @@ class BottomDotBar extends StatelessWidget {
   });
 
   Widget build(BuildContext context) {
-    print(currentIndex);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(dotCount, (index) {
         return Container(
           width: 8.0,
           height: 8.0,
-          margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+          margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: index == currentIndex ? activeDotColor : dotColor,
