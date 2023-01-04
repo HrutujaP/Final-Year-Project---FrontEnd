@@ -1,4 +1,4 @@
-import 'package:diskspacerenting/screens/homescreen.dart';
+import 'package:diskspacerenting/screens/HomeScreen/homescreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
