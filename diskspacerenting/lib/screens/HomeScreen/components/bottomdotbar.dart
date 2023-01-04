@@ -14,6 +14,7 @@ class BottomDotBar extends StatelessWidget {
   });
 
   Widget build(BuildContext context) {
+    print(currentIndex);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(dotCount, (index) {
