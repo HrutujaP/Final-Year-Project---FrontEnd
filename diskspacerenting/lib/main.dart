@@ -1,3 +1,4 @@
+import 'package:diskspacerenting/screens/FileStorage/fileStorage.dart';
 import 'package:diskspacerenting/screens/HomeScreen/homescreen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,9 +14,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: HomeScreen.id,
+      // initialRoute: HomeScreen.id,
+      initialRoute: fileStoarage.id,
       routes: {
         HomeScreen.id: (context) => const HomeScreen(),
+        fileStoarage.id: (context) => const fileStoarage(),
       },
     );
   }
