@@ -45,7 +45,9 @@ class _MyStoragesState extends State<MyStorages> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TopBar(color: kPurpleColor,),
+                const TopBar(
+                  color: kColor3,
+                ),
                 Row(
                   children: [
                     IconButton(

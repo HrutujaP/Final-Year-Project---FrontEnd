@@ -3,7 +3,7 @@ import 'package:diskspacerenting/screens/HomeScreen/components/blockchainvideolo
 import 'package:diskspacerenting/screens/HomeScreen/components/bottomdotbar.dart';
 import 'package:diskspacerenting/screens/HomeScreen/components/mainoptions.dart';
 import 'package:diskspacerenting/screens/HomeScreen/components/topbar.dart';
-import 'package:diskspacerenting/screens/HomeScreen/components/topbaritems.dart';
+import 'package:diskspacerenting/screens/MarketPlaceScreen/marketplacescreen.dart';
 import 'package:diskspacerenting/screens/MyStoragesScreen/mystorages.dart';
 import 'package:flutter/material.dart';
 
@@ -255,7 +255,7 @@ class _HomeScreenState extends State<HomeScreen>
                                 'Rent out your diskspace to other users and earn DSR tokens!',
                           ),
                           MainOptions(
-                            route: '/buy',
+                            route: MarketPlaceScreen.id,
                             color: Color(0xff0FDFE5),
                             icon: Icons.payment,
                             hText: 'Buy',
