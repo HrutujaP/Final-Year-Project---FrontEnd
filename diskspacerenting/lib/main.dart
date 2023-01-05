@@ -15,13 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-<<<<<<< HEAD
-      initialRoute: HomeScreen.id,
       // initialRoute: FileStoarage.id,
-=======
       // initialRoute: HomeScreen.id,
-      initialRoute: fileStoarage.id,
->>>>>>> 87dadcb0cce53d86e9d9d242751c076856dd5c88
+      initialRoute: FileStoarage.id,
       routes: {
         HomeScreen.id: (context) => const HomeScreen(),
         FileStoarage.id: (context) => const FileStoarage(),
