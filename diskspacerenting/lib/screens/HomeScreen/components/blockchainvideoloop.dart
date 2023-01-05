@@ -27,7 +27,7 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 250,
+      height: MediaQuery.of(context).size.height * 0.25,
       width: MediaQuery.of(context).size.width * 0.92,
       decoration: BoxDecoration(
         // border: Border.all(color: Colors.white, width: 2),

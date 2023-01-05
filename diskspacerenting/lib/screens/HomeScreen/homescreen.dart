@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen>
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
         child: Stack(children: [
           // Container(
           //   height: 200,
@@ -110,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen>
               ),
               const BlockChainVideoLoop(),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.02,
+                height: MediaQuery.of(context).size.height * 0.025,
               ),
               Row(
                 children: [
@@ -135,196 +135,156 @@ class _HomeScreenState extends State<HomeScreen>
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,
               ),
-              // Column(
-              //   children: [
-              //     Container(
-              //       decoration: BoxDecoration(
-              //         color: Colors.grey[900]?.withOpacity(0.6),
-              //         borderRadius: const BorderRadius.only(
-              //             topLeft: Radius.circular(20),
-              //             topRight: Radius.circular(20)),
-              //       ),
-              //       child: SizedBox(
-              //         height: MediaQuery.of(context).size.height * 0.06,
-              //         child: Padding(
-              //           padding: const EdgeInsets.symmetric(
-              //               vertical: 8.0, horizontal: 25),
-              //           child: Row(
-              //             children: [
-              //               Text(
-              //                 'Balances',
-              //                 style: TextStyle(
-              //                     color: Colors.grey.shade100,
-              //                     fontSize: 20,
-              //                     fontWeight: FontWeight.w600),
-              //               ),
-              //               const Spacer(),
-              //               Icon(
-              //                 Icons.help_rounded,
-              //                 color: Colors.grey.shade200,
-              //                 size: MediaQuery.of(context).size.height * 0.03,
-              //               ),
-              //             ],
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //     Container(
-              //       decoration: BoxDecoration(
-              //         color: Colors.grey[400]?.withOpacity(0.3),
-              //         borderRadius: const BorderRadius.only(
-              //             bottomLeft: Radius.circular(20),
-              //             bottomRight: Radius.circular(20)),
-              //       ),
-              //       child: SizedBox(
-              //         height: MediaQuery.of(context).size.height * 0.13,
-              //         child: Column(
-              //           mainAxisAlignment: MainAxisAlignment.center,
-              //           children: [
-              //             Padding(
-              //               padding: const EdgeInsets.symmetric(
-              //                   horizontal: 14.0, vertical: 10),
-              //               child: Row(
-              //                 children: [
-              //                   Icon(
-              //                     Icons.token_outlined,
-              //                     color: Colors.amber,
-              //                     size: MediaQuery.of(context).size.height *
-              //                         0.035,
-              //                   ),
-              //                   SizedBox(
-              //                     width:
-              //                         MediaQuery.of(context).size.width * 0.05,
-              //                   ),
-              //                   Text('DSR Token',
-              //                       style: TextStyle(
-              //                           color: Colors.grey.shade200,
-              //                           fontSize: 16,
-              //                           fontWeight: FontWeight.bold)),
-              //                   const Spacer(),
-              //                   Text('82,176',
-              //                       style: TextStyle(
-              //                           color: Colors.grey.shade200,
-              //                           fontSize: 18,
-              //                           fontWeight: FontWeight.bold)),
-              //                 ],
-              //               ),
-              //             ),
-              //             Padding(
-              //               padding: const EdgeInsets.symmetric(
-              //                   horizontal: 14.0, vertical: 10),
-              //               child: Row(
-              //                 children: [
-              //                   Icon(
-              //                     Icons.storm_sharp,
-              //                     color: Colors.greenAccent,
-              //                     size: MediaQuery.of(context).size.height *
-              //                         0.035,
-              //                   ),
-              //                   SizedBox(
-              //                     width:
-              //                         MediaQuery.of(context).size.width * 0.02,
-              //                   ),
-              //                   Text('Storage Rented',
-              //                       style: TextStyle(
-              //                           color: Colors.grey.shade200,
-              //                           fontSize: 16,
-              //                           fontWeight: FontWeight.bold)),
-              //                   const Spacer(),
-              //                   Text('32 GB',
-              //                       style: TextStyle(
-              //                           color: Colors.grey.shade200,
-              //                           fontSize: 18,
-              //                           fontWeight: FontWeight.bold)),
-              //                 ],
-              //               ),
-              //             )
-              //           ],
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
+              Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[900]?.withOpacity(0.6),
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20)),
+                    ),
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.04,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 25),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Balances',
+                              style: TextStyle(
+                                  color: Colors.grey.shade100,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            const Spacer(),
+                            Icon(
+                              Icons.help_rounded,
+                              color: Colors.grey.shade200,
+                              size: MediaQuery.of(context).size.height * 0.025,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[400]?.withOpacity(0.3),
+                      borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(20),
+                          bottomRight: Radius.circular(20)),
+                    ),
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 14.0, vertical: 8),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.token_outlined,
+                                  color: Colors.amber,
+                                  size:
+                                      MediaQuery.of(context).size.height * 0.03,
+                                ),
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.05,
+                                ),
+                                Text('DSR Token',
+                                    style: TextStyle(
+                                        color: Colors.grey.shade200,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold)),
+                                const Spacer(),
+                                Text('82,176',
+                                    style: TextStyle(
+                                        color: Colors.grey.shade200,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold)),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 14.0, vertical: 8),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.storm_sharp,
+                                  color: Colors.greenAccent,
+                                  size:
+                                      MediaQuery.of(context).size.height * 0.03,
+                                ),
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.02,
+                                ),
+                                Text('Storage Rented',
+                                    style: TextStyle(
+                                        color: Colors.grey.shade200,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold)),
+                                const Spacer(),
+                                Text('32 GB',
+                                    style: TextStyle(
+                                        color: Colors.grey.shade200,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold)),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.02,
+                height: MediaQuery.of(context).size.height * 0.015,
               ),
               Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      SizedBox(
-                        width: 40,
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.arrow_back_ios_rounded,
-                            size: 35,
-                            color: Colors.grey.shade100,
+                  SizedBox(
+                      height: 250,
+                      width: MediaQuery.of(context).size.width * 0.6,
+                      child: PageView(
+                        controller: _pageController,
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        children: const [
+                          MainOptions(
+                            color: Color(0xffD331BB),
+                            icon: Icons.currency_exchange_sharp,
+                            hText: 'Rent',
+                            pText:
+                                'Rent out your diskspace to other users and earn DSR tokens!',
                           ),
-                          onPressed: () {
-                            _pageController.previousPage(
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.ease,
-                            );
-                          },
-                        ),
-                      ),
-                      SizedBox(
-                          height: 250,
-                          width: MediaQuery.of(context).size.width * 0.6,
-                          child: PageView(
-                            controller: _pageController,
-                            scrollDirection: Axis.horizontal,
-                            physics: const BouncingScrollPhysics(),
-                            children: const [
-                              MainOptions(
-                                color: Color(0xffD331BB),
-                                icon: Icons.currency_exchange_sharp,
-                                hText: 'Rent',
-                                pText:
-                                    'Rent out your diskspace to other users and earn DSR tokens!',
-                              ),
-                              MainOptions(
-                                color: Color(0xff0FDFE5),
-                                icon: Icons.payment,
-                                hText: 'Buy',
-                                pText:
-                                    'Buy diskspace from other users and store your data securely!',
-                              ),
-                              MainOptions(
-                                  color: Color(0xffC9BFD8),
-                                  icon: Icons.storage_rounded,
-                                  hText: 'My Storage',
-                                  pText:
-                                      'View your rented diskspace and manage your data!')
-                            ],
-                            onPageChanged: (int page) {
-                              setState(() {
-                                _currentPage = page;
-                              });
-                            },
-                          )),
-                      SizedBox(
-                        width: 40,
-                        child: IconButton(
-                          icon: Transform.rotate(
-                            angle: 3.14,
-                            child: Icon(
-                              Icons.arrow_back_ios_rounded,
-                              size: 35,
-                              color: Colors.grey.shade100,
-                            ),
+                          MainOptions(
+                            color: Color(0xff0FDFE5),
+                            icon: Icons.payment,
+                            hText: 'Buy',
+                            pText:
+                                'Buy diskspace from other users and store your data securely!',
                           ),
-                          onPressed: () {
-                            _pageController.nextPage(
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.ease,
-                            );
-                          },
-                        ),
-                      )
-                    ],
-                  ),
+                          MainOptions(
+                              color: Color(0xffC9BFD8),
+                              icon: Icons.storage_rounded,
+                              hText: 'My Storage',
+                              pText:
+                                  'View your rented diskspace and manage your data!')
+                        ],
+                        onPageChanged: (int page) {
+                          setState(() {
+                            _currentPage = page;
+                          });
+                        },
+                      )),
                   BottomDotBar(
                     currentIndex: _currentPage,
                     dotCount: 3,
