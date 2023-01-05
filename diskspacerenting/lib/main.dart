@@ -1,5 +1,6 @@
 import 'package:diskspacerenting/screens/FileStorage/fileStorage.dart';
 import 'package:diskspacerenting/screens/HomeScreen/homescreen.dart';
+import 'package:diskspacerenting/screens/LoginScreen/loginScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,10 +16,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // initialRoute: HomeScreen.id,
-      initialRoute: fileStoarage.id,
+      // initialRoute: fileStoarage.id,
+      initialRoute: loginScreen.id,
       routes: {
         HomeScreen.id: (context) => const HomeScreen(),
         fileStoarage.id: (context) => const fileStoarage(),
+        loginScreen.id: (context) => const loginScreen(),
       },
     );
   }
