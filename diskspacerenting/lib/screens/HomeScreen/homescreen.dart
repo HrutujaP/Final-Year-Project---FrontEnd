@@ -2,7 +2,9 @@ import 'package:diskspacerenting/Constants/constants.dart';
 import 'package:diskspacerenting/screens/HomeScreen/components/blockchainvideoloop.dart';
 import 'package:diskspacerenting/screens/HomeScreen/components/bottomdotbar.dart';
 import 'package:diskspacerenting/screens/HomeScreen/components/mainoptions.dart';
-import 'package:diskspacerenting/screens/HomeScreen/components/topbaritems.dart';
+import 'package:diskspacerenting/screens/HomeScreen/components/topbar.dart';
+import 'package:diskspacerenting/screens/MarketPlaceScreen/marketplacescreen.dart';
+import 'package:diskspacerenting/screens/MyStoragesScreen/mystorages.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -50,20 +52,20 @@ class _HomeScreenState extends State<HomeScreen>
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
-        color: Color(0xff150a34),
+        color: kPrimaryColor2,
         gradient: LinearGradient(
           colors: [
-            Color(0xff150a34),
-            Color(0xff150a34),
-            Color(0xff150a34),
-            Color(0xff150a34),
-            Color(0xff150a34),
+            kPrimaryColor2,
+            kPrimaryColor2,
+            kPrimaryColor2,
+            kPrimaryColor2,
+            kPrimaryColor2,
             // Color(0xffD331BB),
             // Color(0xffD331BB),
             kPrimaryColor1,
             kPrimaryColor1,
-            Color(0xff150a34),
-            Color(0xff150a34)
+            kPrimaryColor2,
+            kPrimaryColor2
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -90,21 +92,7 @@ class _HomeScreenState extends State<HomeScreen>
           // ),
           Column(
             children: [
-              Row(
-                children: [
-                  Text(
-                    'DSR',
-                    style: TextStyle(
-                        fontSize: 38,
-                        color: Colors.grey.shade200,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  const Spacer(),
-                  const TopBarItems(
-                    color: kPrimaryColor1,
-                  )
-                ],
-              ),
+              const TopBar(color:kPrimaryColor1),
               const SizedBox(
                 height: 10,
               ),
@@ -259,6 +247,7 @@ class _HomeScreenState extends State<HomeScreen>
                         physics: const BouncingScrollPhysics(),
                         children: const [
                           MainOptions(
+                            route:  '/rent',
                             color: Color(0xffD331BB),
                             icon: Icons.currency_exchange_sharp,
                             hText: 'Rent',
@@ -266,6 +255,7 @@ class _HomeScreenState extends State<HomeScreen>
                                 'Rent out your diskspace to other users and earn DSR tokens!',
                           ),
                           MainOptions(
+                            route: MarketPlaceScreen.id,
                             color: Color(0xff0FDFE5),
                             icon: Icons.payment,
                             hText: 'Buy',
@@ -273,6 +263,7 @@ class _HomeScreenState extends State<HomeScreen>
                                 'Buy diskspace from other users and store your data securely!',
                           ),
                           MainOptions(
+                              route: MyStorages.id,
                               color: Color(0xffC9BFD8),
                               icon: Icons.storage_rounded,
                               hText: 'My Storage',
@@ -298,6 +289,7 @@ class _HomeScreenState extends State<HomeScreen>
     )));
   }
 }
+
 
 class _GradientSpherePainter extends CustomPainter {
   @override

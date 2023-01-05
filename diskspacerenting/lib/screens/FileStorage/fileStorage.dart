@@ -9,15 +9,15 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/material/app.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 
-class fileStoarage extends StatefulWidget {
-  const fileStoarage({super.key});
-  static const String id = 'fileStoarage_screen';
+class FileStoarage extends StatefulWidget {
+  const FileStoarage({super.key});
+  static const String id = 'FileStoarage_screen';
 
   @override
-  State<fileStoarage> createState() => _fileStoarageState();
+  State<FileStoarage> createState() => _FileStoarageState();
 }
 
-class _fileStoarageState extends State<fileStoarage> {
+class _FileStoarageState extends State<FileStoarage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(

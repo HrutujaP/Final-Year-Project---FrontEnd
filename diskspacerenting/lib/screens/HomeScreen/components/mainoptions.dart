@@ -5,12 +5,14 @@ class MainOptions extends StatelessWidget {
   final String hText;
   final String pText;
   final Color color;
+  final String route;
 
   const MainOptions({
     required this.icon,
     required this.hText,
     required this.pText,
     required this.color,
+    required this.route,
     Key? key,
   }) : super(key: key);
 
@@ -26,43 +28,48 @@ class MainOptions extends StatelessWidget {
         elevation: 10,
         child: Padding(
           padding: const EdgeInsets.all(15.0),
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.4,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Icon(
-                      icon,
-                      color: color,
-                      size: MediaQuery.of(context).size.width * 0.15,
+          child: GestureDetector(
+            onTap: (){
+              Navigator.pushNamed(context, route);
+            },
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.4,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Icon(
+                        icon,
+                        color: color,
+                        size: MediaQuery.of(context).size.width * 0.15,
+                      ),
                     ),
                   ),
-                ),
-                const Spacer(),
-                Text(
-                  hText,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 22,
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w600),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Text(
-                  pText,
-                  style: TextStyle(
-                      color: Colors.grey.shade300,
-                      fontSize: 16,
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w500),
-                ),
-                Spacer()
-              ],
+                  const Spacer(),
+                  Text(
+                    hText,
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Text(
+                    pText,
+                    style: TextStyle(
+                        color: Colors.grey.shade300,
+                        fontSize: 16,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w500),
+                  ),
+                  Spacer()
+                ],
+              ),
             ),
           ),
         ),
