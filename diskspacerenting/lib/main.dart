@@ -1,11 +1,8 @@
 import 'package:diskspacerenting/screens/FileStorage/fileStorage.dart';
 import 'package:diskspacerenting/screens/HomeScreen/homescreen.dart';
-<<<<<<< HEAD
 import 'package:diskspacerenting/screens/LoginScreen/loginScreen.dart';
-=======
 import 'package:diskspacerenting/screens/MarketPlaceScreen/marketplacescreen.dart';
 import 'package:diskspacerenting/screens/MyStoragesScreen/mystorages.dart';
->>>>>>> 25ee33d1acbc9cdd280ed1759840ef11011589af
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,23 +17,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-<<<<<<< HEAD
       // initialRoute: HomeScreen.id,
       // initialRoute: fileStoarage.id,
       initialRoute: loginScreen.id,
-      routes: {
-        HomeScreen.id: (context) => const HomeScreen(),
-        fileStoarage.id: (context) => const fileStoarage(),
-        loginScreen.id: (context) => const loginScreen(),
-=======
-      initialRoute: MarketPlaceScreen.id,
+      
       // initialRoute: FileStoarage.id,
       routes: {
         HomeScreen.id: (context) => const HomeScreen(),
         FileStoarage.id: (context) => const FileStoarage(),
         MyStorages.id: (context) => const MyStorages(),
+        loginScreen.id: (context) => const loginScreen(),
         MarketPlaceScreen.id: (context) => MarketPlaceScreen(),
->>>>>>> 25ee33d1acbc9cdd280ed1759840ef11011589af
       },
     );
   }
