@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen>
   void initState() {
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 5),
+      duration: const Duration(seconds: 5),
     );
     _animationController.addListener(() {
       setState(() {
@@ -295,7 +295,7 @@ class _GradientSpherePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint()
-      ..shader = RadialGradient(
+      ..shader = const RadialGradient(
         center: Alignment.topCenter,
         radius: 1,
         colors: [

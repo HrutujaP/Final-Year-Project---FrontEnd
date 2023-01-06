@@ -5,6 +5,7 @@ import 'package:diskspacerenting/screens/MarketPlaceScreen/marketplacescreen.dar
 import 'package:diskspacerenting/screens/MyStoragesScreen/mystorages.dart';
 import 'package:diskspacerenting/screens/PostAdvertisment/postAdvertisment.dart';
 import 'package:diskspacerenting/screens/RegisterScreen/registerScreen.dart';
+import 'package:diskspacerenting/screens/RentStorageScreen/rentstoragescreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,11 +21,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // initialRoute: HomeScreen.id,
+      initialRoute: RentStorageScreen.id,
+      // initialRoute: loginScreen.id,
+      
       // initialRoute: FileStoarage.id,
       // initialRoute: loginScreen.id,
       // initialRoute: registerScreen.id,
       // initialRoute: FileStoarage.id,
-      initialRoute: postAdvertisment.id,
+      // initialRoute: postAdvertisment.id,
       routes: {
         HomeScreen.id: (context) => const HomeScreen(),
         FileStoarage.id: (context) => const FileStoarage(),
@@ -33,6 +37,7 @@ class MyApp extends StatelessWidget {
         registerScreen.id: (context) => const registerScreen(),
         MarketPlaceScreen.id: (context) => MarketPlaceScreen(),
         postAdvertisment.id: (context) => const postAdvertisment(),
+        RentStorageScreen.id: (context) => const RentStorageScreen(),
       },
     );
   }
