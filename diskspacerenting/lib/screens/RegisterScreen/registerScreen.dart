@@ -1,4 +1,6 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, implementation_imports
+
+import 'dart:ui';
 
 import 'package:diskspacerenting/Constants/constants.dart';
 import 'package:diskspacerenting/screens/LoginScreen/components/inputTextField.dart';
@@ -8,22 +10,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_glow/flutter_glow.dart';
 
-class loginScreen extends StatefulWidget {
-  static const String id = 'loginScreen';
-  const loginScreen({super.key});
+class registerScreen extends StatefulWidget {
+  static const String id = 'registerScreen';
+  const registerScreen({super.key});
 
   @override
-  State<loginScreen> createState() => _loginScreenState();
+  State<registerScreen> createState() => _registerScreenState();
 }
 
-class _loginScreenState extends State<loginScreen> {
-  @override
-  final _loginformKey = GlobalKey<FormState>();
+class _registerScreenState extends State<registerScreen> {
+  final _registerformKey = GlobalKey<FormState>();
   bool _visiblePassword = false;
   String _email = '';
   String _password = '';
+  String _fullName = '';
   String? _error;
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,16 +34,16 @@ class _loginScreenState extends State<loginScreen> {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const loginScreenAnimation(),
                 Text(
-                  "Login",
+                  "Register Now.",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: MediaQuery.of(context).size.height / 20,
+                    fontSize: MediaQuery.of(context).size.height / 25,
                     color: kSecondaryColor1,
                   ),
                 ),
@@ -57,9 +58,28 @@ class _loginScreenState extends State<loginScreen> {
                   height: 20,
                 ),
                 Form(
-                    key: _loginformKey,
+                    key: _registerformKey,
                     child: Column(
                       children: [
+                        inputText(
+                          hintText: 'Enter your Full Name',
+                          keyboardType: TextInputType.emailAddress,
+                          textInputAction: TextInputAction.next,
+                          onChanged: (val) {
+                            _email = val!;
+                          },
+                          validator: (email) {
+                            if (email != null &&
+                                EmailValidator.validate(email)) {
+                              return null;
+                            }
+                            return "Please enter your Username";
+                          },
+                          labelheading: 'Name*',
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
                         inputText(
                           hintText: 'Enter Email Address',
                           keyboardType: TextInputType.emailAddress,
@@ -124,7 +144,7 @@ class _loginScreenState extends State<loginScreen> {
                               ),
                             ),
                             onPressed: () async {
-                              if (!_loginformKey.currentState!.validate()) {
+                              if (!_registerformKey.currentState!.validate()) {
                                 setState(() {
                                   _error =
                                       'Please provide a valid email/password combination';
@@ -158,4 +178,3 @@ class _loginScreenState extends State<loginScreen> {
     ));
   }
 }
-

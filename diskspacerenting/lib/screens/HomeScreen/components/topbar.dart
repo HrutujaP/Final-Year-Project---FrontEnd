@@ -16,9 +16,11 @@ class TopBar extends StatelessWidget {
         Text(
           'DSR',
           style: TextStyle(
-              fontSize: 38,
-              color: Colors.grey.shade200,
-              fontWeight: FontWeight.w600),
+            fontSize: 38,
+            color: Colors.grey.shade200,
+            fontWeight: FontWeight.w600,
+            decoration: TextDecoration.none,
+          ),
         ),
         const Spacer(),
         TopBarItems(

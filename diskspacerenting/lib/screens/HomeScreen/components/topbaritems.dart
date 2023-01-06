@@ -13,21 +13,33 @@ class TopBarItems extends StatelessWidget {
       children: [
         Text(
           'Home',
-          style: TextStyle(fontSize: 18, color: color),
+          style: TextStyle(
+            fontSize: 18,
+            color: color,
+            decoration: TextDecoration.none,
+          ),
         ),
         const SizedBox(
           width: 20,
         ),
         Text(
           'About',
-          style: TextStyle(fontSize: 18, color: color),
+          style: TextStyle(
+            fontSize: 18,
+            color: color,
+            decoration: TextDecoration.none,
+          ),
         ),
         const SizedBox(
           width: 20,
         ),
         Text(
           'Contact',
-          style: TextStyle(fontSize: 18, color: color),
+          style: TextStyle(
+            fontSize: 18,
+            color: color,
+            decoration: TextDecoration.none,
+          ),
         ),
         const SizedBox(
           width: 20,

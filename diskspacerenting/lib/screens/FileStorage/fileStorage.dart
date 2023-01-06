@@ -3,6 +3,8 @@
 import 'dart:math';
 
 import 'package:diskspacerenting/Constants/constants.dart';
+import 'package:diskspacerenting/screens/HomeScreen/components/topbar.dart';
+import 'package:diskspacerenting/screens/HomeScreen/components/topbaritems.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -41,23 +43,27 @@ class _FileStoarageState extends State<FileStoarage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.account_circle,
-                        color: kSecondaryColor1,
-                        size: MediaQuery.of(context).size.width * 0.1,
-                      ),
-                      Spacer(),
-                      Icon(
-                        Icons.notifications_rounded,
-                        color: kSecondaryColor1,
-                        size: MediaQuery.of(context).size.width * 0.1,
-                      )
-                    ],
-                  ),
+                // Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                //   child: Row(
+                //     children: [
+                //       Icon(
+                //         Icons.account_circle,
+                //         color: kSecondaryColor1,
+                //         size: MediaQuery.of(context).size.width * 0.1,
+                //       ),
+                //       Spacer(),
+                //       Icon(
+                //         Icons.notifications_rounded,
+                //         color: kSecondaryColor1,
+                //         size: MediaQuery.of(context).size.width * 0.1,
+                //       )
+                //     ],
+                //   ),
+                // ),
+                const Padding(
+                  padding: EdgeInsets.all(3.0),
+                  child: TopBar(color: kSecondaryColor),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
@@ -84,7 +90,7 @@ class _FileStoarageState extends State<FileStoarage> {
                       textAlign: TextAlign.left),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.04,
+                  height: MediaQuery.of(context).size.height * 0.03,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -112,6 +118,7 @@ class _FileStoarageState extends State<FileStoarage> {
                   padding: const EdgeInsets.only(left: 12.0, right: 12.0),
                   child: Material(
                     elevation: 10,
+                    borderRadius: BorderRadius.circular(10),
                     color: Colors.white.withOpacity(0.1),
                     child: Container(
                       // height: MediaQuery.of(context).size.height * 0.25,
