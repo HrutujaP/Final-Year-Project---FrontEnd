@@ -41,7 +41,7 @@ class _MyStoragesState extends State<MyStorages> {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
+            padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -73,7 +73,7 @@ class _MyStoragesState extends State<MyStorages> {
                 StorageRadialGraph(chartData: chartData),
                 const SizedBox(height: 20),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.45,
+                  height: MediaQuery.of(context).size.height * 0.451,
                   child: ListView.builder(
                     scrollDirection: Axis.vertical,
                     physics: const BouncingScrollPhysics(),

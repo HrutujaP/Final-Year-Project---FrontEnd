@@ -35,6 +35,8 @@ dependencies:
   flutter_glow: ^0.2.0
   email_validator: ^2.0.1
   google_fonts: ^3.0.1
+  slide_to_act: ^2.0.1
+  syncfusion_flutter_datepicker: ^20.4.42
 
 dev_dependencies:
   flutter_test:

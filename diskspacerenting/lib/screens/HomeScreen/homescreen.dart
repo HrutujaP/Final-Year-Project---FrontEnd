@@ -29,8 +29,7 @@ class _HomeScreenState extends State<HomeScreen>
       duration: const Duration(seconds: 5),
     );
     _animationController.addListener(() {
-      setState(() {
-      });
+      setState(() {});
     });
     _animationController.repeat();
     super.initState();
@@ -90,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen>
           // ),
           Column(
             children: [
-              const TopBar(color:kPrimaryColor1),
+              const TopBar(color: kPrimaryColor1),
               const SizedBox(
                 height: 10,
               ),
@@ -119,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen>
                 ],
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.02,
+                height: MediaQuery.of(context).size.height * 0.018,
               ),
               Column(
                 children: [
@@ -232,7 +231,7 @@ class _HomeScreenState extends State<HomeScreen>
                 ],
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.015,
+                height: MediaQuery.of(context).size.height * 0.01,
               ),
               Column(
                 children: [
@@ -245,7 +244,7 @@ class _HomeScreenState extends State<HomeScreen>
                         physics: const BouncingScrollPhysics(),
                         children: const [
                           MainOptions(
-                            route:  '/rent',
+                            route: '/rent',
                             color: Color(0xffD331BB),
                             icon: Icons.currency_exchange_sharp,
                             hText: 'Rent',
@@ -287,7 +286,6 @@ class _HomeScreenState extends State<HomeScreen>
     )));
   }
 }
-
 
 class _GradientSpherePainter extends CustomPainter {
   @override
