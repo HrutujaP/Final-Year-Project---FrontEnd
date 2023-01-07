@@ -36,6 +36,8 @@ dependencies:
   email_validator: ^2.0.1
   google_fonts: ^3.0.1
   flutter_picker: ^2.0.5
+  slide_to_act: ^2.0.1
+  syncfusion_flutter_datepicker: ^20.4.42
 
 dev_dependencies:
   flutter_test:

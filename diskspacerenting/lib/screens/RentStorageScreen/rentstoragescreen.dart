@@ -4,6 +4,7 @@ import 'package:diskspacerenting/Constants/constants.dart';
 import 'package:diskspacerenting/screens/HomeScreen/components/topbar.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/components/detailsmaincard.dart';
 import 'package:flutter/material.dart';
+
 class RentStorageScreen extends StatelessWidget {
   static const String id = 'rentstoragescreen';
 
@@ -29,9 +30,9 @@ class RentStorageScreen extends StatelessWidget {
                 padding: EdgeInsets.only(top: 16.0, left: 16, right: 16),
                 child: TopBar(color: kColor1),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.04),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.846283,
+                height: MediaQuery.of(context).size.height * 0.84,
                 child: Column(
                   children: [
                     GestureDetector(
@@ -70,6 +71,3 @@ class RentStorageScreen extends StatelessWidget {
     );
   }
 }
-
-
-

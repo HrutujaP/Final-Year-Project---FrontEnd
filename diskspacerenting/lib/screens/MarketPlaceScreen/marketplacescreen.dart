@@ -54,7 +54,7 @@ class MarketPlaceScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                    left: 18.0, right: 18, top: 10, bottom: 10),
+                    left: 18.0, right: 18, top: 10, bottom: 3),
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height * 0.53,
                   child: ListView(
