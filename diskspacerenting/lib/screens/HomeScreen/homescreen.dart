@@ -19,9 +19,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
-  double _spherePosition = 0;
   int _currentPage = 1;
-  PageController _pageController = PageController(initialPage: 1);
+  final PageController _pageController = PageController(initialPage: 1);
 
   @override
   void initState() {
@@ -31,7 +30,6 @@ class _HomeScreenState extends State<HomeScreen>
     );
     _animationController.addListener(() {
       setState(() {
-        _spherePosition = _animationController.value * 200;
       });
     });
     _animationController.repeat();

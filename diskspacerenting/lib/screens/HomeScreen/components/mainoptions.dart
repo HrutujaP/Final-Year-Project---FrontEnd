@@ -67,7 +67,7 @@ class MainOptions extends StatelessWidget {
                         fontFamily: 'Montserrat',
                         fontWeight: FontWeight.w500),
                   ),
-                  Spacer()
+                  const Spacer()
                 ],
               ),
             ),

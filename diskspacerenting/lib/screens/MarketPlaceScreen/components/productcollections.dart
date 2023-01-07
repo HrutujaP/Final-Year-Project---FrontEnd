@@ -43,8 +43,8 @@ class ProductCollections extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.216,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
-                  physics: BouncingScrollPhysics(),
-                  children: [
+                  physics: const BouncingScrollPhysics(),
+                  children: const [
                     IndividualProduct(),
                     IndividualProduct(),
                     IndividualProduct(),

@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // initialRoute: HomeScreen.id,
-      initialRoute: RentStorageScreen.id,
+      initialRoute: HomeScreen.id,
+      // initialRoute: RentStorageScreen.id,
 
       routes: {
         HomeScreen.id: (context) => const HomeScreen(),
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         MyStorages.id: (context) => const MyStorages(),
         loginScreen.id: (context) => const loginScreen(),
         registerScreen.id: (context) => const registerScreen(),
-        MarketPlaceScreen.id: (context) => MarketPlaceScreen(),
+        MarketPlaceScreen.id: (context) => const MarketPlaceScreen(),
         postAdvertisment.id: (context) => const postAdvertisment(),
         RentStorageScreen.id: (context) => const RentStorageScreen(),
       },

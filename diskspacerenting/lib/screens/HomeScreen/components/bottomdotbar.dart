@@ -6,13 +6,14 @@ class BottomDotBar extends StatelessWidget {
   final Color dotColor;
   final Color activeDotColor;
 
-  BottomDotBar({
+  const BottomDotBar({super.key, 
     required this.currentIndex,
     required this.dotCount,
     this.dotColor = Colors.grey,
     this.activeDotColor = Colors.black,
   });
 
+  @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
