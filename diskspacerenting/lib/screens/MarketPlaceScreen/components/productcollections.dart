@@ -1,5 +1,5 @@
 import 'package:diskspacerenting/Constants/constants.dart';
-import 'package:diskspacerenting/screens/MyStoragesScreen/components/individualproduct.dart';
+import 'package:diskspacerenting/screens/MarketPlaceScreen/components/individualproduct.dart';
 import 'package:flutter/material.dart';
 
 class ProductCollections extends StatelessWidget {

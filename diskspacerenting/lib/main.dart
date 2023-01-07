@@ -22,13 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // initialRoute: HomeScreen.id,
       initialRoute: RentStorageScreen.id,
-      // initialRoute: loginScreen.id,
-      
-      // initialRoute: FileStoarage.id,
-      // initialRoute: loginScreen.id,
-      // initialRoute: registerScreen.id,
-      // initialRoute: FileStoarage.id,
-      // initialRoute: postAdvertisment.id,
+
       routes: {
         HomeScreen.id: (context) => const HomeScreen(),
         FileStoarage.id: (context) => const FileStoarage(),
