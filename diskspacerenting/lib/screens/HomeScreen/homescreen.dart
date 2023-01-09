@@ -286,7 +286,6 @@ class _HomeScreenState extends State<HomeScreen>
     )));
   }
 }
-
 class _GradientSpherePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
