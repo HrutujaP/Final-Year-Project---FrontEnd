@@ -6,7 +6,8 @@ class BottomDotBar extends StatelessWidget {
   final Color dotColor;
   final Color activeDotColor;
 
-  const BottomDotBar({super.key, 
+  const BottomDotBar({
+    super.key,
     required this.currentIndex,
     required this.dotCount,
     this.dotColor = Colors.grey,
@@ -21,7 +22,7 @@ class BottomDotBar extends StatelessWidget {
         return Container(
           width: 8.0,
           height: 8.0,
-          margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+          margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 2.0),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: index == currentIndex ? activeDotColor : dotColor,

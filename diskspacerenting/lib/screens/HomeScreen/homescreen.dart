@@ -49,27 +49,32 @@ class _HomeScreenState extends State<HomeScreen>
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
-        color: kPrimaryColor2,
         gradient: LinearGradient(
           colors: [
-            kPrimaryColor2,
-            kPrimaryColor2,
-            kPrimaryColor2,
-            kPrimaryColor2,
-            kPrimaryColor2,
-            // Color(0xffD331BB),
-            // Color(0xffD331BB),
-            kPrimaryColor1,
-            kPrimaryColor1,
-            kPrimaryColor2,
-            kPrimaryColor2
+            // kPrimaryColor2,
+            // kPrimaryColor2,
+            // kPrimaryColor2,
+            // kPrimaryColor2,
+            // kPrimaryColor2,
+            // // Color(0xffD331BB),
+            // // Color(0xffD331BB),
+            // kPrimaryColor1,
+            // kPrimaryColor1,
+            // kPrimaryColor2,
+            // kPrimaryColor2
+            kPrimaryColor,
+            kPrimaryColor,
+            kPrimaryColor,
+            kSecondaryColor,
+            kPrimaryColor,
+            kPrimaryColor,
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Stack(children: [
           // Container(
           //   height: 200,
@@ -89,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen>
           // ),
           Column(
             children: [
-              const TopBar(color: kPrimaryColor1),
+              const TopBar(color: kSecondaryColor3),
               const SizedBox(
                 height: 10,
               ),
@@ -106,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen>
                       child: Text(
                         'Experience the future of storage with blockchain-powered diskspace rentals!',
                         style: TextStyle(
-                            color: Colors.white,
+                            color: kPrimaryColor6,
                             fontSize: 20,
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600),
@@ -117,20 +122,18 @@ class _HomeScreenState extends State<HomeScreen>
                   // const Spacer(),
                 ],
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.018,
-              ),
+              Spacer(),
               Column(
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[900]?.withOpacity(0.6),
+                      color: kContrastColor,
                       borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(20),
                           topRight: Radius.circular(20)),
                     ),
                     child: SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.04,
+                      height: MediaQuery.of(context).size.height * 0.042,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 8.0, horizontal: 25),
@@ -156,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen>
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[400]?.withOpacity(0.3),
+                      color: kSecondaryColor2.withOpacity(0.5),
                       borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(20),
                           bottomRight: Radius.circular(20)),
@@ -168,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen>
                         children: [
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 14.0, vertical: 8),
+                                horizontal: 14.0, vertical: 6),
                             child: Row(
                               children: [
                                 Icon(
@@ -183,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen>
                                 ),
                                 Text('DSR Token',
                                     style: TextStyle(
-                                        color: Colors.grey.shade200,
+                                        color: kPrimaryColor5,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold)),
                                 const Spacer(),
@@ -203,16 +206,16 @@ class _HomeScreenState extends State<HomeScreen>
                                 Icon(
                                   Icons.storm_sharp,
                                   color: Colors.greenAccent,
-                                  size:
-                                      MediaQuery.of(context).size.height * 0.03,
+                                  size: MediaQuery.of(context).size.height *
+                                      0.028,
                                 ),
                                 SizedBox(
                                   width:
-                                      MediaQuery.of(context).size.width * 0.02,
+                                      MediaQuery.of(context).size.width * 0.018,
                                 ),
                                 Text('Storage Rented',
                                     style: TextStyle(
-                                        color: Colors.grey.shade200,
+                                        color: kPrimaryColor5,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold)),
                                 const Spacer(),
@@ -230,13 +233,11 @@ class _HomeScreenState extends State<HomeScreen>
                   ),
                 ],
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.01,
-              ),
+              Spacer(),
               Column(
                 children: [
                   SizedBox(
-                      height: 250,
+                      height: MediaQuery.of(context).size.height * 0.305,
                       width: MediaQuery.of(context).size.width * 0.6,
                       child: PageView(
                         controller: _pageController,
@@ -245,7 +246,7 @@ class _HomeScreenState extends State<HomeScreen>
                         children: const [
                           MainOptions(
                             route: '/rent',
-                            color: Color(0xffD331BB),
+                            color: Color.fromARGB(255, 255, 160, 241),
                             icon: Icons.currency_exchange_sharp,
                             hText: 'Rent',
                             pText:
@@ -253,7 +254,7 @@ class _HomeScreenState extends State<HomeScreen>
                           ),
                           MainOptions(
                             route: MarketPlaceScreen.id,
-                            color: Color(0xff0FDFE5),
+                            color: Color.fromARGB(255, 104, 250, 255),
                             icon: Icons.payment,
                             hText: 'Buy',
                             pText:
@@ -261,7 +262,7 @@ class _HomeScreenState extends State<HomeScreen>
                           ),
                           MainOptions(
                               route: MyStorages.id,
-                              color: Color(0xffC9BFD8),
+                              color: Color.fromARGB(255, 215, 189, 255),
                               icon: Icons.storage_rounded,
                               hText: 'My Storage',
                               pText:
@@ -286,6 +287,7 @@ class _HomeScreenState extends State<HomeScreen>
     )));
   }
 }
+
 class _GradientSpherePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {

@@ -25,7 +25,7 @@ class ProductCollections extends StatelessWidget {
               children: const [
                 Text(' < 50 GB Capacity',
                     style: TextStyle(
-                      color: Colors.greenAccent,
+                      color: kSecondaryColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                     )),

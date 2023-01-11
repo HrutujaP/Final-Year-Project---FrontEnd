@@ -1,3 +1,4 @@
+import 'package:diskspacerenting/Constants/constants.dart';
 import 'package:diskspacerenting/screens/HomeScreen/components/topbaritems.dart';
 import 'package:flutter/material.dart';
 
@@ -12,11 +13,11 @@ class TopBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
+        const Text(
           'DSR',
           style: TextStyle(
             fontSize: 38,
-            color: Colors.grey.shade200,
+            color: kSecondaryColor,
             fontWeight: FontWeight.w600,
             decoration: TextDecoration.none,
           ),

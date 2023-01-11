@@ -18,9 +18,11 @@ class MarketPlaceScreen extends StatelessWidget {
             color: kPrimaryColor2,
             gradient: LinearGradient(
               colors: [
-                kPrimaryColor1,
+                // kPrimaryColor1,
                 kPrimaryColor,
                 kPrimaryColor1,
+                kPrimaryColor1,
+                kPrimaryColor,
                 kPrimaryColor,
               ],
               begin: Alignment.topLeft,
@@ -37,7 +39,7 @@ class MarketPlaceScreen extends StatelessWidget {
                   children: const [
                     Text('Our Collections',
                         style: TextStyle(
-                          color: kItemColor,
+                          color: kPrimaryColor3,
                           fontSize: 22,
                           fontWeight: FontWeight.w600,
                         )),
@@ -46,7 +48,7 @@ class MarketPlaceScreen extends StatelessWidget {
                     ),
                     Icon(
                       Icons.stream_outlined,
-                      color: kSecondaryColor3,
+                      color: kSecondaryColor,
                       size: 28,
                     ),
                   ],
