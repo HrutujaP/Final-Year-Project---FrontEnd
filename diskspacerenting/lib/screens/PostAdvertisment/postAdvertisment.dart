@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:diskspacerenting/Constants/constants.dart';
+import 'package:diskspacerenting/screens/Components/datepicker.dart';
 
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
@@ -14,165 +15,355 @@ class postAdvertisment extends StatefulWidget {
 }
 
 class _postAdvertismentState extends State<postAdvertisment> {
-  bool selectAvalilableDisks = false;
-  bool setStorageLimits = false;
-  bool selected = true;
-  bool credit = false;
-
   @override
   Widget build(BuildContext context) {
-    double selectedWidthActive = MediaQuery.of(context).size.width * 0.9;
-    double selectedWidthInActive = MediaQuery.of(context).size.width * 0.9;
-    double selectedHeightActive = MediaQuery.of(context).size.height * 0.45;
-    double selectedHeightInActive = MediaQuery.of(context).size.width * 0.150;
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectAvalilableDisks = !selectAvalilableDisks;
-                  credit = true;
-                });
-              },
-              child: Container(
-                  width: selectAvalilableDisks
-                      ? selectedWidthActive
-                      : selectedWidthInActive,
-                  height: selectAvalilableDisks
-                      ? selectedHeightActive
-                      : selectedHeightInActive,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: [Color(0xffFFD4E2), Color(0xffFF8FB3)],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter),
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          title: const Text(
+            "Post Advertisment",
+            style: TextStyle(color: Colors.white),
+          ),
+          centerTitle: true,
+        ),
+        body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Material(
+                  elevation: 20,
+                  shadowColor: kPurpleColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(20),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Center(
-                          child: Row(
-                            children: [
-                              Text(
-                                "Select Disks To Rent",
+                  child: Container(
+                      width: MediaQuery.of(context).size.width * 0.95,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                            colors: [
+                              // Color(0xffFFD4E2), Color(0xffFF8FB3)
+                              kColor1,
+                              kPrimaryColor1,
+                            ],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 1,
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Center(
+                              child: Text(
+                                "Step 1 : Select Disks To Rent",
                                 style: TextStyle(
                                   fontSize:
                                       MediaQuery.of(context).size.width * 0.05,
                                 ),
                               ),
-                              const Spacer(),
-                              const Icon(
-                                Icons.arrow_forward,
-                              ),
-                            ],
-                          ),
-                        ),
-                        selectAvalilableDisks == true
-                            ? SizedBox(
-                                height: selectedHeightActive / 1.2,
-                                child: SingleChildScrollView(
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                height: 140,
+                                child: GridView.builder(
+                                  itemCount: 4,
                                   physics: const BouncingScrollPhysics(),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const [
-                                      selectDisks(
-                                          diskName: "A", isSelected: true),
-                                      selectDisks(
-                                          diskName: "B", isSelected: true),
-                                      selectDisks(
-                                          diskName: "C", isSelected: true),
-                                      selectDisks(
-                                          diskName: "D", isSelected: true),
-                                      selectDisks(
-                                          diskName: "E", isSelected: true),
-                                    ],
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                    childAspectRatio: (8.2 / 2.0002),
+                                    crossAxisSpacing: 1,
+                                    mainAxisSpacing: 1,
+                                    crossAxisCount: 2,
                                   ),
+                                  itemBuilder: (context, index) {
+                                    return const selectDisks(
+                                        diskName: "A", isSelected: true);
+                                  },
                                 ),
-                              )
-                            : const Center(),
-                      ],
-                    ),
-                  )),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  selected = !selected;
-                  credit = true;
-                });
-              },
-              child: Container(
-                width: selected ? selectedWidthActive : selectedWidthInActive,
-                height:
-                    selected ? selectedHeightActive : selectedHeightInActive,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Color(0xffFFD4E2), Color(0xffFF8FB3)],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter),
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                              ),
+                            ),
+                            // : const Center(),
+                          ],
+                        ),
+                      )),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: Row(
-                          children: [
-                            Text(
-                              "Set Storage Limits",
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Material(
+                  elevation: 20,
+                  shadowColor: kPurpleColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                          colors: [
+                            // Color(0xffFFD4E2), Color(0xffFF8FB3)
+                            kColor1,
+                            kPrimaryColor1,
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter),
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 1,
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Center(
+                            child: Text(
+                              "Step 2 : Set Details",
                               style: TextStyle(
                                 fontSize:
                                     MediaQuery.of(context).size.width * 0.05,
                               ),
                             ),
-                            const Spacer(),
-                            const Icon(
-                              Icons.arrow_forward,
-                            ),
-                          ],
-                        ),
-                      ),
-                      selected == true
-                          ? SizedBox(
-                              height: selectedHeightActive / 1.2,
-                              child: SingleChildScrollView(
-                                physics: const BouncingScrollPhysics(),
-                                child: Column(
-                                  children: const [
-                                    setAvailableSpace(diskName: "A"),
-                                    setAvailableSpace(diskName: "B"),
-                                    setAvailableSpace(diskName: "C"),
-                                    setAvailableSpace(diskName: "D"),
-                                    setAvailableSpace(diskName: "E"),
-                                    setAvailableSpace(diskName: "F"),
-                                  ],
-                                ),
+                          ),
+
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height / 3,
+                            child: SingleChildScrollView(
+                              physics: const BouncingScrollPhysics(),
+                              child: Column(
+                                children: const [
+                                  setAvailableSpace(diskName: "A"),
+                                  setAvailableSpace(diskName: "B"),
+                                  setAvailableSpace(diskName: "C"),
+                                  setAvailableSpace(diskName: "D"),
+                                  setAvailableSpace(diskName: "E"),
+                                  setAvailableSpace(diskName: "F"),
+                                ],
                               ),
-                            )
-                          : const Center()
-                    ],
+                            ),
+                          )
+                          // : const Center()
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Material(
+                  elevation: 20,
+                  shadowColor: kPurpleColor,
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                          colors: [
+                            // Color(0xffFFD4E2),
+                            //  Color(0xffFF8FB3),
+                            kColor1,
+                            kPrimaryColor1,
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter),
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 1,
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Center(
+                            child: Text(
+                              "Step 3: Set Days To Rent",
+                              style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.05,
+                              ),
+                            ),
+                          ),
+                          const DatePicker(),
+                          //
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Material(
+                  elevation: 20,
+                  shadowColor: kPurpleColor,
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                          colors: [
+                            // Color(0xffFFD4E2), Color(0xffFF8FB3)
+                            kColor1,
+                            kPrimaryColor1,
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter),
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 1,
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Center(
+                            child: Text(
+                              "Step 4 : Set Time",
+                              style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.05,
+                              ),
+                            ),
+                          ),
+
+                          Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "From",
+                                    style: TextStyle(
+                                      fontSize:
+                                          MediaQuery.of(context).size.width *
+                                              0.06,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height:
+                                        MediaQuery.of(context).size.height / 4,
+                                    child: TimePickerDialog(
+                                      cancelText: "",
+                                      confirmText: "",
+                                      initialEntryMode:
+                                          TimePickerEntryMode.inputOnly,
+                                      initialTime: TimeOfDay.fromDateTime(
+                                          DateTime.now()),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "TO",
+                                    style: TextStyle(
+                                      fontSize:
+                                          MediaQuery.of(context).size.width *
+                                              0.06,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height:
+                                        MediaQuery.of(context).size.height / 4,
+                                    child: TimePickerDialog(
+                                      cancelText: "",
+                                      confirmText: "",
+                                      initialEntryMode:
+                                          TimePickerEntryMode.inputOnly,
+                                      initialTime: TimeOfDay.fromDateTime(
+                                          DateTime.now()),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                          // : const Center()
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: kPrimaryColor1,
+                  ),
+                  onPressed: () {},
+                  icon: const Icon(Icons.post_add),
+                  label: const Text("Post"))
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
+}
+
+Future<TimeOfDay?> showTimePicker({
+  required BuildContext context,
+  // required TimeOfDay initialTime,
+  TransitionBuilder? builder,
+  bool useRootNavigator = true,
+  TimePickerEntryMode initialEntryMode = TimePickerEntryMode.dial,
+  String? cancelText,
+  String? confirmText,
+  String? helpText,
+  String? errorInvalidText,
+  String? hourLabelText,
+  String? minuteLabelText,
+  RouteSettings? routeSettings,
+  EntryModeChangeCallback? onEntryModeChanged,
+  Offset? anchorPoint,
+}) async {
+  assert(context != null);
+  // assert(initialTime != null);
+  assert(useRootNavigator != null);
+  assert(initialEntryMode != null);
+  assert(debugCheckHasMaterialLocalizations(context));
+
+  final Widget dialog = TimePickerDialog(
+    initialTime: TimeOfDay.now(),
+    initialEntryMode: initialEntryMode,
+    cancelText: cancelText,
+    confirmText: confirmText,
+    helpText: helpText,
+    errorInvalidText: errorInvalidText,
+    hourLabelText: hourLabelText,
+    minuteLabelText: minuteLabelText,
+    onEntryModeChanged: onEntryModeChanged,
+  );
+  return showDialog<TimeOfDay>(
+    context: context,
+    useRootNavigator: useRootNavigator,
+    builder: (BuildContext context) {
+      return builder == null ? dialog : builder(context, dialog);
+    },
+    routeSettings: routeSettings,
+    anchorPoint: anchorPoint,
+  );
 }
 
 class selectDisks extends StatefulWidget {
@@ -218,6 +409,7 @@ class setAvailableSpace extends StatefulWidget {
 
 class _setAvailableSpaceState extends State<setAvailableSpace> {
   int _currentValue = 1;
+  int _priceAmount = 100;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -232,10 +424,12 @@ class _setAvailableSpaceState extends State<setAvailableSpace> {
           ),
           const Spacer(),
           SizedBox(
-            width: MediaQuery.of(context).size.width / 2,
+            width: 60,
+            height: 60,
             child: FittedBox(
               fit: BoxFit.contain,
               child: NumberPicker(
+                  itemCount: 1,
                   textStyle: TextStyle(
                     fontSize: MediaQuery.of(context).size.width * 0.06,
                     color: Colors.white,
@@ -244,14 +438,18 @@ class _setAvailableSpaceState extends State<setAvailableSpace> {
                     fontSize: MediaQuery.of(context).size.width * 0.07,
                     color: kPrimaryColor,
                   ),
+                  textMapper: (numberText) {
+                    return numberText + " GB";
+                  },
                   itemHeight: 100,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(color: Colors.white),
                   ),
                   axis: Axis.horizontal,
-                  minValue: 1,
+                  minValue: 0,
                   maxValue: 256,
+                  step: 50,
                   value: _currentValue,
                   onChanged: (value) {
                     setState(() {
@@ -260,7 +458,42 @@ class _setAvailableSpaceState extends State<setAvailableSpace> {
                   }),
             ),
           ),
-          const Text("GB"),
+          const Spacer(),
+          SizedBox(
+            width: 60,
+            height: 60,
+            child: FittedBox(
+              fit: BoxFit.contain,
+              child: NumberPicker(
+                  itemCount: 1,
+                  textStyle: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width * 0.06,
+                    color: Colors.white,
+                  ),
+                  selectedTextStyle: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width * 0.07,
+                    color: kPrimaryColor,
+                  ),
+                  textMapper: (numberText) {
+                    return numberText + " Rs";
+                  },
+                  itemHeight: 100,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: Colors.white),
+                  ),
+                  axis: Axis.horizontal,
+                  minValue: 0,
+                  step: 500,
+                  maxValue: 10000000,
+                  value: _priceAmount,
+                  onChanged: (value) {
+                    setState(() {
+                      _priceAmount = value;
+                    });
+                  }),
+            ),
+          ),
         ],
       ),
     );
