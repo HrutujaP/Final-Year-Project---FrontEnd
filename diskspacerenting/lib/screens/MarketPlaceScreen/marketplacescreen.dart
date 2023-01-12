@@ -55,24 +55,20 @@ class MarketPlaceScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                    left: 18.0, right: 18, top: 10, bottom: 3),
+                padding: const EdgeInsets.only(left: 18.0, right: 18, top: 10),
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.53,
+                  height: MediaQuery.of(context).size.height * 0.526,
                   child: ListView(
                     scrollDirection: Axis.vertical,
                     physics: const BouncingScrollPhysics(),
                     children: const [
+                      ProductCollections(),
                       SizedBox(
-                        height: 20,
+                        height: 15,
                       ),
                       ProductCollections(),
                       SizedBox(
-                        height: 20,
-                      ),
-                      ProductCollections(),
-                      SizedBox(
-                        height: 20,
+                        height: 15,
                       ),
                     ],
                   ),

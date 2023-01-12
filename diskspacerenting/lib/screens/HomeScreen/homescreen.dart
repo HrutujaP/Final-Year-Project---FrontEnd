@@ -95,9 +95,6 @@ class _HomeScreenState extends State<HomeScreen>
           Column(
             children: [
               const TopBar(color: kSecondaryColor3),
-              const SizedBox(
-                height: 10,
-              ),
               const BlockChainVideoLoop(),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.025,
