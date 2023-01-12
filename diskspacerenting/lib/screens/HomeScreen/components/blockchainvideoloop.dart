@@ -15,7 +15,7 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
 
   @override
   void initState() {
-    _controller = VideoPlayerController.asset('assets/new.mp4')
+    _controller = VideoPlayerController.asset('assets/new3.mp4')
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {
@@ -29,8 +29,8 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.25,
-      width: MediaQuery.of(context).size.width * 0.92,
+      height: MediaQuery.of(context).size.height * 0.24,
+      width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         // border: Border.all(color: Colors.white, width: 2),
         borderRadius: BorderRadius.circular(25),

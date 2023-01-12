@@ -15,7 +15,7 @@ class MyStorages extends StatefulWidget {
 
 class _MyStoragesState extends State<MyStorages> {
   List<ChartData> chartData = [
-    ChartData('Rem', 22, '100%', kRedColor),
+    ChartData('Rem', 22, '100%', kSecondaryColor1),
     ChartData('Used', 10, '100%', kSecondaryColor3),
     ChartData('Total', 32, '100%', kSecondaryColor2),
   ];
@@ -31,9 +31,10 @@ class _MyStoragesState extends State<MyStorages> {
             color: kPrimaryColor2,
             gradient: LinearGradient(
               colors: [
-                kPrimaryColor1,
                 kPrimaryColor,
-                kPrimaryColor1,
+                kPrimaryColor,
+                kSecondaryColor,
+                kPrimaryColor,
                 kPrimaryColor,
               ],
               begin: Alignment.topLeft,
@@ -41,12 +42,12 @@ class _MyStoragesState extends State<MyStorages> {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const TopBar(
-                  color: kColor3,
+                  color: kSecondaryColor3,
                 ),
                 Row(
                   children: [
@@ -65,13 +66,12 @@ class _MyStoragesState extends State<MyStorages> {
                     ),
                     const Text('My Storages',
                         style: TextStyle(
-                            color: Colors.white,
+                            color: kPrimaryColor5,
                             fontSize: 25,
                             fontWeight: FontWeight.bold)),
                   ],
                 ),
                 StorageRadialGraph(chartData: chartData),
-                const SizedBox(height: 20),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.451,
                   child: ListView.builder(

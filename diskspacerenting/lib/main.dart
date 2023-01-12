@@ -14,9 +14,9 @@ import 'package:flutter/services.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarIconBrightness: Brightness.light,
-    statusBarColor: kPrimaryColor,
-  ));
+      statusBarIconBrightness: Brightness.light,
+      statusBarColor: kPrimaryColor,
+      systemNavigationBarColor: kPrimaryColor));
   runApp(const MyApp());
 }
 

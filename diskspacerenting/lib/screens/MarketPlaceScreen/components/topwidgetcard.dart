@@ -23,13 +23,13 @@ class TopWidgetCard extends StatelessWidget {
                 color: kColor3,
                 borderRadius: BorderRadius.circular(20),
               ),
-              height: MediaQuery.of(context).size.height * 0.35,
+              height: MediaQuery.of(context).size.height * 0.32,
               width: MediaQuery.of(context).size.width,
             ),
           ),
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.35,
+          height: MediaQuery.of(context).size.height * 0.32,
           width: MediaQuery.of(context).size.width,
           child: const ClipRRect(
             borderRadius: BorderRadius.only(

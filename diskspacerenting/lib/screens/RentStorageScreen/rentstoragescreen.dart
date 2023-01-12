@@ -16,12 +16,19 @@ class RentStorageScreen extends StatelessWidget {
       child: Scaffold(
         body: Stack(children: [
           SizedBox(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: const Image(
-                image: AssetImage('assets/images/buy_bg.png'),
-                fit: BoxFit.fill,
-              )),
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [
+              kPrimaryColor,
+              kPrimaryColor,
+              kPrimaryColor,
+              kSecondaryColor,
+              kPrimaryColor,
+              kPrimaryColor,
+            ], begin: Alignment.topLeft, end: Alignment.bottomRight))),
+          ),
           Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

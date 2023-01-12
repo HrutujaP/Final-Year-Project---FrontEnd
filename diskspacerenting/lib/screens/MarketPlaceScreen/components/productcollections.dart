@@ -10,7 +10,7 @@ class ProductCollections extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.3,
+      height: MediaQuery.of(context).size.height * 0.31,
       width: MediaQuery.of(context).size.width * 0.9,
       decoration: BoxDecoration(
         color: kItemColor.withOpacity(0.1),
@@ -25,7 +25,7 @@ class ProductCollections extends StatelessWidget {
               children: const [
                 Text(' < 50 GB Capacity',
                     style: TextStyle(
-                      color: Colors.greenAccent,
+                      color: kSecondaryColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                     )),

@@ -22,7 +22,7 @@ class _IndividualProductState extends State<IndividualProduct> {
       random.nextDouble(),
       random.nextDouble(),
       random.nextDouble(),
-    ).toColor().withOpacity(0.8);
+    ).toColor().withOpacity(0.4);
   }
 
   @override
@@ -51,7 +51,7 @@ class _IndividualProductState extends State<IndividualProduct> {
                     Text(
                       'Size',
                       style: TextStyle(
-                          color: kColor2,
+                          color: kPrimaryColor6,
                           fontSize: 16,
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w600),
@@ -62,7 +62,7 @@ class _IndividualProductState extends State<IndividualProduct> {
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w800,
-                          color: kColor1),
+                          color: kPrimaryColor4),
                     )
                   ],
                 ),
@@ -71,7 +71,7 @@ class _IndividualProductState extends State<IndividualProduct> {
                     Text(
                       'Price',
                       style: TextStyle(
-                          color: kColor2,
+                          color: kPrimaryColor6,
                           fontSize: 16,
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w600),
@@ -81,7 +81,7 @@ class _IndividualProductState extends State<IndividualProduct> {
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w800,
-                            color: kColor1)),
+                            color: kPrimaryColor4)),
                     Icon(
                       Icons.currency_bitcoin_rounded,
                       color: Colors.white,
@@ -94,7 +94,7 @@ class _IndividualProductState extends State<IndividualProduct> {
                     Text(
                       'Frequency',
                       style: TextStyle(
-                          color: kColor2,
+                          color: kPrimaryColor6,
                           fontSize: 16,
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w600),

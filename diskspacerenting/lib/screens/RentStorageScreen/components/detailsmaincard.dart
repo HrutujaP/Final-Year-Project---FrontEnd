@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:diskspacerenting/Constants/constants.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/components/allfeatures.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/components/pricerentbar.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/components/sla.dart';
@@ -74,7 +75,7 @@ class DetailsMainCard extends StatelessWidget {
                 softWrap: true,
                 style: TextStyle(
                     fontSize: MediaQuery.of(context).size.height * 0.02,
-                    color: Colors.purple[50]),
+                    color: kContrastColor),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,

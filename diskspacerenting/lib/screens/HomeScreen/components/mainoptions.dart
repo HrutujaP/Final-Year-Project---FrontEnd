@@ -1,3 +1,4 @@
+import 'package:diskspacerenting/Constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class MainOptions extends StatelessWidget {
@@ -24,12 +25,12 @@ class MainOptions extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        color: Colors.grey[700]?.withOpacity(0.4),
+        color: kPrimaryColor2.withOpacity(0.2),
         elevation: 10,
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: GestureDetector(
-            onTap: (){
+            onTap: () {
               Navigator.pushNamed(context, route);
             },
             child: SizedBox(
@@ -51,7 +52,7 @@ class MainOptions extends StatelessWidget {
                   Text(
                     hText,
                     style: const TextStyle(
-                        color: Colors.white,
+                        color: kPrimaryColor6,
                         fontSize: 22,
                         fontFamily: 'Montserrat',
                         fontWeight: FontWeight.w600),
@@ -62,7 +63,7 @@ class MainOptions extends StatelessWidget {
                   Text(
                     pText,
                     style: TextStyle(
-                        color: Colors.grey.shade300,
+                        color: kSecondaryColor,
                         fontSize: 16,
                         fontFamily: 'Montserrat',
                         fontWeight: FontWeight.w500),

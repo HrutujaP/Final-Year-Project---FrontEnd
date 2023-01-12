@@ -51,7 +51,7 @@ class SingleDeive extends StatelessWidget {
                   children: [
                     Text("Storage Name",
                         style: TextStyle(
-                            color: Colors.amber.shade900,
+                            color: kPrimaryColor4,
                             fontSize: 18,
                             fontWeight: FontWeight.w700)),
                     Row(
@@ -86,11 +86,7 @@ class SingleDeive extends StatelessWidget {
                     ),
                     Row(
                       children: const [
-                        Icon(
-                          Icons.pending,
-                          size: 20,
-                          color: kRedColor,
-                        ),
+                        Icon(Icons.pending, size: 20, color: kSecondaryColor),
                         SizedBox(width: 10),
                         Text("Rem Space: 22GB",
                             style: TextStyle(
