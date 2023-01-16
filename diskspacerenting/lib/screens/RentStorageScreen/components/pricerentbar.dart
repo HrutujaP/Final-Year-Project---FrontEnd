@@ -1,4 +1,5 @@
 import 'package:diskspacerenting/Constants/constants.dart';
+import 'package:diskspacerenting/screens/PaymentScreen/paymentscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -29,27 +30,32 @@ class PriceRentBar extends StatelessWidget {
             ],
           ),
           const Spacer(),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.5,
-            height: MediaQuery.of(context).size.height * 0.1,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(
-                      MediaQuery.of(context).size.width * 0.5,
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, PaymentScreen.id);
+            },
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.5,
+              height: MediaQuery.of(context).size.height * 0.1,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(
+                        MediaQuery.of(context).size.width * 0.5,
+                      ),
                     ),
-                  ),
-                  child: Center(
-                    child: Text('Rent Now',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.poppins(
-                            color: kColor2,
-                            fontSize:
-                                MediaQuery.of(context).size.height * 0.022,
-                            fontWeight: FontWeight.w700)),
-                  )),
+                    child: Center(
+                      child: Text('Rent Now',
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.poppins(
+                              color: kColor2,
+                              fontSize:
+                                  MediaQuery.of(context).size.height * 0.022,
+                              fontWeight: FontWeight.w700)),
+                    )),
+              ),
             ),
           ),
         ],

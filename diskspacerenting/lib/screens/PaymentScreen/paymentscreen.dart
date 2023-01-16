@@ -20,9 +20,11 @@ class PaymentScreen extends StatelessWidget {
             color: kPrimaryColor2,
             gradient: LinearGradient(
               colors: [
-                kPrimaryColor1,
                 kPrimaryColor,
-                kPrimaryColor1,
+                kPrimaryColor,
+                kPrimaryColor2,
+                kPrimaryColor2,
+                kPrimaryColor,
                 kPrimaryColor,
               ],
               begin: Alignment.topLeft,
@@ -34,7 +36,7 @@ class PaymentScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const TopBar(color: kItemColor2),
+                const TopBar(color: kPrimaryColor3),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.025),
                 const DatePicker(),
                 const Spacer(),
@@ -50,4 +52,3 @@ class PaymentScreen extends StatelessWidget {
     );
   }
 }
-

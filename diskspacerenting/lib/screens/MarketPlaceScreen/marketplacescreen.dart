@@ -20,9 +20,9 @@ class MarketPlaceScreen extends StatelessWidget {
               colors: [
                 // kPrimaryColor1,
                 kPrimaryColor,
-                kPrimaryColor1,
-                kPrimaryColor1,
+                // kPrimaryColor2,
                 kPrimaryColor,
+                // kPrimaryColor2,
                 kPrimaryColor,
               ],
               begin: Alignment.topLeft,

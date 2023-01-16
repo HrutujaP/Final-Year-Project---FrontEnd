@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // initialRoute: HomeScreen.id,
-      initialRoute: postAdvertisment.id,
+      initialRoute: PaymentScreen.id,
 
       routes: {
         HomeScreen.id: (context) => const HomeScreen(),

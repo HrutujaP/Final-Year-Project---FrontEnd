@@ -1,3 +1,4 @@
+import 'package:diskspacerenting/Constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 
@@ -19,8 +20,8 @@ class _SlideToPayState extends State<SlideToPay> {
         width: 300,
         child: SlideAction(
           elevation: 5,
-          innerColor: Colors.white,
-          outerColor: Colors.deepPurple,
+          innerColor: kPrimaryColor2,
+          outerColor: Colors.blueAccent,
           sliderButtonIcon: const Icon(Icons.arrow_forward_ios_rounded),
           text: "Slide to Pay",
           onSubmit: () {},

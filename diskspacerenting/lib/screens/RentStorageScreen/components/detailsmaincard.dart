@@ -26,7 +26,7 @@ class DetailsMainCard extends StatelessWidget {
                 topLeft: Radius.circular(40), topRight: Radius.circular(40)),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
             child: Column(children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),

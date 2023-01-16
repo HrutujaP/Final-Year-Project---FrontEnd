@@ -20,7 +20,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.black,
+          backgroundColor: kPrimaryColor,
           title: const Text(
             "Post Advertisment",
             style: TextStyle(color: Colors.white),
@@ -48,16 +48,16 @@ class _postAdvertismentState extends State<postAdvertisment> {
                         gradient: const LinearGradient(
                             colors: [
                               // Color(0xffFFD4E2), Color(0xffFF8FB3)
-                              kColor1,
-                              kPrimaryColor1,
+                              kPrimaryColor,
+                              kPrimaryColor2
                             ],
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter),
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight),
                         borderRadius: const BorderRadius.all(
                           Radius.circular(20),
                         ),
                         border: Border.all(
-                          color: Colors.black,
+                          color: kSecondaryColor2,
                           width: 1,
                         ),
                       ),
@@ -70,6 +70,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
                               child: Text(
                                 "Step 1 : Select Disks To Rent",
                                 style: TextStyle(
+                                  color: kPrimaryColor3,
                                   fontSize:
                                       MediaQuery.of(context).size.width * 0.05,
                                 ),
@@ -115,14 +116,14 @@ class _postAdvertismentState extends State<postAdvertisment> {
                       gradient: const LinearGradient(
                           colors: [
                             // Color(0xffFFD4E2), Color(0xffFF8FB3)
-                            kColor1,
-                            kPrimaryColor1,
+                            kPrimaryColor,
+                            kPrimaryColor2
                           ],
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter),
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                       border: Border.all(
-                        color: Colors.black,
+                        color: kColor1,
                         width: 1,
                       ),
                     ),
@@ -135,6 +136,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
                             child: Text(
                               "Step 2 : Set Details",
                               style: TextStyle(
+                                color: kPrimaryColor3,
                                 fontSize:
                                     MediaQuery.of(context).size.width * 0.05,
                               ),
@@ -172,18 +174,15 @@ class _postAdvertismentState extends State<postAdvertisment> {
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                   child: Container(
                     decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                          colors: [
-                            // Color(0xffFFD4E2),
-                            //  Color(0xffFF8FB3),
-                            kColor1,
-                            kPrimaryColor1,
-                          ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter),
+                      gradient: const LinearGradient(colors: [
+                        // Color(0xffFFD4E2),
+                        //  Color(0xffFF8FB3),
+                        kPrimaryColor,
+                        kPrimaryColor2
+                      ], begin: Alignment.topLeft, end: Alignment.bottomRight),
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                       border: Border.all(
-                        color: Colors.black,
+                        color: kColor3,
                         width: 1,
                       ),
                     ),
@@ -196,6 +195,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
                             child: Text(
                               "Step 3: Set Days To Rent",
                               style: TextStyle(
+                                color: kPrimaryColor3,
                                 fontSize:
                                     MediaQuery.of(context).size.width * 0.05,
                               ),
@@ -217,17 +217,14 @@ class _postAdvertismentState extends State<postAdvertisment> {
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                   child: Container(
                     decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                          colors: [
-                            // Color(0xffFFD4E2), Color(0xffFF8FB3)
-                            kColor1,
-                            kPrimaryColor1,
-                          ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter),
+                      gradient: const LinearGradient(colors: [
+                        // Color(0xffFFD4E2), Color(0xffFF8FB3)
+                        kPrimaryColor,
+                        kPrimaryColor2
+                      ], begin: Alignment.topLeft, end: Alignment.bottomRight),
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                       border: Border.all(
-                        color: Colors.black,
+                        color: kColor3,
                         width: 1,
                       ),
                     ),
@@ -240,6 +237,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
                             child: Text(
                               "Step 4 : Set Time",
                               style: TextStyle(
+                                color: kPrimaryColor3,
                                 fontSize:
                                     MediaQuery.of(context).size.width * 0.05,
                               ),
@@ -254,6 +252,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
                                   Text(
                                     "From",
                                     style: TextStyle(
+                                      color: kPrimaryColor2,
                                       fontSize:
                                           MediaQuery.of(context).size.width *
                                               0.06,
@@ -278,6 +277,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
                                   Text(
                                     "TO",
                                     style: TextStyle(
+                                      color: kPrimaryColor2,
                                       fontSize:
                                           MediaQuery.of(context).size.width *
                                               0.06,
@@ -308,9 +308,8 @@ class _postAdvertismentState extends State<postAdvertisment> {
                 ),
               ),
               ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: kPrimaryColor1,
-                  ),
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: kPrimaryColor2),
                   onPressed: () {},
                   icon: const Icon(Icons.post_add),
                   label: const Text("Post"))
@@ -391,7 +390,9 @@ class _selectDisksState extends State<selectDisks> {
         ),
         Text(
           widget.diskName,
-          style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.06),
+          style: TextStyle(
+              fontSize: MediaQuery.of(context).size.width * 0.06,
+              color: kSecondaryColor3),
         ),
       ],
     );
@@ -419,6 +420,7 @@ class _setAvailableSpaceState extends State<setAvailableSpace> {
           Text(
             widget.diskName,
             style: TextStyle(
+              color: kSecondaryColor3,
               fontSize: MediaQuery.of(context).size.width * 0.06,
             ),
           ),

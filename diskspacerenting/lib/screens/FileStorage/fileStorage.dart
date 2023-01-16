@@ -28,9 +28,11 @@ class _FileStoarageState extends State<FileStoarage> {
           color: kPrimaryColor1,
           gradient: LinearGradient(
             colors: [
-              kPrimaryColor1,
               kPrimaryColor,
-              kPrimaryColor1,
+              kPrimaryColor,
+              kPrimaryColor2,
+              // kPrimaryColor,
+              kPrimaryColor,
               kPrimaryColor,
               // kPrimaryColor1,
             ],
@@ -62,7 +64,7 @@ class _FileStoarageState extends State<FileStoarage> {
                 //   ),
                 // ),
                 const Padding(
-                  padding: EdgeInsets.all(3.0),
+                  padding: EdgeInsets.symmetric(horizontal: 10.0),
                   child: TopBar(color: kSecondaryColor),
                 ),
                 SizedBox(
@@ -262,7 +264,11 @@ class _FileStoarageState extends State<FileStoarage> {
               child: SizedBox(
                 height: MediaQuery.of(context).size.height / 2.8,
                 child: Container(
-                  color: Colors.white.withOpacity(0.1),
+                  decoration: BoxDecoration(
+                    color: kPrimaryColor2.withOpacity(0.8),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  // color: kPrimaryColor2.withOpacity(0.8),
                   child: GridView.builder(
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,

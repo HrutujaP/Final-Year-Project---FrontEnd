@@ -1,3 +1,4 @@
+import 'package:diskspacerenting/Constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class PaymentSection extends StatelessWidget {
@@ -11,7 +12,7 @@ class PaymentSection extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.28,
       child: Container(
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 41, 33, 75),
+          color: kPrimaryColor3,
           borderRadius:
               BorderRadius.circular(MediaQuery.of(context).size.height * 0.04),
         ),
@@ -23,7 +24,7 @@ class PaymentSection extends StatelessWidget {
               // width:,
               child: Container(
                 decoration: BoxDecoration(
-                  color: const Color(0xffb0f7ff),
+                  color: kPrimaryColor4,
                   borderRadius: BorderRadius.circular(
                       MediaQuery.of(context).size.height * 0.04),
                 ),
@@ -33,29 +34,28 @@ class PaymentSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
-                          children: const [
-                            Icon(
+                          children: [
+                            const Icon(
                               Icons.wallet,
                               color: Color(0xff59abb9),
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text(
                               'Subscriptions wallet',
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize:
+                                    MediaQuery.of(context).size.height * 0.018,
                               ),
                             ),
-                            Spacer(),
-                            Icon(
+                            const Spacer(),
+                            const Icon(
                               Icons.circle_outlined,
                               color: Color.fromARGB(255, 41, 33, 75),
                               size: 30,
                             )
                           ],
                         ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.01,
-                        ),
+                        const Spacer(),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Row(
@@ -79,9 +79,7 @@ class PaymentSection extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.01,
-                        ),
+                        const Spacer(),
                         Row(
                           children: const [
                             Text(
@@ -105,7 +103,7 @@ class PaymentSection extends StatelessWidget {
               children: const [
                 Icon(
                   Icons.add_circle,
-                  color: Colors.white,
+                  color: kSecondaryColor,
                   size: 30,
                 ),
                 SizedBox(
