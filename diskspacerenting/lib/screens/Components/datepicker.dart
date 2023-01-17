@@ -31,8 +31,8 @@ class _DatePickerState extends State<DatePicker> {
               Text(
                 'Pick rent duration',
                 style: TextStyle(
-                  color: kItemColor,
-                  fontSize: 22,
+                  color: kContainerEndColor,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -46,7 +46,7 @@ class _DatePickerState extends State<DatePicker> {
                 height: MediaQuery.of(context).size.height * 0.31,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: kColor1.withOpacity(0.6),
+                    color: kContainerEndColor.withOpacity(0.6),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
@@ -59,7 +59,7 @@ class _DatePickerState extends State<DatePicker> {
                 height: MediaQuery.of(context).size.height * 0.31,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: kColor1.withOpacity(0.3),
+                    color: kContainerEndColor.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
@@ -69,21 +69,21 @@ class _DatePickerState extends State<DatePicker> {
               height: MediaQuery.of(context).size.height * 0.3,
               child: Container(
                 decoration: BoxDecoration(
-                  color: kColor1,
+                  color: kContainerEndColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: SfDateRangePicker(
-                    selectionColor: kColor3,
-                    startRangeSelectionColor: kColor3,
-                    endRangeSelectionColor: kColor3,
-                    todayHighlightColor: kPrimaryColor1,
-                    rangeSelectionColor: kColor3.withOpacity(0.2),
+                    selectionColor: kContainerStartColor,
+                    startRangeSelectionColor: kContainerEndColor,
+                    endRangeSelectionColor: kContainerEndColor,
+                    todayHighlightColor: kContainerEndColor,
+                    rangeSelectionColor: kContainerEndColor.withOpacity(0.5),
                     enablePastDates: false,
                     confirmText: 'Confirm',
                     cancelText: 'Cancel',
-                    backgroundColor: kColor1,
+                    backgroundColor: kDatePickerColor,
                     onSelectionChanged: _onSelectionChanged,
                     selectionMode: DateRangePickerSelectionMode.range,
                     initialSelectedRange: PickerDateRange(DateTime.now(),
@@ -100,7 +100,7 @@ class _DatePickerState extends State<DatePicker> {
         'Selected range: $_range',
         softWrap: true,
         style: const TextStyle(
-            color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
+            color: kTextLightColor, fontSize: 14, fontWeight: FontWeight.bold),
       ),
     ]);
   }

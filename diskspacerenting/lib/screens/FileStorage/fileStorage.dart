@@ -3,8 +3,8 @@
 import 'dart:math';
 
 import 'package:diskspacerenting/Constants/constants.dart';
-import 'package:diskspacerenting/screens/HomeScreen/components/topbar.dart';
-import 'package:diskspacerenting/screens/HomeScreen/components/topbaritems.dart';
+import 'package:diskspacerenting/screens/Components/topbar.dart';
+import 'package:diskspacerenting/screens/Components/topbaritems.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';

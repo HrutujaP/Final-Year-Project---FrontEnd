@@ -2,10 +2,11 @@ import 'package:diskspacerenting/Constants/constants.dart';
 import 'package:diskspacerenting/screens/HomeScreen/components/blockchainvideoloop.dart';
 import 'package:diskspacerenting/screens/HomeScreen/components/bottomdotbar.dart';
 import 'package:diskspacerenting/screens/HomeScreen/components/mainoptions.dart';
-import 'package:diskspacerenting/screens/HomeScreen/components/topbar.dart';
+import 'package:diskspacerenting/screens/Components/topbar.dart';
 import 'package:diskspacerenting/screens/MarketPlaceScreen/marketplacescreen.dart';
 import 'package:diskspacerenting/screens/MyStoragesScreen/mystorages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_glow/flutter_glow.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
@@ -51,86 +52,59 @@ class _HomeScreenState extends State<HomeScreen>
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            // kPrimaryColor2,
-            // kPrimaryColor2,
-            // kPrimaryColor2,
-            // kPrimaryColor2,
-            // kPrimaryColor2,
-            // // Color(0xffD331BB),
-            // // Color(0xffD331BB),
-            // kPrimaryColor1,
-            // kPrimaryColor1,
-            // kPrimaryColor2,
-            // kPrimaryColor2
-            kPrimaryColor,
-            kPrimaryColor,
-            kPrimaryColor,
-            kSecondaryColor,
-            kPrimaryColor,
-            kPrimaryColor,
+            kBackgroundStartColor,
+            kBackgroundEndColor,
           ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
         ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Stack(children: [
-          // Container(
-          //   height: 200,
-          //   alignment: Alignment.bottomCenter,
-          //   child: SingleChildScrollView(
-          //     child: LayoutBuilder(
-          //       builder: (context, constraints) {
-          //         return Transform.translate(
-          //           offset: Offset(0, _spherePosition - 200),
-          //           child: CustomPaint(
-          //             painter: _GradientSpherePainter(),
-          //           ),
-          //         );
-          //       },
-          //     ),
-          //   ),
-          // ),
-          Column(
-            children: [
-              const TopBar(color: kSecondaryColor3),
-              const BlockChainVideoLoop(),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.025,
+      child: Stack(children: [
+        Column(
+          children: [
+            const TopBar(color: kSecondaryColor3),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: BlockChainVideoLoop(),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Experience the future of storage with blockchain-powered diskspace rentals.',
+                style: TextStyle(
+                  letterSpacing: 2,
+                  fontSize: MediaQuery.of(context).size.height * 0.025,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w600,
+                  foreground: Paint()..shader = linearGradient,
+                ),
+                textAlign: TextAlign.center,
+                softWrap: true,
               ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    child: const Padding(
-                      padding: EdgeInsets.only(right: 8.0),
-                      child: Text(
-                        'Experience the future of storage with blockchain-powered diskspace rentals!',
-                        style: TextStyle(
-                            color: kPrimaryColor6,
-                            fontSize: 20,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w600),
-                        softWrap: true,
-                      ),
-                    ),
-                  ),
-                  // const Spacer(),
-                ],
-              ),
-              Spacer(),
-              Column(
+            ),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
                 children: [
                   Container(
-                    decoration: BoxDecoration(
-                      color: kContrastColor,
-                      borderRadius: const BorderRadius.only(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          kContainerStartColor,
+                          kContainerMiddleColor,
+                          kContainerEndColor,
+                          kContainerEndColor,
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.topRight,
+                      ),
+                      borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(20),
                           topRight: Radius.circular(20)),
                     ),
                     child: SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.042,
+                      // height: MediaQuery.of(context).size.height * 0.042,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 8.0, horizontal: 25),
@@ -140,7 +114,8 @@ class _HomeScreenState extends State<HomeScreen>
                               'Balances',
                               style: TextStyle(
                                   color: Colors.grey.shade100,
-                                  fontSize: 18,
+                                  fontSize: MediaQuery.of(context).size.height *
+                                      0.025,
                                   fontWeight: FontWeight.w600),
                             ),
                             const Spacer(),
@@ -156,7 +131,15 @@ class _HomeScreenState extends State<HomeScreen>
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: kSecondaryColor2.withOpacity(0.5),
+                      gradient: LinearGradient(
+                        colors: [
+                          kContainerStartColor.withOpacity(0.4),
+                          kContainerMiddleColor.withOpacity(0.4),
+                          kContainerEndColor.withOpacity(0.4),
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.topRight,
+                      ),
                       borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(20),
                           bottomRight: Radius.circular(20)),
@@ -181,9 +164,9 @@ class _HomeScreenState extends State<HomeScreen>
                                   width:
                                       MediaQuery.of(context).size.width * 0.05,
                                 ),
-                                Text('DSR Token',
+                                const Text('DSR Token',
                                     style: TextStyle(
-                                        color: kPrimaryColor5,
+                                        color: kTextLightColor,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold)),
                                 const Spacer(),
@@ -210,9 +193,9 @@ class _HomeScreenState extends State<HomeScreen>
                                   width:
                                       MediaQuery.of(context).size.width * 0.018,
                                 ),
-                                Text('Storage Rented',
+                                const Text('Storage Rented',
                                     style: TextStyle(
-                                        color: kPrimaryColor5,
+                                        color: kTextLightColor,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold)),
                                 const Spacer(),
@@ -230,57 +213,57 @@ class _HomeScreenState extends State<HomeScreen>
                   ),
                 ],
               ),
-              Spacer(),
-              Column(
-                children: [
-                  SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.305,
-                      width: MediaQuery.of(context).size.width * 0.6,
-                      child: PageView(
-                        controller: _pageController,
-                        scrollDirection: Axis.horizontal,
-                        physics: const BouncingScrollPhysics(),
-                        children: const [
-                          MainOptions(
-                            route: '/rent',
-                            color: Color.fromARGB(255, 255, 160, 241),
-                            icon: Icons.currency_exchange_sharp,
-                            hText: 'Rent',
+            ),
+            Spacer(),
+            Column(
+              children: [
+                SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.23,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: PageView(
+                      controller: _pageController,
+                      scrollDirection: Axis.horizontal,
+                      physics: const BouncingScrollPhysics(),
+                      children: const [
+                        MainOptions(
+                          route: '/rent',
+                          color: kTextDarkColor,
+                          icon: Icons.currency_exchange_sharp,
+                          hText: 'Rent',
+                          pText:
+                              'Rent out your diskspace to other users and earn DSR tokens!',
+                        ),
+                        MainOptions(
+                          route: MarketPlaceScreen.id,
+                          color: kTextDarkColor,
+                          icon: Icons.payment,
+                          hText: 'Buy',
+                          pText:
+                              'Buy diskspace from other users and store your data securely!',
+                        ),
+                        MainOptions(
+                            route: MyStorages.id,
+                            color: kTextDarkColor,
+                            icon: Icons.storage_rounded,
+                            hText: 'My\nStorage',
                             pText:
-                                'Rent out your diskspace to other users and earn DSR tokens!',
-                          ),
-                          MainOptions(
-                            route: MarketPlaceScreen.id,
-                            color: Color.fromARGB(255, 104, 250, 255),
-                            icon: Icons.payment,
-                            hText: 'Buy',
-                            pText:
-                                'Buy diskspace from other users and store your data securely!',
-                          ),
-                          MainOptions(
-                              route: MyStorages.id,
-                              color: Color.fromARGB(255, 215, 189, 255),
-                              icon: Icons.storage_rounded,
-                              hText: 'My Storage',
-                              pText:
-                                  'View your rented diskspace and manage your data!')
-                        ],
-                        onPageChanged: (int page) {
-                          setState(() {
-                            _currentPage = page;
-                          });
-                        },
-                      )),
-                  BottomDotBar(
-                    currentIndex: _currentPage,
-                    dotCount: 3,
-                  ),
-                ],
-              )
-            ],
-          ),
-        ]),
-      ),
+                                'View your rented diskspace and manage your data!')
+                      ],
+                      onPageChanged: (int page) {
+                        setState(() {
+                          _currentPage = page;
+                        });
+                      },
+                    )),
+                BottomDotBar(
+                  currentIndex: _currentPage,
+                  dotCount: 3,
+                ),
+              ],
+            )
+          ],
+        ),
+      ]),
     )));
   }
 }

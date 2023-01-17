@@ -13,10 +13,11 @@ import 'package:flutter/services.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarIconBrightness: Brightness.light,
-      statusBarColor: kPrimaryColor,
-      systemNavigationBarColor: kPrimaryColor));
+  // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+  //     statusBarIconBrightness: Brightness.light,
+  //     statusBarColor: kPrimaryColor,
+  //     systemNavigationBarColor: kPrimaryColor));
+
   runApp(const MyApp());
 }
 
@@ -28,8 +29,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // initialRoute: HomeScreen.id,
-      initialRoute: PaymentScreen.id,
+      initialRoute: HomeScreen.id,
+      // initialRoute: postAdvertisment.id,
 
       routes: {
         HomeScreen.id: (context) => const HomeScreen(),
