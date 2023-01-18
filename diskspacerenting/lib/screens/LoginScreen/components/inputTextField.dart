@@ -32,7 +32,7 @@ class inputText extends StatelessWidget {
             labelheading,
             style: TextStyle(
               fontSize: MediaQuery.of(context).size.width / 25,
-              color: kSecondaryColor1,
+              color: kTextLightColor,
             ),
           ),
         ),

@@ -43,14 +43,15 @@ class _loginScreenState extends State<loginScreen> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: MediaQuery.of(context).size.height / 20,
-                    color: kSecondaryColor1,
+                    // color: kSecondaryColor1,
+                    foreground: Paint()..shader = linearGradient1,
                   ),
                 ),
                 Text(
                   "See your growth and let us help us ease your life!",
                   style: TextStyle(
                     fontSize: MediaQuery.of(context).size.width / 25,
-                    color: kSecondaryColor1,
+                    foreground: Paint()..shader = linearGradient,
                   ),
                 ),
                 const SizedBox(
@@ -60,68 +61,102 @@ class _loginScreenState extends State<loginScreen> {
                     key: _loginformKey,
                     child: Column(
                       children: [
-                        inputText(
-                          hintText: 'Enter Email Address',
-                          keyboardType: TextInputType.emailAddress,
-                          textInputAction: TextInputAction.next,
-                          onChanged: (val) {
-                            _email = val!;
-                          },
-                          validator: (email) {
-                            if (email != null &&
-                                EmailValidator.validate(email)) {
-                              return null;
-                            }
-                            return "Invalid email address";
-                          },
-                          labelheading: 'Email*',
+                        Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                kContainerStartColor.withOpacity(0.4),
+                                kContainerMiddleColor.withOpacity(0.4),
+                                kContainerEndColor.withOpacity(0.4),
+                              ],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                            ),
+                          ),
+                          child: TextFormField(
+                              style: TextStyle(
+                                color: kTextLightColor,
+                              ),
+                              cursorColor: kContainerStartColor,
+                              keyboardType: TextInputType.phone,
+                              decoration: const InputDecoration(
+                                fillColor: kTextLightColor,
+                                focusColor: kTextLightColor,
+                                labelText: 'Email Address',
+                                labelStyle: TextStyle(
+                                  color: kContainerMiddleColor,
+                                ),
+                                hintText: 'Enter your email address',
+                                hintStyle: TextStyle(
+                                  color: kContainerEndColor,
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: kContainerEndColor)),
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide()),
+                                disabledBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: kContainerEndColor)),
+                              )),
                         ),
                         const SizedBox(
                           height: 10,
                         ),
-                        inputText(
-                          obscureText: !_visiblePassword,
-                          hintText: 'Enter Password',
-                          textInputAction: TextInputAction.done,
-                          keyboardType: TextInputType.visiblePassword,
-                          onChanged: (val) {
-                            _password = val!;
-                          },
-                          validator: (password) {
-                            if (password == null || password.isEmpty) {
-                              return "Empty password";
-                            }
-                            return null;
-                          },
-                          suffixIcon: InkWell(
-                            onTap: () {
-                              setState(() {
-                                _visiblePassword = !_visiblePassword;
-                              });
-                            },
-                            child: Icon(
-                              _visiblePassword
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
-                              color: Colors.white,
+                        Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                kContainerStartColor.withOpacity(0.4),
+                                kContainerMiddleColor.withOpacity(0.4),
+                                kContainerEndColor.withOpacity(0.4),
+                              ],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
                             ),
                           ),
-                          labelheading: 'Password*',
+                          child: TextFormField(
+                              style: TextStyle(
+                                color: kTextLightColor,
+                              ),
+                              cursorColor: kContainerStartColor,
+                              keyboardType: TextInputType.phone,
+                              decoration: const InputDecoration(
+                                fillColor: kTextLightColor,
+                                focusColor: kTextLightColor,
+                                labelText: 'Password',
+                                labelStyle: TextStyle(
+                                  color: kContainerMiddleColor,
+                                ),
+                                hintText: 'Enter your password',
+                                hintStyle: TextStyle(
+                                  color: kContainerEndColor,
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: kContainerEndColor)),
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide()),
+                                disabledBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: kContainerEndColor)),
+                              )),
                         ),
                         const SizedBox(
                           height: 20,
                         ),
                         SizedBox(
                           height: 45.5,
-                          width: MediaQuery.of(context).size.width,
+                          width: MediaQuery.of(context).size.width * 0.6,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               elevation: 10,
-                              backgroundColor: Colors.white.withOpacity(0.5),
-                              shadowColor: Colors.white.withOpacity(0.3),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25),
-                              ),
+                              backgroundColor:
+                                  kContainerMiddleColor.withOpacity(0.6),
+                              shadowColor: kContainerStartColor,
+                              // shape: RoundedRectangleBorder(
+                              //   borderRadius: BorderRadius.circular(25),
+                              // ),
                             ),
                             onPressed: () async {
                               if (!_loginformKey.currentState!.validate()) {
@@ -140,9 +175,10 @@ class _loginScreenState extends State<loginScreen> {
                             child: Text(
                               'Log In',
                               style: TextStyle(
-                                color: Colors.black,
+                                color: kContainerStartColor,
+                                // foreground: Paint()..shader = linearGradient2,
                                 fontSize:
-                                    MediaQuery.of(context).size.width / 20,
+                                    MediaQuery.of(context).size.width / 16,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -158,4 +194,3 @@ class _loginScreenState extends State<loginScreen> {
     ));
   }
 }
-

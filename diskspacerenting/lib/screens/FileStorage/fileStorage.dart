@@ -25,16 +25,11 @@ class _FileStoarageState extends State<FileStoarage> {
     return SafeArea(
       child: Container(
         decoration: const BoxDecoration(
-          color: kPrimaryColor1,
+          // color: kPrimaryColor1,
           gradient: LinearGradient(
             colors: [
-              kPrimaryColor,
-              kPrimaryColor,
-              kPrimaryColor2,
-              // kPrimaryColor,
-              kPrimaryColor,
-              kPrimaryColor,
-              // kPrimaryColor1,
+              kBackgroundStartColor,
+              kBackgroundEndColor,
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -45,28 +40,7 @@ class _FileStoarageState extends State<FileStoarage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Padding(
-                //   padding: const EdgeInsets.all(8.0),
-                //   child: Row(
-                //     children: [
-                //       Icon(
-                //         Icons.account_circle,
-                //         color: kSecondaryColor1,
-                //         size: MediaQuery.of(context).size.width * 0.1,
-                //       ),
-                //       Spacer(),
-                //       Icon(
-                //         Icons.notifications_rounded,
-                //         color: kSecondaryColor1,
-                //         size: MediaQuery.of(context).size.width * 0.1,
-                //       )
-                //     ],
-                //   ),
-                // ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0),
-                  child: TopBar(color: kSecondaryColor),
-                ),
+                const TopBar(color: kSecondaryColor),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
@@ -74,7 +48,8 @@ class _FileStoarageState extends State<FileStoarage> {
                   padding: const EdgeInsets.fromLTRB(8, 8, 0, 0),
                   child: Text("Explore the",
                       style: TextStyle(
-                        color: kSecondaryColor1,
+                        // color: kTextLightColor,
+                        foreground: Paint()..shader = linearGradient,
                         fontSize: MediaQuery.of(context).size.width * 0.045,
                         decoration: TextDecoration.none,
                         fontWeight: FontWeight.w100,
@@ -83,9 +58,9 @@ class _FileStoarageState extends State<FileStoarage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(8, 8, 0, 0),
-                  child: Text("Storage",
+                  child: Text("Storage.",
                       style: TextStyle(
-                          color: kSecondaryColor1,
+                          foreground: Paint()..shader = linearGradient,
                           fontSize: MediaQuery.of(context).size.width * 0.1,
                           decoration: TextDecoration.none,
                           fontWeight: FontWeight.bold),
@@ -101,8 +76,8 @@ class _FileStoarageState extends State<FileStoarage> {
                       Text(
                         "Balances",
                         style: TextStyle(
-                          color: kSecondaryColor1,
-                          fontSize: MediaQuery.of(context).size.width * 0.045,
+                          foreground: Paint()..shader = linearGradient1,
+                          fontSize: MediaQuery.of(context).size.width * 0.05,
                           decoration: TextDecoration.none,
                           fontWeight: FontWeight.w100,
                         ),
@@ -110,7 +85,7 @@ class _FileStoarageState extends State<FileStoarage> {
                       Spacer(),
                       Icon(
                         Icons.question_mark_rounded,
-                        color: kSecondaryColor1,
+                        color: kContainerEndColor,
                         size: MediaQuery.of(context).size.width * 0.08,
                       )
                     ],
@@ -121,11 +96,21 @@ class _FileStoarageState extends State<FileStoarage> {
                   child: Material(
                     elevation: 10,
                     borderRadius: BorderRadius.circular(10),
+                    shadowColor: kContainerStartColor,
                     color: Colors.white.withOpacity(0.1),
                     child: Container(
                       // height: MediaQuery.of(context).size.height * 0.25,
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.1),
+                        gradient: LinearGradient(
+                          colors: [
+                            // Color(0xffFFD4E2), Color(0xffFF8FB3)
+                            kContainerStartColor.withOpacity(0.6),
+                            kContainerMiddleColor.withOpacity(0.6),
+                            kContainerEndColor.withOpacity(0.6),
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        ),
                         borderRadius: BorderRadius.circular(10),
                       ),
 
@@ -137,14 +122,14 @@ class _FileStoarageState extends State<FileStoarage> {
                               children: [
                                 Icon(
                                   Icons.account_balance_wallet,
-                                  color: kSecondaryColor3,
+                                  color: kTextDarkColor,
                                   size:
                                       MediaQuery.of(context).size.width * 0.07,
                                 ),
                                 Text(
                                   " Total space rented",
                                   style: TextStyle(
-                                    color: kSecondaryColor1,
+                                    color: kTextLightColor,
                                     fontSize:
                                         MediaQuery.of(context).size.width *
                                             0.04,
@@ -156,7 +141,7 @@ class _FileStoarageState extends State<FileStoarage> {
                                 Text(
                                   "32 GB",
                                   style: TextStyle(
-                                    color: kSecondaryColor1,
+                                    color: kTextLightColor,
                                     fontSize:
                                         MediaQuery.of(context).size.width *
                                             0.04,
@@ -180,7 +165,7 @@ class _FileStoarageState extends State<FileStoarage> {
                                 Text(
                                   " Space used",
                                   style: TextStyle(
-                                    color: kSecondaryColor1,
+                                    color: kTextLightColor,
                                     fontSize:
                                         MediaQuery.of(context).size.width *
                                             0.04,
@@ -192,7 +177,7 @@ class _FileStoarageState extends State<FileStoarage> {
                                 Text(
                                   "8 GB",
                                   style: TextStyle(
-                                    color: kSecondaryColor1,
+                                    color: kTextLightColor,
                                     fontSize:
                                         MediaQuery.of(context).size.width *
                                             0.04,
@@ -216,7 +201,7 @@ class _FileStoarageState extends State<FileStoarage> {
                                 Text(
                                   " Space Remaining",
                                   style: TextStyle(
-                                    color: kSecondaryColor1,
+                                    color: kTextLightColor,
                                     fontSize:
                                         MediaQuery.of(context).size.width *
                                             0.04,
@@ -228,7 +213,7 @@ class _FileStoarageState extends State<FileStoarage> {
                                 Text(
                                   "16 GB",
                                   style: TextStyle(
-                                    color: kSecondaryColor1,
+                                    color: kTextLightColor,
                                     fontSize:
                                         MediaQuery.of(context).size.width *
                                             0.04,
@@ -249,7 +234,7 @@ class _FileStoarageState extends State<FileStoarage> {
                   child: Text(
                     "Items",
                     style: TextStyle(
-                      color: kSecondaryColor1,
+                      foreground: Paint()..shader = linearGradient1,
                       fontSize: MediaQuery.of(context).size.width * 0.07,
                       decoration: TextDecoration.none,
                       // fontWeight: FontWeight.bold,
@@ -265,8 +250,20 @@ class _FileStoarageState extends State<FileStoarage> {
                 height: MediaQuery.of(context).size.height / 2.8,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: kPrimaryColor2.withOpacity(0.8),
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.white.withOpacity(0.2),
+                        Colors.white.withOpacity(0.2),
+                        // kContainerEndColor.withOpacity(0.2),
+                      ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
                     borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: kBackgroundEndColor,
+                      width: 1,
+                    ),
                   ),
                   // color: kPrimaryColor2.withOpacity(0.8),
                   child: GridView.builder(
@@ -289,16 +286,16 @@ class _FileStoarageState extends State<FileStoarage> {
                         child: Material(
                           borderRadius: BorderRadius.circular(10),
                           elevation: 20,
-                          shadowColor: kSecondaryColor1,
+                          shadowColor: kTextLightColor,
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               border: Border.all(
-                                color: kPrimaryColor.withOpacity(0.4),
+                                color: kContainerEndColor,
                                 width: 1,
                               ),
                               // color: kSecondaryColor3,
-                              color: Colors.black,
+                              color: kContainerEndColor,
                               // color: kColor1.withOpacity(0.9),
                             ),
                             child: Center(
@@ -311,7 +308,7 @@ class _FileStoarageState extends State<FileStoarage> {
                                     ),
                                     painter: CurvedPainter1(
                                       // Color: kItemColor,
-                                      Color: kColor2,
+                                      Color: kDatePickerColor,
                                     ),
                                   ),
                                   CustomPaint(
@@ -320,9 +317,7 @@ class _FileStoarageState extends State<FileStoarage> {
                                       MediaQuery.of(context).size.width * 0.5,
                                     ),
                                     painter: CurvedPainter1(
-                                      // Color: kSecondaryColor2,
-                                      Color: kPrimaryColor,
-                                      // Color: kColor2.withOpacity(0.3),
+                                      Color: kContainerMiddleColor,
                                     ),
                                   ),
                                   Padding(
@@ -334,7 +329,7 @@ class _FileStoarageState extends State<FileStoarage> {
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
-                                            child: GlowText(
+                                            child: Text(
                                               "File name",
                                               style: TextStyle(
                                                 fontSize: MediaQuery.of(context)
@@ -342,15 +337,15 @@ class _FileStoarageState extends State<FileStoarage> {
                                                         .width *
                                                     0.04,
                                                 fontWeight: FontWeight.bold,
-                                                color: kSecondaryColor1,
+                                                color: kTextDarkColor,
                                               ),
                                             ),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
-                                            child: GlowIcon(
+                                            child: Icon(
                                               Icons.file_open_rounded,
-                                              color: kSecondaryColor1,
+                                              color: kTextDarkColor,
                                               size: MediaQuery.of(context)
                                                       .size
                                                       .width *
