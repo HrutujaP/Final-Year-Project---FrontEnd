@@ -19,33 +19,32 @@ class PaymentScreen extends StatelessWidget {
           decoration: const BoxDecoration(
             color: kPrimaryColor2,
             gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
               colors: [
-                kPrimaryColor,
-                kPrimaryColor,
-                kPrimaryColor2,
-                kPrimaryColor2,
-                kPrimaryColor,
-                kPrimaryColor,
+                kBackgroundStartColor,
+                kBackgroundEndColor,
               ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
             ),
           ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const TopBar(color: kPrimaryColor3),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.025),
-                const DatePicker(),
-                const Spacer(),
-                const PaymentSection(),
-                const Spacer(),
-                const Center(child: SlideToPay()),
-                const SizedBox(height: 10),
-              ],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const TopBar(color: kPrimaryColor3),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.025),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: DatePicker(),
+              ),
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: const PaymentSection(),
+              ),
+              const Spacer(),
+              const Center(child: SlideToPay()),
+              const SizedBox(height: 20),
+            ],
           ),
         ),
       ),

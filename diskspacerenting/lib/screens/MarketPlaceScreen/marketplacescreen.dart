@@ -18,28 +18,25 @@ class MarketPlaceScreen extends StatelessWidget {
             color: kPrimaryColor2,
             gradient: LinearGradient(
               colors: [
-                // kPrimaryColor1,
-                kPrimaryColor,
-                // kPrimaryColor2,
-                kPrimaryColor,
-                // kPrimaryColor2,
-                kPrimaryColor,
+                kBackgroundStartColor,
+                kBackgroundEndColor,
               ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
             ),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const TopWidgetCard(),
+              Spacer(),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0, left: 18, right: 18),
                 child: Row(
                   children: const [
                     Text('Our Collections',
                         style: TextStyle(
-                          color: kPrimaryColor3,
+                          color: kTextColor,
                           fontSize: 22,
                           fontWeight: FontWeight.w600,
                         )),
@@ -57,7 +54,7 @@ class MarketPlaceScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 18.0, right: 18, top: 10),
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.526,
+                  height: MediaQuery.of(context).size.height * 0.55,
                   child: ListView(
                     scrollDirection: Axis.vertical,
                     physics: const BouncingScrollPhysics(),

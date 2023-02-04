@@ -61,9 +61,6 @@ class TopBarItems extends StatelessWidget {
           size: MediaQuery.of(context).size.width / 10,
           color: kTextLightColor,
         ),
-        const SizedBox(
-          width: 20,
-        ),
       ],
     );
   }

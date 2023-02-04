@@ -20,7 +20,7 @@ class TopWidgetCard extends StatelessWidget {
             transform: Matrix4.rotationZ(0.05),
             child: Container(
               decoration: BoxDecoration(
-                color: kPrimaryColor2.withOpacity(0.5),
+                color: kContainerStartColor.withOpacity(0.6),
                 borderRadius: BorderRadius.circular(20),
               ),
               height: MediaQuery.of(context).size.height * 0.32,
@@ -35,22 +35,23 @@ class TopWidgetCard extends StatelessWidget {
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20)),
-            child: Image(
-              image: AssetImage('assets/images/marketplace.jpg'),
-              fit: BoxFit.cover,
+            child: ColorFiltered(
+              colorFilter:
+                  ColorFilter.mode(kContainerStartColor, BlendMode.modulate),
+              child: Image(
+                image: AssetImage('assets/images/marketplace.jpg'),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.all(15.0),
-          child: TopBar(color: kSecondaryColor),
-        ),
+        const TopBar(color: kSecondaryColor),
         Positioned(
-          top: MediaQuery.of(context).size.height / 4.7,
+          top: MediaQuery.of(context).size.height / 5,
           left: MediaQuery.of(context).size.width / 10,
           child: Container(
             decoration: BoxDecoration(
-                color: kPrimaryColor2.withOpacity(0.6),
+                color: kContainerEndColor.withOpacity(0.7),
                 borderRadius: BorderRadius.circular(20)),
             width: MediaQuery.of(context).size.width * 0.8,
             child: const Padding(

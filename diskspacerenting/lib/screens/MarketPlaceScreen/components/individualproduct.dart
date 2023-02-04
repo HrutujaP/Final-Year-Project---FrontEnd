@@ -18,11 +18,11 @@ class _IndividualProductState extends State<IndividualProduct> {
 
   Color generateRandomColor() {
     return HSVColor.fromAHSV(
-      1.0,
+      0.7,
       random.nextDouble(),
       random.nextDouble(),
       random.nextDouble(),
-    ).toColor().withOpacity(0.4);
+    ).toColor();
   }
 
   @override
@@ -37,7 +37,7 @@ class _IndividualProductState extends State<IndividualProduct> {
           height: MediaQuery.of(context).size.height * 0.216,
           width: MediaQuery.of(context).size.width * 0.35,
           decoration: BoxDecoration(
-            color: kItemColor.withOpacity(0.5),
+            color: kContainerMiddleColor.withOpacity(1),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Padding(
@@ -51,7 +51,7 @@ class _IndividualProductState extends State<IndividualProduct> {
                     Text(
                       'Size',
                       style: TextStyle(
-                          color: kPrimaryColor6,
+                          color: kTextColor,
                           fontSize: 16,
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w600),
@@ -62,7 +62,7 @@ class _IndividualProductState extends State<IndividualProduct> {
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w800,
-                          color: kPrimaryColor4),
+                          color: kPrimaryColor3),
                     )
                   ],
                 ),
@@ -71,7 +71,7 @@ class _IndividualProductState extends State<IndividualProduct> {
                     Text(
                       'Price',
                       style: TextStyle(
-                          color: kPrimaryColor6,
+                          color: kTextColor,
                           fontSize: 16,
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w600),
@@ -81,10 +81,10 @@ class _IndividualProductState extends State<IndividualProduct> {
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w800,
-                            color: kPrimaryColor4)),
+                            color: kPrimaryColor3)),
                     Icon(
                       Icons.currency_bitcoin_rounded,
-                      color: Colors.white,
+                      color: kPrimaryColor3,
                       size: 20,
                     )
                   ],
@@ -94,7 +94,7 @@ class _IndividualProductState extends State<IndividualProduct> {
                     Text(
                       'Frequency',
                       style: TextStyle(
-                          color: kPrimaryColor6,
+                          color: kTextColor,
                           fontSize: 16,
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w600),

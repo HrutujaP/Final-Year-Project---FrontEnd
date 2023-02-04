@@ -28,7 +28,7 @@ class Features extends StatelessWidget {
               filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.5),
+                  color: kContainerStartColor.withOpacity(0.5),
                   borderRadius: BorderRadius.circular(
                       MediaQuery.of(context).size.height * 0.08),
                 ),

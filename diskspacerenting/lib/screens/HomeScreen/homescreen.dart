@@ -5,8 +5,8 @@ import 'package:diskspacerenting/screens/HomeScreen/components/mainoptions.dart'
 import 'package:diskspacerenting/screens/Components/topbar.dart';
 import 'package:diskspacerenting/screens/MarketPlaceScreen/marketplacescreen.dart';
 import 'package:diskspacerenting/screens/MyStoragesScreen/mystorages.dart';
+import 'package:diskspacerenting/screens/PostAdvertisment/postAdvertisment.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_glow/flutter_glow.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
@@ -63,10 +63,7 @@ class _HomeScreenState extends State<HomeScreen>
         Column(
           children: [
             const TopBar(color: kSecondaryColor3),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: BlockChainVideoLoop(),
-            ),
+            BlockChainVideoLoop(),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
@@ -226,7 +223,7 @@ class _HomeScreenState extends State<HomeScreen>
                       physics: const BouncingScrollPhysics(),
                       children: const [
                         MainOptions(
-                          route: '/rent',
+                          route: postAdvertisment.id,
                           color: kTextDarkColor,
                           icon: Icons.currency_exchange_sharp,
                           hText: 'Rent',

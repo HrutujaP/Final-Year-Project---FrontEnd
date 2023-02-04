@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:diskspacerenting/Constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
@@ -29,19 +30,27 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      borderRadius: BorderRadius.circular(25),
+      borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(25), bottomRight: Radius.circular(25)),
       elevation: 5,
       child: Container(
         height: MediaQuery.of(context).size.height * 0.3,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           // border: Border.all(color: Colors.white, width: 2),
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(25),
+              bottomRight: Radius.circular(25)),
         ),
         child: _controller.value.isInitialized
             ? ClipRRect(
-                borderRadius: BorderRadius.circular(25),
-                child: VideoPlayer(_controller),
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(25),
+                    bottomRight: Radius.circular(25)),
+                child: ColorFiltered(
+                    colorFilter: ColorFilter.mode(
+                        kContainerStartColor, BlendMode.modulate),
+                    child: VideoPlayer(_controller)),
               )
             : Container(),
       ),

@@ -19,31 +19,30 @@ class RentStorageScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-              kPrimaryColor,
-              kPrimaryColor,
-              kPrimaryColor,
-              kSecondaryColor,
-              kPrimaryColor,
-              kPrimaryColor,
-            ], begin: Alignment.topLeft, end: Alignment.bottomRight))),
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    kBackgroundStartColor,
+                    kBackgroundEndColor,
+                  ],
+                ),
+              ),
+            ),
           ),
           Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 16, right: 16),
-                child: TopBar(color: kColor1),
-              ),
+              TopBar(color: kColor1),
               // SizedBox(height: MediaQuery.of(context).size.height * 0.04),
               // const Spacer(),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.84,
                 child: Column(
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
@@ -55,7 +54,15 @@ class RentStorageScreen extends StatelessWidget {
                             height: MediaQuery.of(context).size.height * 0.09,
                             width: MediaQuery.of(context).size.height * 0.09,
                             decoration: BoxDecoration(
-                              color: Colors.grey.withOpacity(0.5),
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  kContainerStartColor,
+                                  kContainerMiddleColor,
+                                  kContainerEndColor
+                                ],
+                              ),
                               borderRadius: BorderRadius.circular(
                                   MediaQuery.of(context).size.height * 0.09),
                             ),

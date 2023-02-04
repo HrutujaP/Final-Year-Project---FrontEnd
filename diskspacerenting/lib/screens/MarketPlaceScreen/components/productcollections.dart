@@ -13,7 +13,15 @@ class ProductCollections extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.31,
       width: MediaQuery.of(context).size.width * 0.9,
       decoration: BoxDecoration(
-        color: kItemColor.withOpacity(0.1),
+        gradient: LinearGradient(
+          colors: [
+            kContainerStartColor.withOpacity(0.8),
+            kContainerMiddleColor.withOpacity(0.8),
+            kContainerEndColor.withOpacity(0.8),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Padding(

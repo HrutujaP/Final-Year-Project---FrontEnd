@@ -22,9 +22,17 @@ class SingleDeive extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.12,
           width: MediaQuery.of(context).size.width * 0.9,
           decoration: BoxDecoration(
-            border: Border.all(color: kPurpleColor.withOpacity(0.7)),
+            border: Border.all(color: kContainerStartColor.withOpacity(0.7)),
             borderRadius: BorderRadius.circular(20),
-            color: kPrimaryColor2.withOpacity(0.2),
+            gradient: LinearGradient(
+              colors: [
+                kContainerStartColor.withOpacity(0.8),
+                kContainerMiddleColor.withOpacity(0.8),
+                kContainerEndColor.withOpacity(0.8),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
           ),
           child: Row(
             children: [
@@ -49,9 +57,9 @@ class SingleDeive extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("Storage Name",
+                    const Text("Storage Name",
                         style: TextStyle(
-                            color: kPrimaryColor4,
+                            color: kTextColor,
                             fontSize: 18,
                             fontWeight: FontWeight.w700)),
                     Row(

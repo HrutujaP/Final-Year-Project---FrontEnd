@@ -20,10 +20,11 @@ class _SlideToPayState extends State<SlideToPay> {
         width: 300,
         child: SlideAction(
           elevation: 5,
-          innerColor: kPrimaryColor2,
-          outerColor: Colors.blueAccent,
+          outerColor: kContainerEndColor,
           sliderButtonIcon: const Icon(Icons.arrow_forward_ios_rounded),
           text: "Slide to Pay",
+          textStyle: TextStyle(
+              color: kTextColor, fontSize: 22, fontWeight: FontWeight.bold),
           onSubmit: () {},
         ));
   }

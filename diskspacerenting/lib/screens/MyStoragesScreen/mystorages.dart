@@ -15,9 +15,9 @@ class MyStorages extends StatefulWidget {
 
 class _MyStoragesState extends State<MyStorages> {
   List<ChartData> chartData = [
-    ChartData('Rem', 22, '100%', kSecondaryColor1),
-    ChartData('Used', 10, '100%', kSecondaryColor3),
-    ChartData('Total', 32, '100%', kSecondaryColor2),
+    ChartData('Rem', 22, '100%', kContainerStartColor),
+    ChartData('Used', 10, '100%', kContainerMiddleColor),
+    ChartData('Total', 32, '100%', kContainerEndColor),
   ];
 
   @override
@@ -28,67 +28,58 @@ class _MyStoragesState extends State<MyStorages> {
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           decoration: const BoxDecoration(
-            color: kPrimaryColor2,
-            gradient: LinearGradient(
-              colors: [
-                kPrimaryColor,
-                kPrimaryColor,
-                kSecondaryColor,
-                kPrimaryColor,
-                kPrimaryColor,
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const TopBar(
-                  color: kSecondaryColor3,
-                ),
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back_ios_new_rounded,
-                        color: Colors.white,
-                        size: 28,
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.05,
-                    ),
-                    const Text('My Storages',
-                        style: TextStyle(
-                            color: kPrimaryColor5,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold)),
-                  ],
-                ),
-                StorageRadialGraph(chartData: chartData),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.451,
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      var img = index % 4;
-
-                      return SingleDeive(
-                        img: img.toString(),
-                      );
+              color: kPrimaryColor2,
+              gradient: LinearGradient(
+                colors: [kBackgroundStartColor, kBackgroundEndColor],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              )),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const TopBar(
+                color: kSecondaryColor3,
+              ),
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
                     },
+                    icon: const Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      color: Colors.white,
+                      size: 28,
+                    ),
                   ),
-                )
-              ],
-            ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.04,
+                  ),
+                  const Text('My Storages',
+                      style: TextStyle(
+                          color: kTextColor,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold)),
+                ],
+              ),
+              StorageRadialGraph(chartData: chartData),
+              const Spacer(),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.451,
+                child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    var img = index % 4;
+
+                    return SingleDeive(
+                      img: img.toString(),
+                    );
+                  },
+                ),
+              )
+            ],
           ),
         ),
       ),

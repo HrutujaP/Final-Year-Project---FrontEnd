@@ -21,7 +21,15 @@ class DetailsMainCard extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.7,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-            color: Colors.grey.withOpacity(0.3),
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                kContainerStartColor.withOpacity(0.5),
+                kContainerMiddleColor.withOpacity(0.5),
+                kContainerEndColor.withOpacity(0.5)
+              ],
+            ),
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(40), topRight: Radius.circular(40)),
           ),
@@ -58,7 +66,7 @@ class DetailsMainCard extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'sans-serif',
                     fontWeight: FontWeight.w800,
-                    color: Colors.white,
+                    color: kTextColor,
                     fontSize: MediaQuery.of(context).size.width * 0.1,
                   ),
                 ),

@@ -19,12 +19,12 @@ class PriceRentBar extends StatelessWidget {
             children: [
               Text('DSR 18.6',
                   style: GoogleFonts.poppins(
-                      color: Colors.white,
+                      color: kContainerMiddleColor,
                       fontSize: MediaQuery.of(context).size.height * 0.035,
                       fontWeight: FontWeight.w600)),
               Text('Month',
                   style: GoogleFonts.poppins(
-                      color: Colors.white,
+                      color: kContainerMiddleColor,
                       fontSize: MediaQuery.of(context).size.height * 0.02,
                       fontWeight: FontWeight.w600)),
             ],
@@ -41,7 +41,7 @@ class PriceRentBar extends StatelessWidget {
                 padding: const EdgeInsets.all(10.0),
                 child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: kContainerEndColor,
                       borderRadius: BorderRadius.circular(
                         MediaQuery.of(context).size.width * 0.5,
                       ),
@@ -50,7 +50,7 @@ class PriceRentBar extends StatelessWidget {
                       child: Text('Rent Now',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.poppins(
-                              color: kColor2,
+                              color: kTextColor,
                               fontSize:
                                   MediaQuery.of(context).size.height * 0.022,
                               fontWeight: FontWeight.w700)),

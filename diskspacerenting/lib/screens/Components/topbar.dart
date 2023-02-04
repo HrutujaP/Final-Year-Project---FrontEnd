@@ -23,22 +23,25 @@ class TopBar extends StatelessWidget {
           end: Alignment.topRight,
         ),
       ),
-      child: Row(
-        children: [
-          const Text(
-            'DSR',
-            style: TextStyle(
-              fontSize: 38,
-              color: kSecondaryColor,
-              fontWeight: FontWeight.w600,
-              decoration: TextDecoration.none,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Row(
+          children: [
+            const Text(
+              'DSR',
+              style: TextStyle(
+                fontSize: 38,
+                color: kSecondaryColor,
+                fontWeight: FontWeight.w600,
+                decoration: TextDecoration.none,
+              ),
             ),
-          ),
-          const Spacer(),
-          TopBarItems(
-            color: color,
-          )
-        ],
+            const Spacer(),
+            TopBarItems(
+              color: color,
+            )
+          ],
+        ),
       ),
     );
   }
