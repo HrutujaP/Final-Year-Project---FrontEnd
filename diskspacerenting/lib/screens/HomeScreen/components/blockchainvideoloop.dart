@@ -30,6 +30,7 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: Colors.transparent,
       borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(25), bottomRight: Radius.circular(25)),
       elevation: 5,

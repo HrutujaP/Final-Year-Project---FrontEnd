@@ -15,9 +15,9 @@ class ProductCollections extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            kContainerStartColor.withOpacity(0.8),
-            kContainerMiddleColor.withOpacity(0.8),
-            kContainerEndColor.withOpacity(0.8),
+            kContainerStartColor.withOpacity(0.5),
+            kContainerMiddleColor.withOpacity(0.5),
+            kContainerEndColor.withOpacity(0.5),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,

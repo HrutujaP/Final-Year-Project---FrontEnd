@@ -37,7 +37,7 @@ class _IndividualProductState extends State<IndividualProduct> {
           height: MediaQuery.of(context).size.height * 0.216,
           width: MediaQuery.of(context).size.width * 0.35,
           decoration: BoxDecoration(
-            color: kContainerMiddleColor.withOpacity(1),
+            color: kContainerEndColor,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Padding(
