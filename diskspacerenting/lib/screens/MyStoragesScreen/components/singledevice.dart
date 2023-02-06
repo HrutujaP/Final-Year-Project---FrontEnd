@@ -41,11 +41,15 @@ class SingleDeive extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   clipBehavior: Clip.hardEdge,
-                  child: Image(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/images/$img.jpg'),
-                    height: MediaQuery.of(context).size.height * 0.12,
-                    width: MediaQuery.of(context).size.width * 0.33,
+                  child: ColorFiltered(
+                    colorFilter: ColorFilter.mode(
+                        kContainerStartColor, BlendMode.modulate),
+                    child: Image(
+                      fit: BoxFit.cover,
+                      image: AssetImage('assets/images/$img.jpg'),
+                      height: MediaQuery.of(context).size.height * 0.12,
+                      width: MediaQuery.of(context).size.width * 0.33,
+                    ),
                   ),
                 ),
               ),

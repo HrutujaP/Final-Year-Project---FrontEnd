@@ -30,13 +30,13 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      borderRadius: BorderRadius.only(
+      borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(25), bottomRight: Radius.circular(25)),
       elevation: 5,
       child: Container(
         height: MediaQuery.of(context).size.height * 0.3,
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           // border: Border.all(color: Colors.white, width: 2),
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(25),
@@ -44,11 +44,11 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
         ),
         child: _controller.value.isInitialized
             ? ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(25),
                     bottomRight: Radius.circular(25)),
                 child: ColorFiltered(
-                    colorFilter: ColorFilter.mode(
+                    colorFilter: const ColorFilter.mode(
                         kContainerStartColor, BlendMode.modulate),
                     child: VideoPlayer(_controller)),
               )
