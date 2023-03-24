@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:diskspacerenting/Constants/constants.dart';
 import 'package:diskspacerenting/screens/Components/topbar.dart';
 import 'package:diskspacerenting/screens/Components/topbaritems.dart';
+import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -299,58 +300,65 @@ class _FileStoarageState extends State<FileStoarage> {
                               // color: kColor1.withOpacity(0.9),
                             ),
                             child: Center(
-                              child: Stack(
+                              child: Column(
                                 children: [
-                                  CustomPaint(
-                                    size: Size(
-                                      MediaQuery.of(context).size.width * 0.41,
-                                      MediaQuery.of(context).size.width * 0.4,
-                                    ),
-                                    painter: CurvedPainter1(
-                                      // Color: kItemColor,
-                                      Color: kDatePickerColor,
-                                    ),
-                                  ),
-                                  CustomPaint(
-                                    size: Size(
-                                      MediaQuery.of(context).size.width * 0.39,
-                                      MediaQuery.of(context).size.width * 0.5,
-                                    ),
-                                    painter: CurvedPainter1(
-                                      Color: kContainerMiddleColor,
-                                    ),
-                                  ),
                                   Padding(
                                     padding: const EdgeInsets.all(2.0),
                                     child: Center(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                      child: Stack(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                              "File name",
-                                              style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.04,
-                                                fontWeight: FontWeight.bold,
-                                                color: kTextDarkColor,
-                                              ),
+                                          Positioned.fill(
+                                            top: 20,
+                                            child: FloatingBubbles(
+                                              noOfBubbles: 20,
+                                              colorsOfBubbles: [
+                                                kContainerStartColor,
+                                                kContainerMiddleColor,
+                                                // kContainerEndColor,
+                                              ],
+
+                                              sizeFactor: 0.2,
+                                              duration: 120, // 120 seconds.
+                                              opacity: 100,
+                                              paintingStyle: PaintingStyle.fill,
+                                              strokeWidth: 8,
+                                              shape: BubbleShape
+                                                  .circle, // circle is the default. No need to explicitly mention if its a circle.
+                                              speed: BubbleSpeed
+                                                  .normal, // normal is the default
                                             ),
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Icon(
-                                              Icons.file_open_rounded,
-                                              color: kTextDarkColor,
-                                              size: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.1,
-                                            ),
+                                          Column(
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Text(
+                                                  "File name",
+                                                  style: TextStyle(
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.04,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: kTextDarkColor,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Icon(
+                                                  Icons.file_open_rounded,
+                                                  color: kTextDarkColor,
+                                                  size: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.1,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ],
                                       ),

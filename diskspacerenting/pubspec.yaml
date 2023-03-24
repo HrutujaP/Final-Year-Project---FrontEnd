@@ -40,6 +40,7 @@ dependencies:
   syncfusion_flutter_datepicker: ^20.4.42
   numberpicker: ^2.1.1
   simple_gradient_text: ^1.2.4
+  floating_bubbles: ^2.4.0
 
 dev_dependencies:
   flutter_test:
