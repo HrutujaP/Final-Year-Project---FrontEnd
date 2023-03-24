@@ -52,8 +52,6 @@ class _HomeScreenState extends State<HomeScreen>
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Colors.black,
-            Colors.black,
             kBackgroundStartColor,
             kBackgroundEndColor,
           ],
@@ -64,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen>
       child: Stack(children: [
         Column(
           children: [
-            const TopBar(color: kSecondaryColor3),
+            const TopBar(color: kContainerEndColor),
             BlockChainVideoLoop(),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -87,12 +85,11 @@ class _HomeScreenState extends State<HomeScreen>
               child: Column(
                 children: [
                   Container(
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
                           kContainerStartColor,
                           kContainerMiddleColor,
-                          kContainerEndColor,
                           kContainerEndColor,
                         ],
                         begin: Alignment.topLeft,
@@ -132,14 +129,14 @@ class _HomeScreenState extends State<HomeScreen>
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          kContainerStartColor.withOpacity(0.4),
-                          kContainerMiddleColor.withOpacity(0.4),
-                          kContainerEndColor.withOpacity(0.4),
+                          kContainerStartColor,
+                          kContainerMiddleColor,
+                          // kContainerEndColor.withOpacity(0.4),
                         ],
                         begin: Alignment.topLeft,
                         end: Alignment.topRight,
                       ),
-                      borderRadius: const BorderRadius.only(
+                      borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(20),
                           bottomRight: Radius.circular(20)),
                     ),

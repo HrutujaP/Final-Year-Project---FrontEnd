@@ -15,14 +15,15 @@ class StorageRadialGraph extends StatelessWidget {
     return Stack(alignment: Alignment.center, children: [
       const Text('32GB',
           style: TextStyle(
-              color: kPrimaryColor3,
+              color: kContainerStartColor,
               fontSize: 26,
               fontWeight: FontWeight.bold)),
       SizedBox(
         height: MediaQuery.of(context).size.height * 0.34,
         child: SfCircularChart(
             legend: Legend(
-              textStyle: const TextStyle(color: kPrimaryColor, fontSize: 15),
+              textStyle:
+                  const TextStyle(color: kContainerEndColor, fontSize: 15),
               iconHeight: 15,
               iconWidth: 15,
               isVisible: true,

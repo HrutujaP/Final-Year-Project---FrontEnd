@@ -21,7 +21,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
       child: Scaffold(
         appBar: AppBar(
           flexibleSpace: Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -490,7 +490,7 @@ class _setAvailableSpaceState extends State<setAvailableSpace> {
                   ),
                   selectedTextStyle: TextStyle(
                     fontSize: MediaQuery.of(context).size.width * 0.07,
-                    color: kPrimaryColor,
+                    color: kContainerEndColor,
                   ),
                   textMapper: (numberText) {
                     return numberText + " GB";
@@ -526,7 +526,7 @@ class _setAvailableSpaceState extends State<setAvailableSpace> {
                   ),
                   selectedTextStyle: TextStyle(
                     fontSize: MediaQuery.of(context).size.width * 0.07,
-                    color: kPrimaryColor,
+                    color: kContainerStartColor,
                   ),
                   textMapper: (numberText) {
                     return "$numberText Rs";

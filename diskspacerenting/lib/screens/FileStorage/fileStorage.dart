@@ -194,7 +194,7 @@ class _FileStoarageState extends State<FileStoarage> {
                               children: [
                                 Icon(
                                   Icons.computer,
-                                  color: kSecondaryColor2,
+                                  color: kContainerMiddleColor,
                                   size:
                                       MediaQuery.of(context).size.width * 0.07,
                                 ),

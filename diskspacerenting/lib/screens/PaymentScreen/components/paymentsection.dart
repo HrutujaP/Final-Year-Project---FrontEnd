@@ -43,7 +43,8 @@ class PaymentSection extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            const Icon(Icons.wallet, color: kPrimaryColor3),
+                            const Icon(Icons.wallet,
+                                color: kContainerStartColor),
                             const SizedBox(width: 10),
                             Text(
                               'Subscriptions wallet',
@@ -69,14 +70,14 @@ class PaymentSection extends StatelessWidget {
                               Text('DSR 324',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w700,
-                                      color: kPrimaryColor6,
+                                      color: kContainerStartColor,
                                       fontSize:
                                           MediaQuery.of(context).size.height *
                                               0.03)),
                               Text('.25',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w600,
-                                      color: kPrimaryColor6,
+                                      color: kContainerStartColor,
                                       fontSize:
                                           MediaQuery.of(context).size.height *
                                               0.02))
@@ -88,7 +89,7 @@ class PaymentSection extends StatelessWidget {
                           children: const [
                             Text(
                               'Monthly expenses: DSR 69',
-                              style: TextStyle(color: kPrimaryColor3),
+                              style: TextStyle(color: kContainerStartColor),
                             ),
                             Spacer(),
                             Icon(Icons.remove_red_eye_outlined)

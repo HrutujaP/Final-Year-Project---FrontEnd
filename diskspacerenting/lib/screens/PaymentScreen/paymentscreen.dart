@@ -16,8 +16,8 @@ class PaymentScreen extends StatelessWidget {
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: const BoxDecoration(
-            color: kPrimaryColor2,
+          decoration: BoxDecoration(
+            color: kContainerMiddleColor,
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -30,7 +30,7 @@ class PaymentScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const TopBar(color: kPrimaryColor3),
+              const TopBar(color: kContainerStartColor),
               SizedBox(height: MediaQuery.of(context).size.height * 0.025),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0),

@@ -38,7 +38,7 @@ class ProductCollections extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     )),
                 Spacer(),
-                Icon(Icons.sort_rounded, color: kSecondaryColor3, size: 28)
+                Icon(Icons.sort_rounded, color: kContainerEndColor, size: 28)
               ],
             ),
             const SizedBox(

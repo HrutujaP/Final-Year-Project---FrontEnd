@@ -13,7 +13,7 @@ class SLA extends StatelessWidget {
       children: [
         Text('Service Level Agreement',
             style: GoogleFonts.poppins(
-                color: kPrimaryColor6,
+                color: kContainerStartColor,
                 fontSize: MediaQuery.of(context).size.height * 0.02,
                 fontWeight: FontWeight.w600)),
         SizedBox(

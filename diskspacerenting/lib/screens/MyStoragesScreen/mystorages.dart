@@ -27,8 +27,8 @@ class _MyStoragesState extends State<MyStorages> {
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: const BoxDecoration(
-              color: kPrimaryColor2,
+          decoration:  BoxDecoration(
+              color: kContainerMiddleColor,
               gradient: LinearGradient(
                 colors: [kBackgroundStartColor, kBackgroundEndColor],
                 begin: Alignment.topCenter,
@@ -38,7 +38,7 @@ class _MyStoragesState extends State<MyStorages> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const TopBar(
-                color: kSecondaryColor3,
+                color: kContainerEndColor,
               ),
               Row(
                 children: [

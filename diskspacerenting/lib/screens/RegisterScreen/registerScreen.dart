@@ -80,7 +80,7 @@ class _registerScreenState extends State<registerScreen> {
                               ),
                               cursorColor: kContainerStartColor,
                               keyboardType: TextInputType.phone,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 fillColor: kTextLightColor,
                                 focusColor: kTextLightColor,
                                 labelText: 'Name',
@@ -122,7 +122,7 @@ class _registerScreenState extends State<registerScreen> {
                               ),
                               cursorColor: kContainerStartColor,
                               keyboardType: TextInputType.phone,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 fillColor: kTextLightColor,
                                 focusColor: kTextLightColor,
                                 labelText: 'Email Address',
@@ -164,7 +164,7 @@ class _registerScreenState extends State<registerScreen> {
                               ),
                               cursorColor: kContainerStartColor,
                               keyboardType: TextInputType.phone,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 fillColor: kTextLightColor,
                                 focusColor: kTextLightColor,
                                 labelText: 'Password',

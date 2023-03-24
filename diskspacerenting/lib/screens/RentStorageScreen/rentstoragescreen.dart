@@ -35,7 +35,7 @@ class RentStorageScreen extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              TopBar(color: kColor1),
+              TopBar(color: kContainerEndColor),
               // SizedBox(height: MediaQuery.of(context).size.height * 0.04),
               // const Spacer(),
               SizedBox(

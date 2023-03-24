@@ -83,7 +83,7 @@ class DetailsMainCard extends StatelessWidget {
                 softWrap: true,
                 style: TextStyle(
                     fontSize: MediaQuery.of(context).size.height * 0.02,
-                    color: kContrastColor),
+                    color: kBackgroundStartColor),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,

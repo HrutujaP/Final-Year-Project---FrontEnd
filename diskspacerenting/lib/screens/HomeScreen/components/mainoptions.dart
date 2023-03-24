@@ -34,16 +34,16 @@ class MainOptions extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.0),
             gradient: LinearGradient(
               colors: [
-                kContainerStartColor.withOpacity(0.5),
-                kContainerMiddleColor.withOpacity(0.5),
-                kContainerEndColor.withOpacity(0.5),
+                kContainerStartColor,
+                kContainerMiddleColor,
+                kContainerEndColor,
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
             border: Border.all(
               color: kContainerEndColor,
-              width: 3,
+              width: 1,
             ),
           ),
           child: Padding(
@@ -88,23 +88,24 @@ class MainOptions extends StatelessWidget {
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.4,
-                      child: GradientText(
+                      child: Text(
                         pText,
                         style: TextStyle(
                           // color: kTextLightColor,
                           fontSize: MediaQuery.of(context).size.width * 0.045,
                           fontFamily: 'Montserrat',
-                          foreground: Paint()..shader = linearGradient,
+                          // foreground: Paint()..shader = linearGradient,
+                          color: kBackgroundEndColor,
                           fontWeight: FontWeight.w500,
                         ),
-                        gradientType: GradientType.linear,
-                        gradientDirection: GradientDirection.ttb,
+                        // gradientType: GradientType.linear,
+                        // gradientDirection: GradientDirection.ttb,
                         // radius: .4,
-                        colors: [
-                          kContainerStartColor,
-                          kContainerMiddleColor,
-                          kContainerEndColor,
-                        ],
+                        // colors: const [
+                        //   kContainerStartColor,
+                        //   kContainerMiddleColor,
+                        //   kContainerEndColor,
+                        // ],
                         // textAlign: TextAlign.center,
                       ),
                     ),

@@ -79,7 +79,7 @@ class _loginScreenState extends State<loginScreen> {
                               ),
                               cursorColor: kContainerStartColor,
                               keyboardType: TextInputType.phone,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 fillColor: kTextLightColor,
                                 focusColor: kTextLightColor,
                                 labelText: 'Email Address',
@@ -121,7 +121,7 @@ class _loginScreenState extends State<loginScreen> {
                               ),
                               cursorColor: kContainerStartColor,
                               keyboardType: TextInputType.phone,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 fillColor: kTextLightColor,
                                 focusColor: kTextLightColor,
                                 labelText: 'Password',

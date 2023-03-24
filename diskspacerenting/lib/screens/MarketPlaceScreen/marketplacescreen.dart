@@ -14,8 +14,8 @@ class MarketPlaceScreen extends StatelessWidget {
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: const BoxDecoration(
-            color: kPrimaryColor2,
+          decoration:  BoxDecoration(
+            color: kContainerMiddleColor,
             gradient: LinearGradient(
               colors: [
                 kBackgroundStartColor,

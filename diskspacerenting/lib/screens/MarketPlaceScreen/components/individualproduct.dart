@@ -62,7 +62,7 @@ class _IndividualProductState extends State<IndividualProduct> {
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w800,
-                          color: kPrimaryColor3),
+                          color: kContainerStartColor),
                     )
                   ],
                 ),
@@ -81,10 +81,10 @@ class _IndividualProductState extends State<IndividualProduct> {
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w800,
-                            color: kPrimaryColor3)),
+                            color: kContainerStartColor)),
                     Icon(
                       Icons.currency_bitcoin_rounded,
-                      color: kPrimaryColor3,
+                      color: kContainerStartColor,
                       size: 20,
                     )
                   ],

@@ -50,12 +50,12 @@ class Features extends StatelessWidget {
             children: [
               Text(parameter,
                   style: GoogleFonts.poppins(
-                      color: kPrimaryColor3,
+                      color: kContainerStartColor,
                       fontSize: MediaQuery.of(context).size.height * 0.015,
                       fontWeight: FontWeight.w800)),
               Text(value,
                   style: GoogleFonts.poppins(
-                      color: kItemColor2,
+                      color: kContainerEndColor,
                       fontSize: MediaQuery.of(context).size.height * 0.015,
                       fontWeight: FontWeight.w800)),
             ],

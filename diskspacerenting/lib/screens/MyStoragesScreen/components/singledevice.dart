@@ -67,11 +67,11 @@ class SingleDeive extends StatelessWidget {
                             fontSize: 18,
                             fontWeight: FontWeight.w700)),
                     Row(
-                      children: const [
+                      children:  [
                         Icon(
                           Icons.tonality_outlined,
                           size: 20,
-                          color: kSecondaryColor2,
+                          color: kContainerMiddleColor,
                         ),
                         SizedBox(width: 10),
                         Text("Total Space: 32GB",
@@ -85,7 +85,7 @@ class SingleDeive extends StatelessWidget {
                       children: const [
                         Icon(
                           Icons.data_usage_rounded,
-                          color: kSecondaryColor3,
+                          color: kContainerEndColor,
                           size: 20,
                         ),
                         SizedBox(width: 10),
