@@ -42,8 +42,8 @@ class SingleDeive extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   clipBehavior: Clip.hardEdge,
                   child: ColorFiltered(
-                    colorFilter: ColorFilter.mode(
-                        kContainerStartColor, BlendMode.modulate),
+                    colorFilter:
+                        ColorFilter.mode(kContainerStartColor, BlendMode.color),
                     child: Image(
                       fit: BoxFit.cover,
                       image: AssetImage('assets/images/$img.jpg'),
@@ -67,7 +67,7 @@ class SingleDeive extends StatelessWidget {
                             fontSize: 18,
                             fontWeight: FontWeight.w700)),
                     Row(
-                      children:  [
+                      children: [
                         Icon(
                           Icons.tonality_outlined,
                           size: 20,

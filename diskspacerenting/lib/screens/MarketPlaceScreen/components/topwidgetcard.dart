@@ -37,7 +37,7 @@ class TopWidgetCard extends StatelessWidget {
                 bottomRight: Radius.circular(20)),
             child: ColorFiltered(
               colorFilter:
-                  ColorFilter.mode(kContainerStartColor, BlendMode.modulate),
+                  ColorFilter.mode(kContainerStartColor, BlendMode.color),
               child: Image(
                 image: AssetImage('assets/images/marketplace.jpg'),
                 fit: BoxFit.cover,

@@ -27,7 +27,7 @@ class _MyStoragesState extends State<MyStorages> {
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration:  BoxDecoration(
+          decoration:  const BoxDecoration(
               color: kContainerMiddleColor,
               gradient: LinearGradient(
                 colors: [kBackgroundStartColor, kBackgroundEndColor],

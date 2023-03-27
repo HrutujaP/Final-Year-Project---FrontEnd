@@ -51,7 +51,7 @@ class _IndividualProductState extends State<IndividualProduct> {
                     Text(
                       'Size',
                       style: TextStyle(
-                          color: kTextColor,
+                          color: kBackgroundEndColor,
                           fontSize: 16,
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w600),
@@ -71,7 +71,7 @@ class _IndividualProductState extends State<IndividualProduct> {
                     Text(
                       'Price',
                       style: TextStyle(
-                          color: kTextColor,
+                          color: kBackgroundEndColor,
                           fontSize: 16,
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w600),
@@ -94,7 +94,7 @@ class _IndividualProductState extends State<IndividualProduct> {
                     Text(
                       'Frequency',
                       style: TextStyle(
-                          color: kTextColor,
+                          color: kBackgroundEndColor,
                           fontSize: 16,
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w600),
