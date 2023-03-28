@@ -50,7 +50,7 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
                     bottomRight: Radius.circular(25)),
                 child: ColorFiltered(
                     colorFilter: const ColorFilter.mode(
-                        kContainerStartColor, BlendMode.modulate),
+                        kContainerStartColor, BlendMode.color),
                     child: VideoPlayer(_controller)),
               )
             : Container(),

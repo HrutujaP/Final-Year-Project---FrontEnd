@@ -16,7 +16,7 @@ class PaymentScreen extends StatelessWidget {
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: kContainerMiddleColor,
             gradient: LinearGradient(
               begin: Alignment.topCenter,
@@ -37,9 +37,9 @@ class PaymentScreen extends StatelessWidget {
                 child: DatePicker(),
               ),
               const Spacer(),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: const PaymentSection(),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: PaymentSection(),
               ),
               const Spacer(),
               const Center(child: SlideToPay()),

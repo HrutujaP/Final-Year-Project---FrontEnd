@@ -41,7 +41,6 @@ class _postAdvertismentState extends State<postAdvertisment> {
           centerTitle: true,
         ),
         body: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
           child: Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(

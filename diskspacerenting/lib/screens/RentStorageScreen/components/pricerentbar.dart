@@ -19,12 +19,12 @@ class PriceRentBar extends StatelessWidget {
             children: [
               Text('DSR 18.6',
                   style: GoogleFonts.poppins(
-                      color: kContainerMiddleColor,
+                      color: kBackgroundEndColor,
                       fontSize: MediaQuery.of(context).size.height * 0.035,
                       fontWeight: FontWeight.w600)),
               Text('Month',
                   style: GoogleFonts.poppins(
-                      color: kContainerMiddleColor,
+                      color: kBackgroundEndColor,
                       fontSize: MediaQuery.of(context).size.height * 0.02,
                       fontWeight: FontWeight.w600)),
             ],
@@ -39,22 +39,28 @@ class PriceRentBar extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.1,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Container(
-                    decoration: BoxDecoration(
-                      color: kContainerEndColor,
-                      borderRadius: BorderRadius.circular(
-                        MediaQuery.of(context).size.width * 0.5,
+                child: Material(
+                  elevation: 30,
+                  borderRadius: BorderRadius.circular(
+                    MediaQuery.of(context).size.width * 0.5,
+                  ),
+                  child: Container(
+                      decoration: BoxDecoration(
+                        color: kContainerEndColor,
+                        borderRadius: BorderRadius.circular(
+                          MediaQuery.of(context).size.width * 0.5,
+                        ),
                       ),
-                    ),
-                    child: Center(
-                      child: Text('Rent Now',
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.poppins(
-                              color: kTextColor,
-                              fontSize:
-                                  MediaQuery.of(context).size.height * 0.022,
-                              fontWeight: FontWeight.w700)),
-                    )),
+                      child: Center(
+                        child: Text('Rent Now',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.poppins(
+                                color: kBackgroundEndColor,
+                                fontSize:
+                                    MediaQuery.of(context).size.height * 0.022,
+                                fontWeight: FontWeight.w700)),
+                      )),
+                ),
               ),
             ),
           ),
