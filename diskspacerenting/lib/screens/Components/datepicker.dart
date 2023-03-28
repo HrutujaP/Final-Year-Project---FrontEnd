@@ -31,7 +31,7 @@ class _DatePickerState extends State<DatePicker> {
               Text(
                 'Pick rent duration',
                 style: TextStyle(
-                  color: kContainerEndColor,
+                  color: kBackgroundEndColor,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -77,13 +77,13 @@ class _DatePickerState extends State<DatePicker> {
                   child: SfDateRangePicker(
                     selectionColor: kContainerStartColor,
                     startRangeSelectionColor: kContainerEndColor,
-                    endRangeSelectionColor: kContainerEndColor,
-                    todayHighlightColor: kContainerEndColor,
-                    rangeSelectionColor: kContainerEndColor.withOpacity(0.5),
+                    endRangeSelectionColor: kContainerStartColor,
+                    todayHighlightColor: kContainerStartColor,
+                    rangeSelectionColor: kContainerStartColor.withOpacity(0.5),
                     enablePastDates: false,
                     confirmText: 'Confirm',
                     cancelText: 'Cancel',
-                    backgroundColor: kDatePickerColor,
+                    backgroundColor: kContainerMiddleColor.withOpacity(0.3),
                     onSelectionChanged: _onSelectionChanged,
                     selectionMode: DateRangePickerSelectionMode.range,
                     initialSelectedRange: PickerDateRange(DateTime.now(),
@@ -100,7 +100,10 @@ class _DatePickerState extends State<DatePicker> {
         'Selected range: $_range',
         softWrap: true,
         style: const TextStyle(
-            color: kTextLightColor, fontSize: 14, fontWeight: FontWeight.bold),
+          color: kBackgroundEndColor,
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     ]);
   }
