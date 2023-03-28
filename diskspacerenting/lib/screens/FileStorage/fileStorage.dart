@@ -311,7 +311,7 @@ class _FileStoarageState extends State<FileStoarage> {
                                             top: 20,
                                             child: FloatingBubbles(
                                               noOfBubbles: 20,
-                                              colorsOfBubbles: [
+                                              colorsOfBubbles: const [
                                                 kContainerStartColor,
                                                 kContainerMiddleColor,
                                                 // kContainerEndColor,
