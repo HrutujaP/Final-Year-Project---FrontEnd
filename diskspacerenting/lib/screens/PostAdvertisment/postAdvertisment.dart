@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types, file_names
 
+import 'package:analog_clock/analog_clock.dart';
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/screens/Components/datepicker.dart';
 import 'package:floating_bubbles/floating_bubbles.dart';
@@ -62,8 +63,28 @@ class _postAdvertismentState extends State<postAdvertisment> {
                 ),
               ),
             ),
+            Positioned.fill(
+              // top: 20,
+              child: FloatingBubbles(
+                noOfBubbles: 20,
+                colorsOfBubbles: const [
+                  kContainerStartColor,
+                  kContainerMiddleColor,
+                  // kContainerEndColor,
+                ],
+
+                sizeFactor: 0.2,
+                duration: 120, // 120 seconds.
+                opacity: 100,
+                paintingStyle: PaintingStyle.fill,
+                strokeWidth: 8,
+                shape: BubbleShape
+                    .circle, // circle is the default. No need to explicitly mention if its a circle.
+                speed: BubbleSpeed.normal, // normal is the default
+              ),
+            ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Column(
@@ -555,6 +576,48 @@ class _postAdvertismentState extends State<postAdvertisment> {
                     ),
                   ],
                 ),
+                ResponsiveWidget.isSmallScreen(context)
+                    ? const Center()
+                    : SizedBox(
+                        height: MediaQuery.of(context).size.height / 2,
+                        child: Center(
+                          child: Material(
+                            elevation: 20,
+                            shadowColor: kContainerEndColor,
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(300),
+                            child: SizedBox(
+                              width: 300,
+                              height: 300,
+                              child: AnalogClock(
+                                decoration: BoxDecoration(
+                                  // border: Border.all(
+                                  //   width: 2.0,
+                                  //   color: kContainerMiddleColor,
+                                  // ),
+                                  color: Colors.transparent,
+                                  shape: BoxShape.circle,
+                                ),
+                                secondHandColor: kContainerStartColor,
+                                tickColor: kContainerMiddleColor,
+                                width: 150.0,
+                                isLive: true,
+                                hourHandColor: kContainerMiddleColor,
+                                minuteHandColor: kContainerStartColor,
+                                showSecondHand: true,
+                                numberColor: kBackgroundEndColor,
+                                showNumbers: true,
+                                showAllNumbers: false,
+                                textScaleFactor: 1.4,
+                                showTicks: true,
+                                showDigitalClock: false,
+                                datetime: DateTime.now(),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                // : const Center(),
               ],
             ),
           ],

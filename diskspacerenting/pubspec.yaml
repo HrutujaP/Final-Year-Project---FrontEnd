@@ -41,6 +41,7 @@ dependencies:
   numberpicker: ^2.1.1
   simple_gradient_text: ^1.2.4
   floating_bubbles: ^2.4.0
+  analog_clock: ^0.1.1
 
 dev_dependencies:
   flutter_test:
