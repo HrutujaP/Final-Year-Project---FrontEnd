@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:diskspacerenting/Constants/constants.dart';
+import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/screens/Components/topbar.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/components/detailsmaincard.dart';
 import 'package:flutter/material.dart';

@@ -1,4 +1,4 @@
-import 'package:diskspacerenting/Constants/constants.dart';
+import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/screens/HomeScreen/components/blockchainvideoloop.dart';
 import 'package:diskspacerenting/screens/HomeScreen/components/bottomdotbar.dart';
 import 'package:diskspacerenting/screens/HomeScreen/components/mainoptions.dart';

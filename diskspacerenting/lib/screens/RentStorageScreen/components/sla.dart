@@ -1,4 +1,4 @@
-import 'package:diskspacerenting/Constants/constants.dart';
+import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:diskspacerenting/Constants/constants.dart';
+import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/components/allfeatures.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/components/pricerentbar.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/components/sla.dart';

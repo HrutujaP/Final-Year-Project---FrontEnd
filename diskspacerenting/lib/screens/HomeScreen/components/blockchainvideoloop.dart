@@ -1,6 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'package:diskspacerenting/Constants/constants.dart';
+import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 

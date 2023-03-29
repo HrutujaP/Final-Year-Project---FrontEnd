@@ -2,7 +2,7 @@
 
 import 'dart:ui';
 
-import 'package:diskspacerenting/Constants/constants.dart';
+import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/screens/LoginScreen/components/inputTextField.dart';
 import 'package:diskspacerenting/screens/LoginScreen/components/loginScreenAnimation.dart';
 import 'package:email_validator/email_validator.dart';

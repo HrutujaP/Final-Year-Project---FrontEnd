@@ -1,4 +1,4 @@
-import 'package:diskspacerenting/Constants/constants.dart';
+import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/screens/MarketPlaceScreen/components/individualproduct.dart';
 import 'package:flutter/material.dart';
 

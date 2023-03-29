@@ -1,4 +1,4 @@
-import 'package:diskspacerenting/Constants/constants.dart';
+import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/screens/Components/topbar.dart';
 import 'package:diskspacerenting/screens/MyStoragesScreen/components/singledevice.dart';
 import 'package:diskspacerenting/screens/MyStoragesScreen/components/storageradialgraph.dart';

@@ -1,4 +1,4 @@
-import 'package:diskspacerenting/Constants/constants.dart';
+import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/screens/FileStorage/fileStorage.dart';
 import 'package:diskspacerenting/screens/HomeScreen/homescreen.dart';
 import 'package:diskspacerenting/screens/LoginScreen/loginScreen.dart';

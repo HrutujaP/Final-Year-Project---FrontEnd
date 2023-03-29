@@ -1,4 +1,4 @@
-import 'package:diskspacerenting/Constants/constants.dart';
+import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/screens/Components/topbar.dart';
 import 'package:diskspacerenting/screens/Components/datepicker.dart';
 import 'package:diskspacerenting/screens/PaymentScreen/components/paymentsection.dart';
