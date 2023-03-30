@@ -6,7 +6,9 @@ import 'package:diskspacerenting/screens/Components/topbar.dart';
 import 'package:diskspacerenting/screens/MarketPlaceScreen/marketplacescreen.dart';
 import 'package:diskspacerenting/screens/MyStoragesScreen/mystorages.dart';
 import 'package:diskspacerenting/screens/PostAdvertisment/postAdvertisment.dart';
+import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_glow/flutter_glow.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
@@ -60,10 +62,31 @@ class _HomeScreenState extends State<HomeScreen>
         ),
       ),
       child: Stack(children: [
+        Positioned.fill(
+          // top: 20,
+          child: FloatingBubbles(
+            noOfBubbles: 20,
+            colorsOfBubbles: const [
+              kContainerStartColor,
+              kContainerMiddleColor,
+              // kContainerEndColor,
+            ],
+
+            sizeFactor: 0.2,
+            duration: 120, // 120 seconds.
+            opacity: 100,
+            paintingStyle: PaintingStyle.fill,
+            strokeWidth: 8,
+            shape: BubbleShape
+                .circle, // circle is the default. No need to explicitly mention if its a circle.
+            speed: BubbleSpeed.slow, // normal is the default
+          ),
+        ),
         Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             const TopBar(color: kContainerEndColor),
-            BlockChainVideoLoop(),
+            const BlockChainVideoLoop(),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
@@ -79,7 +102,127 @@ class _HomeScreenState extends State<HomeScreen>
                 softWrap: true,
               ),
             ),
-            const Spacer(),
+            const Divider(
+              color: kContainerMiddleColor,
+              indent: 100,
+              endIndent: 100,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'What do you like to check out with us today?',
+                style: TextStyle(
+                  letterSpacing: 2,
+                  fontSize: MediaQuery.of(context).size.height * 0.025,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w600,
+                  foreground: Paint()..shader = linearGradient,
+                ),
+                textAlign: TextAlign.center,
+                softWrap: true,
+              ),
+            ),
+            // const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Material(
+                  elevation: 10,
+                  color: Colors.transparent,
+                  shadowColor: kContainerEndColor,
+                  borderRadius: BorderRadius.circular(65),
+                  child: const CircleAvatar(
+                    backgroundColor: Colors.transparent,
+                    radius: 65,
+                    child: MainOptions(
+                      route: postAdvertisment.id,
+                      color: kTextDarkColor,
+                      icon: Icons.currency_exchange_sharp,
+                      hText: 'Rent',
+                      pText:
+                          'Rent out your diskspace to other users and earn DSR tokens!',
+                    ),
+                  ),
+                ),
+                Material(
+                  elevation: 10,
+                  color: Colors.transparent,
+                  shadowColor: kContainerEndColor,
+                  borderRadius: BorderRadius.circular(65),
+                  child: const CircleAvatar(
+                    backgroundColor: Colors.transparent,
+                    radius: 65,
+                    child: MainOptions(
+                      route: MarketPlaceScreen.id,
+                      color: kTextDarkColor,
+                      icon: Icons.payment,
+                      hText: 'Buy',
+                      pText:
+                          'Buy diskspace from other users and store your data securely!',
+                    ),
+                  ),
+                ),
+                Material(
+                  elevation: 10,
+                  color: Colors.transparent,
+                  shadowColor: kContainerEndColor,
+                  borderRadius: BorderRadius.circular(65),
+                  child: const CircleAvatar(
+                    backgroundColor: Colors.transparent,
+                    radius: 65,
+                    child: MainOptions(
+                        route: MyStorages.id,
+                        color: kTextDarkColor,
+                        icon: Icons.storage_rounded,
+                        hText: 'My\nStorage',
+                        pText:
+                            'View your rented diskspace and manage your data!'),
+                  ),
+                ),
+                // child: PageView(
+                //   // clipBehavior: Clip.none,
+                //   // controller: _pageController,
+                //   // scrollDirection: Axis.horizontal,
+                //   // physics: const BouncingScrollPhysics(),
+                //   children: const [
+                //     MainOptions(
+                //       route: postAdvertisment.id,
+                //       color: kTextDarkColor,
+                //       icon: Icons.currency_exchange_sharp,
+                //       hText: 'Rent',
+                //       pText:
+                //           'Rent out your diskspace to other users and earn DSR tokens!',
+                //     ),
+                //     MainOptions(
+                //       route: MarketPlaceScreen.id,
+                //       color: kTextDarkColor,
+                //       icon: Icons.payment,
+                //       hText: 'Buy',
+                //       pText:
+                //           'Buy diskspace from other users and store your data securely!',
+                //     ),
+                //     MainOptions(
+                //         route: MyStorages.id,
+                //         color: kTextDarkColor,
+                //         icon: Icons.storage_rounded,
+                //         hText: 'My\nStorage',
+                //         pText:
+                //             'View your rented diskspace and manage your data!')
+                //   ],
+                //   onPageChanged: (int page) {
+                //     setState(() {
+                //       _currentPage = page;
+                //     });
+                //   },
+                // ),
+
+                // BottomDotBar(
+                //   currentIndex: _currentPage,
+                //   dotCount: 3,
+                // ),
+              ],
+            ),
+            // const Spacer(),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -88,14 +231,18 @@ class _HomeScreenState extends State<HomeScreen>
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          kContainerStartColor,
-                          kContainerMiddleColor,
-                          kContainerEndColor,
+                          kContainerStartColor.withOpacity(0.6),
+                          kContainerMiddleColor.withOpacity(0.6),
+                          kContainerEndColor.withOpacity(0.6),
                         ],
                         begin: Alignment.topLeft,
                         end: Alignment.topRight,
                       ),
-                      borderRadius: BorderRadius.only(
+                      border: Border.all(
+                        color: kBackgroundEndColor,
+                        width: 1,
+                      ),
+                      borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(20),
                           topRight: Radius.circular(20)),
                     ),
@@ -129,14 +276,18 @@ class _HomeScreenState extends State<HomeScreen>
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          kContainerStartColor,
-                          kContainerMiddleColor,
-                          // kContainerEndColor.withOpacity(0.4),
+                          kContainerStartColor.withOpacity(0.6),
+                          kContainerMiddleColor.withOpacity(0.6),
+                          kContainerEndColor.withOpacity(0.6),
                         ],
                         begin: Alignment.topLeft,
                         end: Alignment.topRight,
                       ),
-                      borderRadius: BorderRadius.only(
+                      border: Border.all(
+                        color: kBackgroundEndColor,
+                        width: 1,
+                      ),
+                      borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(20),
                           bottomRight: Radius.circular(20)),
                     ),
@@ -210,53 +361,55 @@ class _HomeScreenState extends State<HomeScreen>
                 ],
               ),
             ),
-            Spacer(),
-            Column(
-              children: [
-                SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.23,
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    child: PageView(
-                      controller: _pageController,
-                      scrollDirection: Axis.horizontal,
-                      physics: const BouncingScrollPhysics(),
-                      children: const [
-                        MainOptions(
-                          route: postAdvertisment.id,
-                          color: kTextDarkColor,
-                          icon: Icons.currency_exchange_sharp,
-                          hText: 'Rent',
-                          pText:
-                              'Rent out your diskspace to other users and earn DSR tokens!',
-                        ),
-                        MainOptions(
-                          route: MarketPlaceScreen.id,
-                          color: kTextDarkColor,
-                          icon: Icons.payment,
-                          hText: 'Buy',
-                          pText:
-                              'Buy diskspace from other users and store your data securely!',
-                        ),
-                        MainOptions(
-                            route: MyStorages.id,
-                            color: kTextDarkColor,
-                            icon: Icons.storage_rounded,
-                            hText: 'My\nStorage',
-                            pText:
-                                'View your rented diskspace and manage your data!')
-                      ],
-                      onPageChanged: (int page) {
-                        setState(() {
-                          _currentPage = page;
-                        });
-                      },
-                    )),
-                BottomDotBar(
-                  currentIndex: _currentPage,
-                  dotCount: 3,
-                ),
-              ],
-            )
+            // const Spacer(),
+            // Column(
+            //   children: [
+            //     CircleAvatar(
+            //       backgroundColor: Colors.transparent,
+            //       radius: 65,
+            //       child: PageView(
+            //         clipBehavior: Clip.none,
+            //         controller: _pageController,
+            //         scrollDirection: Axis.horizontal,
+            //         physics: const BouncingScrollPhysics(),
+            //         children: const [
+            //           MainOptions(
+            //             route: postAdvertisment.id,
+            //             color: kTextDarkColor,
+            //             icon: Icons.currency_exchange_sharp,
+            //             hText: 'Rent',
+            //             pText:
+            //                 'Rent out your diskspace to other users and earn DSR tokens!',
+            //           ),
+            //           MainOptions(
+            //             route: MarketPlaceScreen.id,
+            //             color: kTextDarkColor,
+            //             icon: Icons.payment,
+            //             hText: 'Buy',
+            //             pText:
+            //                 'Buy diskspace from other users and store your data securely!',
+            //           ),
+            //           MainOptions(
+            //               route: MyStorages.id,
+            //               color: kTextDarkColor,
+            //               icon: Icons.storage_rounded,
+            //               hText: 'My\nStorage',
+            //               pText:
+            //                   'View your rented diskspace and manage your data!')
+            //         ],
+            //         onPageChanged: (int page) {
+            //           setState(() {
+            //             _currentPage = page;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //     BottomDotBar(
+            //       currentIndex: _currentPage,
+            //       dotCount: 3,
+            //     ),
+            //   ],
+            // )
           ],
         ),
       ]),

@@ -28,6 +28,13 @@ class _postAdvertismentState extends State<postAdvertisment> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: kBackgroundEndColor,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
           flexibleSpace: Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -246,14 +253,14 @@ class _postAdvertismentState extends State<postAdvertisment> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
                                           children: [
-                                            Text(
+                                            const Text(
                                               "Step 2: ",
                                               style: TextStyle(
                                                 color: kBackgroundEndColor,
                                                 fontSize: 17,
                                               ),
                                             ),
-                                            Text(
+                                            const Text(
                                               "Set Details",
                                               style: TextStyle(
                                                 color: kBackgroundEndColor,
@@ -345,7 +352,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
                                       children: [
                                         Row(
                                           children: [
-                                            Text(
+                                            const Text(
                                               "Step 3: ",
                                               style: TextStyle(
                                                 color: kBackgroundEndColor,
@@ -353,7 +360,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
                                                 fontWeight: FontWeight.w500,
                                               ),
                                             ),
-                                            Text(
+                                            const Text(
                                               "Set Days To Rent",
                                               style: TextStyle(
                                                 color: kBackgroundEndColor,
@@ -423,7 +430,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
                                           children: [
-                                            Text(
+                                            const Text(
                                               "Step 4 : ",
                                               style: TextStyle(
                                                 color: kBackgroundEndColor,
@@ -431,7 +438,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
                                                 fontWeight: FontWeight.w500,
                                               ),
                                             ),
-                                            Text(
+                                            const Text(
                                               "Set Time",
                                               style: TextStyle(
                                                 color: kBackgroundEndColor,
@@ -590,7 +597,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
                               width: 300,
                               height: 300,
                               child: AnalogClock(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   // border: Border.all(
                                   //   width: 2.0,
                                   //   color: kContainerMiddleColor,

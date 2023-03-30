@@ -21,101 +21,63 @@ class MainOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        elevation: 10,
-        shadowColor: kContainerStartColor,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20.0),
-            gradient: LinearGradient(
-              colors: [
-                kContainerStartColor,
-                kContainerMiddleColor,
-                kContainerEndColor,
+    return SizedBox.fromSize(
+      size: const Size(130, 130), // button width and height
+      child: ClipOval(
+        child: Material(
+          elevation: 10,
+          shadowColor: kContainerEndColor,
+          color: kContainerMiddleColor, // button color
+          child: InkWell(
+            splashColor: kContainerStartColor, // splash color
+            onTap: () {
+              Navigator.pushNamed(context, route);
+              // button pressed
+            }, // button pressed
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Icon(
+                  icon,
+                  size: 40,
+                  color: kBackgroundEndColor,
+                ), // icon
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    hText,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      color: kBackgroundEndColor,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Montserrat",
+                    ),
+                  ),
+                ), // text
               ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-            border: Border.all(
-              color: kContainerEndColor,
-              width: 1,
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, route);
-              },
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.4,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Icon(
-                              icon,
-                              color: kContainerMiddleColor,
-                              size: MediaQuery.of(context).size.width * 0.09,
-                            ),
-                          ),
-                        ),
-                        // const Spacer(),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          hText,
-                          style: TextStyle(
-                            color: kContainerEndColor,
-                            fontSize: MediaQuery.of(context).size.width * 0.05,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w600,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      child: Text(
-                        pText,
-                        style: TextStyle(
-                          // color: kTextLightColor,
-                          fontSize: MediaQuery.of(context).size.width * 0.045,
-                          fontFamily: 'Montserrat',
-                          // foreground: Paint()..shader = linearGradient,
-                          color: kBackgroundEndColor,
-                          fontWeight: FontWeight.w500,
-                        ),
-                        // gradientType: GradientType.linear,
-                        // gradientDirection: GradientDirection.ttb,
-                        // radius: .4,
-                        // colors: const [
-                        //   kContainerStartColor,
-                        //   kContainerMiddleColor,
-                        //   kContainerEndColor,
-                        // ],
-                        // textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ),
           ),
         ),
       ),
     );
+    // Material(
+    //   shape: CircleBorder(
+    //     side: BorderSide.none,
+    //     eccentricity: 1.0,
+    //   ),
+    //   color: Colors.orange, // button color
+    //   child: InkWell(
+    //     splashColor: Colors.green, // splash color
+    //     onTap: () {}, // button pressed
+    //     child: Column(
+    //       mainAxisAlignment: MainAxisAlignment.center,
+    //       children: const <Widget>[
+    //         Icon(Icons.call), // icon
+    //         Text("Call"), // text
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
 }
