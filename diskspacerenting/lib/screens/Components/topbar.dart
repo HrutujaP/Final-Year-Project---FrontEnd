@@ -11,36 +11,38 @@ class TopBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            kContainerStartColor,
-            kContainerMiddleColor,
-            kContainerEndColor,
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.topRight,
+    return SizedBox(
+      child: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              kContainerStartColor,
+              kContainerMiddleColor,
+              kContainerEndColor,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.topRight,
+          ),
         ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Row(
-          children: [
-            const Text(
-              'DSR',
-              style: TextStyle(
-                fontSize: 38,
-                color: kSecondaryColor,
-                fontWeight: FontWeight.w600,
-                decoration: TextDecoration.none,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            children: [
+              const Text(
+                'DSR',
+                style: TextStyle(
+                  fontSize: 38,
+                  color: kSecondaryColor,
+                  fontWeight: FontWeight.w600,
+                  decoration: TextDecoration.none,
+                ),
               ),
-            ),
-            const Spacer(),
-            TopBarItems(
-              color: color,
-            )
-          ],
+              const Spacer(),
+              TopBarItems(
+                color: color,
+              )
+            ],
+          ),
         ),
       ),
     );
