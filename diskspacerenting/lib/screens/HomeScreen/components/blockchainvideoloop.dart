@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
+import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
@@ -35,13 +36,24 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
           bottomLeft: Radius.circular(25), bottomRight: Radius.circular(25)),
       elevation: 5,
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.3,
-        width: MediaQuery.of(context).size.width,
-        decoration: const BoxDecoration(
+        height: !ResponsiveWidget.isSmallScreen(context)
+            ? MediaQuery.of(context).size.height * 0.5
+            : MediaQuery.of(context).size.height * 0.3,
+        width: ResponsiveWidget.isSmallScreen(context)
+            ? MediaQuery.of(context).size.width
+            : MediaQuery.of(context).size.width / 2,
+        decoration: BoxDecoration(
           // border: Border.all(color: Colors.white, width: 2),
           borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(25),
-              bottomRight: Radius.circular(25)),
+            bottomLeft: const Radius.circular(25),
+            bottomRight: const Radius.circular(25),
+            topRight: !ResponsiveWidget.isSmallScreen(context)
+                ? const Radius.circular(25)
+                : Radius.zero,
+            topLeft: !ResponsiveWidget.isSmallScreen(context)
+                ? const Radius.circular(25)
+                : Radius.zero,
+          ),
         ),
         child: _controller.value.isInitialized
             ? ClipRRect(
