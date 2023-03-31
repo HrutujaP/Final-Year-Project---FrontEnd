@@ -1,4 +1,5 @@
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
+import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:diskspacerenting/screens/MarketPlaceScreen/components/individualproduct.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,9 @@ class ProductCollections extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.31,
+      height: ResponsiveWidget.isSmallScreen(context)
+          ? MediaQuery.of(context).size.height * 0.31
+          : MediaQuery.of(context).size.height * 0.35,
       width: MediaQuery.of(context).size.width * 0.9,
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -48,7 +51,9 @@ class ProductCollections extends StatelessWidget {
               padding: const EdgeInsets.all(4.0),
               child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.9,
-                height: MediaQuery.of(context).size.height * 0.216,
+                height: ResponsiveWidget.isSmallScreen(context)
+                    ? MediaQuery.of(context).size.height * 0.216
+                    : MediaQuery.of(context).size.height * 0.25,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   physics: const BouncingScrollPhysics(),

@@ -1,4 +1,5 @@
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
+import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:intl/intl.dart';
@@ -26,9 +27,11 @@ class _DatePickerState extends State<DatePicker> {
       Column(
         children: [
           Row(
-            children: const [
-              Spacer(),
-              Text(
+            children: [
+              ResponsiveWidget.isSmallScreen(context)
+                  ? const Spacer()
+                  : const SizedBox(),
+              const Text(
                 'Pick rent duration',
                 style: TextStyle(
                   color: kBackgroundEndColor,
@@ -66,7 +69,12 @@ class _DatePickerState extends State<DatePicker> {
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.3,
+              height: ResponsiveWidget.isSmallScreen(context)
+                  ? MediaQuery.of(context).size.height * 0.3
+                  : MediaQuery.of(context).size.height * 0.54,
+              width: ResponsiveWidget.isSmallScreen(context)
+                  ? double.infinity
+                  : MediaQuery.of(context).size.width * 0.46,
               child: Container(
                 decoration: BoxDecoration(
                   color: kContainerEndColor,

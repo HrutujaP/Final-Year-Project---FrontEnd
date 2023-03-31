@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
+import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/components/allfeatures.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/components/pricerentbar.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/components/sla.dart';
@@ -18,7 +19,9 @@ class DetailsMainCard extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
         child: Container(
-          height: MediaQuery.of(context).size.height * 0.7,
+          height: ResponsiveWidget.isSmallScreen(context)
+              ? MediaQuery.of(context).size.height * 0.7
+              : MediaQuery.of(context).size.height * 0.85,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -35,7 +38,8 @@ class DetailsMainCard extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-            child: Column(children: [
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -55,11 +59,16 @@ class DetailsMainCard extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.01,
+                height: ResponsiveWidget.isSmallScreen(context)
+                    ? MediaQuery.of(context).size.height * 0.01
+                    : 0,
               ),
               Padding(
                 padding: EdgeInsets.only(
-                    right: MediaQuery.of(context).size.width * 0.3),
+                  right: ResponsiveWidget.isSmallScreen(context)
+                      ? MediaQuery.of(context).size.width * 0.3
+                      : MediaQuery.of(context).size.width * 0.0,
+                ),
                 child: Text(
                   'STORAGE NAME',
                   softWrap: true,
@@ -67,30 +76,44 @@ class DetailsMainCard extends StatelessWidget {
                     fontFamily: 'sans-serif',
                     fontWeight: FontWeight.w800,
                     color: kTextColor,
-                    fontSize: MediaQuery.of(context).size.width * 0.1,
+                    fontSize: ResponsiveWidget.isSmallScreen(context)
+                        ? MediaQuery.of(context).size.width * 0.1
+                        : MediaQuery.of(context).size.width * 0.03,
                   ),
                 ),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.025,
               ),
-              SLA(),
+              const SLA(),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.015,
               ),
-              Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus scelerisque urna sed dui accumsan dictum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.',
-                softWrap: true,
-                style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.height * 0.02,
-                    color: kBackgroundStartColor),
+              SizedBox(
+                width: ResponsiveWidget.isSmallScreen(context)
+                    ? MediaQuery.of(context).size.width
+                    : MediaQuery.of(context).size.width * 0.5,
+                child: Text(
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus scelerisque urna sed dui accumsan dictum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.',
+                  softWrap: true,
+                  style: TextStyle(
+                      fontSize: ResponsiveWidget.isSmallScreen(context)
+                          ? MediaQuery.of(context).size.height * 0.02
+                          : MediaQuery.of(context).size.width * 0.015,
+                      color: kBackgroundStartColor),
+                ),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,
               ),
+              const Spacer(
+                flex: 2,
+              ),
               const AllFeatures(),
-              const Spacer(),
-              PriceRentBar(),
+              const Spacer(
+                flex: 1,
+              ),
+              const PriceRentBar(),
             ]),
           ),
         ),

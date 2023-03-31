@@ -1,4 +1,5 @@
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
+import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:flutter/material.dart';
 
 class PaymentSection extends StatelessWidget {
@@ -9,7 +10,12 @@ class PaymentSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.28,
+      height: ResponsiveWidget.isSmallScreen(context)
+          ? MediaQuery.of(context).size.height * 0.28
+          : MediaQuery.of(context).size.height * 0.55,
+      width: ResponsiveWidget.isSmallScreen(context)
+          ? MediaQuery.of(context).size.width
+          : MediaQuery.of(context).size.width * 0.46,
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -28,7 +34,9 @@ class PaymentSection extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.16,
+              height: ResponsiveWidget.isSmallScreen(context)
+                  ? MediaQuery.of(context).size.height * 0.16
+                  : MediaQuery.of(context).size.height * 0.25,
               // width:,
               child: Container(
                 decoration: BoxDecoration(
@@ -54,7 +62,9 @@ class PaymentSection extends StatelessWidget {
                                   color: kTextColor,
                                   fontWeight: FontWeight.bold),
                             ),
-                            const Spacer(),
+                            ResponsiveWidget.isSmallScreen(context)
+                                ? const Spacer()
+                                : const SizedBox(width: 10),
                             const Icon(
                               Icons.circle_outlined,
                               color: Color.fromARGB(255, 41, 33, 75),
@@ -62,7 +72,9 @@ class PaymentSection extends StatelessWidget {
                             )
                           ],
                         ),
-                        const Spacer(),
+                        ResponsiveWidget.isSmallScreen(context)
+                            ? const Spacer()
+                            : const SizedBox(height: 10),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Row(
@@ -84,15 +96,19 @@ class PaymentSection extends StatelessWidget {
                             ],
                           ),
                         ),
-                        const Spacer(),
+                        ResponsiveWidget.isSmallScreen(context)
+                            ? const Spacer()
+                            : const SizedBox(height: 10),
                         Row(
-                          children: const [
-                            Text(
+                          children: [
+                            const Text(
                               'Monthly expenses: DSR 69',
                               style: TextStyle(color: kContainerStartColor),
                             ),
-                            Spacer(),
-                            Icon(Icons.remove_red_eye_outlined)
+                            ResponsiveWidget.isSmallScreen(context)
+                                ? const Spacer()
+                                : const SizedBox(width: 10),
+                            const Icon(Icons.remove_red_eye_outlined)
                           ],
                         )
                       ]),

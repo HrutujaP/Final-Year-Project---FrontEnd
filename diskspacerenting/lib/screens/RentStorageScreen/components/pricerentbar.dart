@@ -1,4 +1,5 @@
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
+import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:diskspacerenting/screens/PaymentScreen/paymentscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,7 +36,9 @@ class PriceRentBar extends StatelessWidget {
               Navigator.pushNamed(context, PaymentScreen.id);
             },
             child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.5,
+              width: ResponsiveWidget.isSmallScreen(context)
+                  ? MediaQuery.of(context).size.width * 0.5
+                  : MediaQuery.of(context).size.width * 0.3,
               height: MediaQuery.of(context).size.height * 0.1,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),

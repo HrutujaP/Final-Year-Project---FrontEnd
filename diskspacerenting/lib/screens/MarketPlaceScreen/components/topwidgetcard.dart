@@ -1,4 +1,5 @@
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
+import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:diskspacerenting/screens/Components/topbar.dart';
 import 'package:flutter/material.dart';
 
@@ -23,19 +24,32 @@ class TopWidgetCard extends StatelessWidget {
                 color: kContainerStartColor.withOpacity(0.6),
                 borderRadius: BorderRadius.circular(20),
               ),
-              height: MediaQuery.of(context).size.height * 0.32,
-              width: MediaQuery.of(context).size.width,
+              height: ResponsiveWidget.isSmallScreen(context)
+                  ? MediaQuery.of(context).size.height * 0.32
+                  : MediaQuery.of(context).size.height,
+              width: ResponsiveWidget.isSmallScreen(context)
+                  ? MediaQuery.of(context).size.width
+                  : MediaQuery.of(context).size.width * 0.4,
             ),
           ),
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.32,
-          width: MediaQuery.of(context).size.width,
-          child: const ClipRRect(
+          height: ResponsiveWidget.isSmallScreen(context)
+              ? MediaQuery.of(context).size.height * 0.32
+              : MediaQuery.of(context).size.height,
+          width: ResponsiveWidget.isSmallScreen(context)
+              ? MediaQuery.of(context).size.width
+              : MediaQuery.of(context).size.width * 0.4,
+          child: ClipRRect(
             borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20)),
-            child: ColorFiltered(
+                bottomLeft: ResponsiveWidget.isSmallScreen(context)
+                    ? const Radius.circular(20)
+                    : const Radius.circular(0),
+                topRight: ResponsiveWidget.isSmallScreen(context)
+                    ? const Radius.circular(0)
+                    : const Radius.circular(20),
+                bottomRight: const Radius.circular(20)),
+            child: const ColorFiltered(
               colorFilter:
                   ColorFilter.mode(kContainerStartColor, BlendMode.color),
               child: Image(
@@ -45,15 +59,23 @@ class TopWidgetCard extends StatelessWidget {
             ),
           ),
         ),
-        const TopBar(color: kSecondaryColor),
+        ResponsiveWidget.isSmallScreen(context)
+            ? const TopBar(color: kSecondaryColor)
+            : const Center(),
         Positioned(
-          top: MediaQuery.of(context).size.height / 5,
-          left: MediaQuery.of(context).size.width / 10,
+          top: ResponsiveWidget.isSmallScreen(context)
+              ? MediaQuery.of(context).size.height / 5
+              : MediaQuery.of(context).size.height / 2,
+          left: ResponsiveWidget.isSmallScreen(context)
+              ? MediaQuery.of(context).size.width / 10
+              : MediaQuery.of(context).size.width / 20,
           child: Container(
             decoration: BoxDecoration(
                 color: kContainerEndColor.withOpacity(0.7),
                 borderRadius: BorderRadius.circular(20)),
-            width: MediaQuery.of(context).size.width * 0.8,
+            width: ResponsiveWidget.isSmallScreen(context)
+                ? MediaQuery.of(context).size.width * 0.8
+                : MediaQuery.of(context).size.width * 0.3,
             child: const Padding(
               padding: EdgeInsets.all(10.0),
               child: Text(

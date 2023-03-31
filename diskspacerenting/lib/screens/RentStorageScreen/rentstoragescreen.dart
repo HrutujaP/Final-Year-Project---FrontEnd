@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
+import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:diskspacerenting/screens/Components/topbar.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/components/detailsmaincard.dart';
 import 'package:flutter/material.dart';
@@ -35,11 +36,17 @@ class RentStorageScreen extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const TopBar(color: kContainerEndColor),
+              ResponsiveWidget.isSmallScreen(context)
+                  ? const TopBar(color: kContainerEndColor)
+                  : const SizedBox(),
               // SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-              const Spacer(),
+              ResponsiveWidget.isSmallScreen(context)
+                  ? const Spacer()
+                  : const SizedBox(),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.84,
+                height: ResponsiveWidget.isSmallScreen(context)
+                    ? MediaQuery.of(context).size.height * 0.84
+                    : MediaQuery.of(context).size.height,
                 child: Column(
                   children: [
                     const Spacer(),

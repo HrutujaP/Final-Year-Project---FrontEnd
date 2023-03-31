@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
+import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/rentstoragescreen.dart';
 import 'package:flutter/material.dart';
 
@@ -34,8 +35,12 @@ class _IndividualProductState extends State<IndividualProduct> {
           Navigator.pushNamed(context, RentStorageScreen.id);
         },
         child: Container(
-          height: MediaQuery.of(context).size.height * 0.216,
-          width: MediaQuery.of(context).size.width * 0.35,
+          height: ResponsiveWidget.isSmallScreen(context)
+              ? MediaQuery.of(context).size.height * 0.216
+              : MediaQuery.of(context).size.height * 0.3,
+          width: ResponsiveWidget.isSmallScreen(context)
+              ? MediaQuery.of(context).size.width * 0.35
+              : MediaQuery.of(context).size.width * 0.15,
           decoration: BoxDecoration(
             color: kContainerEndColor,
             borderRadius: BorderRadius.circular(20),
@@ -44,8 +49,10 @@ class _IndividualProductState extends State<IndividualProduct> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
+                Spacer(),
                 Icon(Icons.storage_outlined,
                     color: generateRandomColor(), size: 85),
+                Spacer(),
                 Row(
                   children: const [
                     Text(
@@ -106,7 +113,8 @@ class _IndividualProductState extends State<IndividualProduct> {
                       size: 20,
                     )
                   ],
-                )
+                ),
+                Spacer()
               ],
             ),
           ),
