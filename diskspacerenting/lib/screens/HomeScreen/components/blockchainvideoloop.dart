@@ -1,9 +1,11 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'dart:io';
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+import 'package:video_player_win/video_player_win.dart';
 
 class BlockChainVideoLoop extends StatefulWidget {
   const BlockChainVideoLoop({super.key});
@@ -13,18 +15,30 @@ class BlockChainVideoLoop extends StatefulWidget {
 }
 
 class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
-  late VideoPlayerController _controller;
+  late var _controller;
 
   @override
   void initState() {
-    _controller = VideoPlayerController.asset('assets/new3.mp4')
-      ..initialize().then((_) {
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {
-          _controller.setLooping(true);
-          _controller.play();
+    if (Platform.isWindows) {
+      _controller = WinVideoPlayerController.file(File('assets/new3.mp4'))
+        ..initialize().then((_) {
+          // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+          setState(() {
+            _controller.setLooping(true);
+            _controller.play();
+          });
         });
-      });
+    } else {
+      _controller = VideoPlayerController.asset('assets/new3.mp4')
+        ..initialize().then((_) {
+          // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+          setState(() {
+            _controller.setLooping(true);
+            _controller.play();
+          });
+        });
+    }
+
     super.initState();
   }
 
@@ -63,7 +77,7 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
                 child: ColorFiltered(
                     colorFilter: const ColorFilter.mode(
                         kContainerStartColor, BlendMode.color),
-                    child: VideoPlayer(_controller)),
+                    child: Video(controller: _controller)),
               )
             : Container(),
       ),
@@ -74,5 +88,23 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+}
+
+class Video extends StatelessWidget {
+  const Video({
+    super.key,
+    required controller,
+  }) : _controller = controller;
+
+  final _controller;
+
+  @override
+  Widget build(BuildContext context) {
+    if (Platform.isWindows) {
+      return WinVideoPlayer(_controller);
+    } else {
+      return VideoPlayer(_controller);
+    }
   }
 }
