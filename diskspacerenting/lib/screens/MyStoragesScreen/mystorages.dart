@@ -1,4 +1,5 @@
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
+import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:diskspacerenting/screens/Components/topbar.dart';
 import 'package:diskspacerenting/screens/MyStoragesScreen/components/singledevice.dart';
 import 'package:diskspacerenting/screens/MyStoragesScreen/components/storageradialgraph.dart';
@@ -15,7 +16,7 @@ class MyStorages extends StatefulWidget {
 
 class _MyStoragesState extends State<MyStorages> {
   List<ChartData> chartData = [
-    ChartData('Rem', 22, '100%', kContainerStartColor),
+    ChartData('Ram', 22, '100%', kContainerStartColor),
     ChartData('Used', 10, '100%', kContainerMiddleColor),
     ChartData('Total', 32, '100%', kContainerEndColor),
   ];
@@ -27,7 +28,7 @@ class _MyStoragesState extends State<MyStorages> {
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration:  const BoxDecoration(
+          decoration: const BoxDecoration(
               color: kContainerMiddleColor,
               gradient: LinearGradient(
                 colors: [kBackgroundStartColor, kBackgroundEndColor],
@@ -37,9 +38,11 @@ class _MyStoragesState extends State<MyStorages> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const TopBar(
-                color: kContainerEndColor,
-              ),
+              ResponsiveWidget.isSmallScreen(context)
+                  ? const TopBar(
+                      color: kContainerEndColor,
+                    )
+                  : const SizedBox(),
               Row(
                 children: [
                   IconButton(
@@ -62,23 +65,56 @@ class _MyStoragesState extends State<MyStorages> {
                           fontWeight: FontWeight.bold)),
                 ],
               ),
-              StorageRadialGraph(chartData: chartData),
               const Spacer(),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.451,
-                child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    var img = index % 4;
+              ResponsiveWidget.isSmallScreen(context)
+                  ? SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.88,
+                      child: Column(
+                        children: [
+                          StorageRadialGraph(chartData: chartData),
+                          const Spacer(),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.451,
+                            child: ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              physics: const BouncingScrollPhysics(),
+                              itemCount: 5,
+                              itemBuilder: (context, index) {
+                                var img = index % 4;
 
-                    return SingleDeive(
-                      img: img.toString(),
-                    );
-                  },
-                ),
-              )
+                                return SingleDeive(
+                                  img: img.toString(),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  : Row(
+                      children: [
+                        StorageRadialGraph(chartData: chartData),
+                        const Spacer(),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.85,
+                          width: MediaQuery.of(context).size.width * 0.55,
+                          child: ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: 10,
+                            itemBuilder: (context, index) {
+                              var img = index % 4;
+
+                              return SingleDeive(
+                                img: img.toString(),
+                              );
+                            },
+                          ),
+                        ),
+                        const Spacer()
+                      ],
+                    ),
+              const Spacer(),
             ],
           ),
         ),

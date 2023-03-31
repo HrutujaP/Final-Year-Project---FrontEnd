@@ -1,4 +1,5 @@
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
+import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:diskspacerenting/screens/FileStorage/fileStorage.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,9 @@ class SingleDeive extends StatelessWidget {
           Navigator.pushNamed(context, FileStoarage.id);
         },
         child: Container(
-          height: MediaQuery.of(context).size.height * 0.12,
+          height: ResponsiveWidget.isSmallScreen(context)
+              ? MediaQuery.of(context).size.height * 0.12
+              : MediaQuery.of(context).size.height * 0.3,
           width: MediaQuery.of(context).size.width * 0.9,
           decoration: BoxDecoration(
             border: Border.all(color: kContainerStartColor.withOpacity(0.7)),
@@ -43,12 +46,16 @@ class SingleDeive extends StatelessWidget {
                   clipBehavior: Clip.hardEdge,
                   child: ColorFiltered(
                     colorFilter:
-                        ColorFilter.mode(kContainerStartColor, BlendMode.color),
+                        const ColorFilter.mode(kContainerStartColor, BlendMode.color),
                     child: Image(
                       fit: BoxFit.cover,
                       image: AssetImage('assets/images/$img.jpg'),
-                      height: MediaQuery.of(context).size.height * 0.12,
-                      width: MediaQuery.of(context).size.width * 0.33,
+                      height: ResponsiveWidget.isMediumScreen(context)
+                          ? MediaQuery.of(context).size.height * 0.12
+                          : MediaQuery.of(context).size.height * 0.3,
+                      width: ResponsiveWidget.isSmallScreen(context)
+                          ? MediaQuery.of(context).size.width * 0.33
+                          : MediaQuery.of(context).size.width * 0.2,
                     ),
                   ),
                 ),
@@ -61,49 +68,66 @@ class SingleDeive extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text("Storage Name",
+                    Text("Storage Name",
                         style: TextStyle(
                             color: kTextColor,
-                            fontSize: 18,
+                            fontSize: ResponsiveWidget.isSmallScreen(context)
+                                ? 18
+                                : 26,
                             fontWeight: FontWeight.w700)),
                     Row(
                       children: [
                         Icon(
                           Icons.tonality_outlined,
-                          size: 20,
+                          size:
+                              ResponsiveWidget.isSmallScreen(context) ? 20 : 30,
                           color: kContainerMiddleColor,
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         Text("Total Space: 32GB",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 12,
+                                fontSize:
+                                    ResponsiveWidget.isSmallScreen(context)
+                                        ? 12
+                                        : 20,
                                 fontWeight: FontWeight.bold)),
                       ],
                     ),
                     Row(
-                      children: const [
+                      children: [
                         Icon(
                           Icons.data_usage_rounded,
                           color: kContainerEndColor,
-                          size: 20,
+                          size:
+                              ResponsiveWidget.isSmallScreen(context) ? 20 : 30,
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         Text("Used Space: 10GB",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 12,
+                                fontSize:
+                                    ResponsiveWidget.isSmallScreen(context)
+                                        ? 12
+                                        : 20,
                                 fontWeight: FontWeight.bold)),
                       ],
                     ),
                     Row(
-                      children: const [
-                        Icon(Icons.pending, size: 20, color: kSecondaryColor),
-                        SizedBox(width: 10),
+                      children: [
+                        Icon(Icons.pending,
+                            size: ResponsiveWidget.isSmallScreen(context)
+                                ? 20
+                                : 30,
+                            color: kSecondaryColor),
+                        const SizedBox(width: 10),
                         Text("Rem Space: 22GB",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 12,
+                                fontSize:
+                                    ResponsiveWidget.isSmallScreen(context)
+                                        ? 12
+                                        : 20,
                                 fontWeight: FontWeight.bold)),
                       ],
                     ),

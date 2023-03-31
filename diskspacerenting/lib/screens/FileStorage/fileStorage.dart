@@ -3,6 +3,7 @@
 import 'dart:math';
 
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
+import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:diskspacerenting/screens/Components/topbar.dart';
 import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,9 @@ class _FileStoarageState extends State<FileStoarage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const TopBar(color: kSecondaryColor),
+                ResponsiveWidget.isSmallScreen(context)
+                    ? const TopBar(color: kSecondaryColor)
+                    : SizedBox(),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
@@ -46,7 +49,9 @@ class _FileStoarageState extends State<FileStoarage> {
                       style: TextStyle(
                         // color: kTextLightColor,
                         foreground: Paint()..shader = linearGradient,
-                        fontSize: MediaQuery.of(context).size.width * 0.045,
+                        fontSize: ResponsiveWidget.isSmallScreen(context)
+                            ? MediaQuery.of(context).size.width * 0.045
+                            : MediaQuery.of(context).size.width * 0.02,
                         decoration: TextDecoration.none,
                         fontWeight: FontWeight.w100,
                       ),
@@ -57,13 +62,17 @@ class _FileStoarageState extends State<FileStoarage> {
                   child: Text("Storage.",
                       style: TextStyle(
                           foreground: Paint()..shader = linearGradient,
-                          fontSize: MediaQuery.of(context).size.width * 0.1,
+                          fontSize: ResponsiveWidget.isSmallScreen(context)
+                              ? MediaQuery.of(context).size.width * 0.1
+                              : MediaQuery.of(context).size.width * 0.03,
                           decoration: TextDecoration.none,
                           fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
+                  height: ResponsiveWidget.isSmallScreen(context)
+                      ? MediaQuery.of(context).size.height * 0.03
+                      : MediaQuery.of(context).size.height * 0.01,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),

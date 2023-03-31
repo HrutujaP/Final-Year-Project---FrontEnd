@@ -1,4 +1,5 @@
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
+import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -19,7 +20,12 @@ class StorageRadialGraph extends StatelessWidget {
               fontSize: 26,
               fontWeight: FontWeight.bold)),
       SizedBox(
-        height: MediaQuery.of(context).size.height * 0.34,
+        height: ResponsiveWidget.isSmallScreen(context)
+            ? MediaQuery.of(context).size.height * 0.34
+            : MediaQuery.of(context).size.width * 0.4,
+        width: ResponsiveWidget.isSmallScreen(context)
+            ? MediaQuery.of(context).size.width
+            : MediaQuery.of(context).size.width * 0.3,
         child: SfCircularChart(
             legend: Legend(
               textStyle:

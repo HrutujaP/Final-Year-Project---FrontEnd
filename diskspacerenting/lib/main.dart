@@ -1,4 +1,3 @@
-import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/screens/FileStorage/fileStorage.dart';
 import 'package:diskspacerenting/screens/HomeScreen/homescreen.dart';
 import 'package:diskspacerenting/screens/LoginScreen/loginScreen.dart';
@@ -9,7 +8,6 @@ import 'package:diskspacerenting/screens/PostAdvertisment/postAdvertisment.dart'
 import 'package:diskspacerenting/screens/RegisterScreen/registerScreen.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/rentstoragescreen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // initialRoute: HomeScreen.id,
-      initialRoute: PaymentScreen.id,
+      initialRoute: FileStoarage.id,
 
       routes: {
         HomeScreen.id: (context) => const HomeScreen(),
