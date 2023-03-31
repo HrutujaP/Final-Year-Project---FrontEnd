@@ -12,19 +12,10 @@ class TopBarItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        // Text(
-        //   'Home',
-        //   style: TextStyle(
-        //     fontSize: 18,
-        //     color: kTextLightColor,
-        //     decoration: TextDecoration.none,
-        //     fontWeight: FontWeight.bold,
-        //   ),
-        // ),
         Icon(
           Icons.home,
-          size: MediaQuery.of(context).size.width / 10,
-          color: kTextLightColor,
+          size: 40,
+          color: kBackgroundEndColor,
         ),
 
         const SizedBox(
@@ -41,8 +32,8 @@ class TopBarItems extends StatelessWidget {
         // ),
         Icon(
           Icons.rotate_right_rounded,
-          size: MediaQuery.of(context).size.width / 10,
-          color: kTextLightColor,
+          size: 40,
+          color: kBackgroundEndColor,
         ),
         const SizedBox(
           width: 20,
@@ -58,8 +49,8 @@ class TopBarItems extends StatelessWidget {
         // ),
         Icon(
           Icons.contact_page,
-          size: MediaQuery.of(context).size.width / 10,
-          color: kTextLightColor,
+          size: 40,
+          color: kBackgroundEndColor,
         ),
       ],
     );
