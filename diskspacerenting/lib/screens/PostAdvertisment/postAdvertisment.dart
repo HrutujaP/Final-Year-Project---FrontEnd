@@ -583,42 +583,54 @@ class _postAdvertismentState extends State<postAdvertisment> {
                     ),
                   ],
                 ),
+                // Spacer(),
                 ResponsiveWidget.isSmallScreen(context)
                     ? const Center()
-                    : SizedBox(
-                        height: MediaQuery.of(context).size.height / 2,
-                        child: Center(
-                          child: Material(
-                            elevation: 20,
-                            shadowColor: kContainerEndColor,
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(300),
-                            child: SizedBox(
-                              width: 300,
-                              height: 300,
-                              child: AnalogClock(
-                                decoration: const BoxDecoration(
-                                  // border: Border.all(
-                                  //   width: 2.0,
-                                  //   color: kContainerMiddleColor,
-                                  // ),
-                                  color: Colors.transparent,
-                                  shape: BoxShape.circle,
+                    : Padding(
+                        padding: const EdgeInsets.all(28.0),
+                        child: SizedBox(
+                          // height: MediaQuery.of(context).size.height / 2.5,
+                          // width: MediaQuery.of(context).size.width / 2.5,
+                          child: Center(
+                            child: Material(
+                              elevation: 20,
+                              shadowColor: kContainerEndColor,
+                              color: Colors.transparent,
+                              borderRadius: BorderRadius.circular(300),
+                              child: SizedBox(
+                                // width: MediaQuery.of(context).size.width / 2.5,
+                                // height: MediaQuery.of(context).size.width / 2.5,
+                                child: AnalogClock(
+                                  decoration: const BoxDecoration(
+                                    // border: Border.all(
+                                    //   width: 2.0,
+                                    //   color: kContainerMiddleColor,
+                                    // ),
+                                    color: Colors.transparent,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  tickColor: kContainerMiddleColor,
+                                  width: ResponsiveWidget.isMediumScreen(
+                                          context)
+                                      ? MediaQuery.of(context).size.width / 2.5
+                                      : MediaQuery.of(context).size.width / 3.5,
+                                  height: ResponsiveWidget.isMediumScreen(
+                                          context)
+                                      ? MediaQuery.of(context).size.width / 2.5
+                                      : MediaQuery.of(context).size.width / 3.5,
+                                  isLive: true,
+                                  hourHandColor: kBackgroundEndColor,
+                                  minuteHandColor: kBackgroundEndColor,
+                                  secondHandColor: kContainerStartColor,
+                                  showSecondHand: true,
+                                  numberColor: kBackgroundEndColor,
+                                  showNumbers: false,
+                                  showAllNumbers: false,
+                                  textScaleFactor: 1.4,
+                                  showTicks: true,
+                                  showDigitalClock: false,
+                                  datetime: DateTime.now(),
                                 ),
-                                secondHandColor: kContainerStartColor,
-                                tickColor: kContainerMiddleColor,
-                                width: 150.0,
-                                isLive: true,
-                                hourHandColor: kContainerMiddleColor,
-                                minuteHandColor: kContainerStartColor,
-                                showSecondHand: true,
-                                numberColor: kBackgroundEndColor,
-                                showNumbers: true,
-                                showAllNumbers: false,
-                                textScaleFactor: 1.4,
-                                showTicks: true,
-                                showDigitalClock: false,
-                                datetime: DateTime.now(),
                               ),
                             ),
                           ),
