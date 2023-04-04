@@ -11,11 +11,6 @@ import 'package:flutter/material.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-  //     statusBarIconBrightness: Brightness.light,
-  //     statusBarColor: kPrimaryColor,
-  //     systemNavigationBarColor: kPrimaryColor));
-
   runApp(const MyApp());
 }
 
@@ -28,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // initialRoute: HomeScreen.id,
-      initialRoute: FileStoarage.id,
+      initialRoute: MyStorages.id,
 
       routes: {
         HomeScreen.id: (context) => const HomeScreen(),

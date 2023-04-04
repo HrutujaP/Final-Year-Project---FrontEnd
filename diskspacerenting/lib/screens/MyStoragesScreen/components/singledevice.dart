@@ -21,7 +21,7 @@ class SingleDeive extends StatelessWidget {
         },
         child: Container(
           height: ResponsiveWidget.isSmallScreen(context)
-              ? MediaQuery.of(context).size.height * 0.12
+              ? MediaQuery.of(context).size.height * 0.15
               : MediaQuery.of(context).size.height * 0.3,
           width: MediaQuery.of(context).size.width * 0.9,
           decoration: BoxDecoration(
@@ -45,8 +45,8 @@ class SingleDeive extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   clipBehavior: Clip.hardEdge,
                   child: ColorFiltered(
-                    colorFilter:
-                        const ColorFilter.mode(kContainerStartColor, BlendMode.color),
+                    colorFilter: const ColorFilter.mode(
+                        kContainerStartColor, BlendMode.color),
                     child: Image(
                       fit: BoxFit.cover,
                       image: AssetImage('assets/images/$img.jpg'),
@@ -73,7 +73,7 @@ class SingleDeive extends StatelessWidget {
                             color: kTextColor,
                             fontSize: ResponsiveWidget.isSmallScreen(context)
                                 ? 18
-                                : 26,
+                                : MediaQuery.of(context).size.width * 0.015,
                             fontWeight: FontWeight.w700)),
                     Row(
                       children: [
@@ -90,7 +90,8 @@ class SingleDeive extends StatelessWidget {
                                 fontSize:
                                     ResponsiveWidget.isSmallScreen(context)
                                         ? 12
-                                        : 20,
+                                        : MediaQuery.of(context).size.width *
+                                            0.013,
                                 fontWeight: FontWeight.bold)),
                       ],
                     ),
@@ -109,7 +110,8 @@ class SingleDeive extends StatelessWidget {
                                 fontSize:
                                     ResponsiveWidget.isSmallScreen(context)
                                         ? 12
-                                        : 20,
+                                        : MediaQuery.of(context).size.width *
+                                            0.013,
                                 fontWeight: FontWeight.bold)),
                       ],
                     ),
@@ -127,7 +129,8 @@ class SingleDeive extends StatelessWidget {
                                 fontSize:
                                     ResponsiveWidget.isSmallScreen(context)
                                         ? 12
-                                        : 20,
+                                        : MediaQuery.of(context).size.width *
+                                            0.013,
                                 fontWeight: FontWeight.bold)),
                       ],
                     ),

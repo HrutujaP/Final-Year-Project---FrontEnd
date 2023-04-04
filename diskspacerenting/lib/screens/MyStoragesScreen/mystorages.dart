@@ -74,7 +74,7 @@ class _MyStoragesState extends State<MyStorages> {
                           StorageRadialGraph(chartData: chartData),
                           const Spacer(),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.451,
+                            height: MediaQuery.of(context).size.height * 0.5,
                             child: ListView.builder(
                               scrollDirection: Axis.vertical,
                               physics: const BouncingScrollPhysics(),

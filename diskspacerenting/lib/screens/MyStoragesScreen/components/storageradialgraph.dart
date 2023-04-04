@@ -21,7 +21,7 @@ class StorageRadialGraph extends StatelessWidget {
               fontWeight: FontWeight.bold)),
       SizedBox(
         height: ResponsiveWidget.isSmallScreen(context)
-            ? MediaQuery.of(context).size.height * 0.34
+            ? MediaQuery.of(context).size.height * 0.3
             : MediaQuery.of(context).size.width * 0.4,
         width: ResponsiveWidget.isSmallScreen(context)
             ? MediaQuery.of(context).size.width
