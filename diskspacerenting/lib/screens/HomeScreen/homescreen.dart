@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen>
               child: Stack(children: [
                 Positioned.fill(
                   // top: 20,
-                  child: FloatingBubbles(
+                  child: FloatingBubbles.alwaysRepeating(
                     noOfBubbles: 20,
                     colorsOfBubbles: const [
                       kContainerStartColor,
@@ -117,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen>
                     ],
 
                     sizeFactor: 0.2,
-                    duration: 120, // 120 seconds.
+                    // duration: 120, // 120 seconds.
                     opacity: 100,
                     paintingStyle: PaintingStyle.fill,
                     strokeWidth: 8,
