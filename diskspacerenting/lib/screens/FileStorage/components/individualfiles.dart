@@ -24,8 +24,8 @@ class IndividualFiles extends StatelessWidget {
             style: TextStyle(
               foreground: Paint()..shader = linearGradient1,
               fontSize: ResponsiveWidget.isSmallScreen(context)
-                  ? MediaQuery.of(context).size.width * 0.1
-                  : MediaQuery.of(context).size.width * 0.02,
+                  ? MediaQuery.of(context).size.width * 0.08
+                  : MediaQuery.of(context).size.width * 0.017,
               decoration: TextDecoration.none,
               // fontWeight: FontWeight.bold,
             ),
@@ -69,8 +69,11 @@ class IndividualFiles extends StatelessWidget {
                     childAspectRatio: (2.2 / 2.0002),
                     crossAxisSpacing: 20,
                     mainAxisSpacing: 20,
-                    crossAxisCount:
-                        ResponsiveWidget.isSmallScreen(context) ? 2 : 4,
+                    crossAxisCount: ResponsiveWidget.isSmallScreen(context)
+                        ? 2
+                        : ResponsiveWidget.isMediumScreen(context)
+                            ? 3
+                            : 4,
                   ),
                   itemBuilder: (context, index) {
                     return Padding(
@@ -158,7 +161,7 @@ class IndividualFiles extends StatelessWidget {
                                                     : MediaQuery.of(context)
                                                             .size
                                                             .width *
-                                                        0.06,
+                                                        0.05,
                                               ),
                                             ),
                                           ],

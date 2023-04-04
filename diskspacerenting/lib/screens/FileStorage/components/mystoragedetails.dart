@@ -27,7 +27,7 @@ class MyStorageDetails extends StatelessWidget {
                   style: TextStyle(
                     foreground: Paint()..shader = linearGradient1,
                     fontSize: ResponsiveWidget.isSmallScreen(context)
-                        ? MediaQuery.of(context).size.width * 0.1
+                        ? MediaQuery.of(context).size.width * 0.08
                         : MediaQuery.of(context).size.width * 0.02,
                     decoration: TextDecoration.none,
                     fontWeight: FontWeight.w100,

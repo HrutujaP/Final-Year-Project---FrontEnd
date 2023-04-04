@@ -70,14 +70,32 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
           ),
         ),
         child: _controller.value.isInitialized
-            ? ClipRRect(
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(25),
-                    bottomRight: Radius.circular(25)),
-                child: ColorFiltered(
-                    colorFilter: const ColorFilter.mode(
-                        kContainerStartColor, BlendMode.color),
-                    child: Video(controller: _controller)),
+            ? FittedBox(
+                fit: BoxFit.cover,
+                child: SizedBox(
+                  height: !ResponsiveWidget.isSmallScreen(context)
+                      ? MediaQuery.of(context).size.height * 0.5
+                      : MediaQuery.of(context).size.height * 0.3,
+                  width: ResponsiveWidget.isSmallScreen(context)
+                      ? MediaQuery.of(context).size.width
+                      : MediaQuery.of(context).size.width / 2,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: const Radius.circular(25),
+                      bottomRight: const Radius.circular(25),
+                      topRight: ResponsiveWidget.isSmallScreen(context)
+                          ? Radius.zero
+                          : const Radius.circular(25),
+                      topLeft: ResponsiveWidget.isSmallScreen(context)
+                          ? Radius.zero
+                          : const Radius.circular(25),
+                    ),
+                    child: ColorFiltered(
+                        colorFilter: const ColorFilter.mode(
+                            kContainerStartColor, BlendMode.color),
+                        child: Video(controller: _controller)),
+                  ),
+                ),
               )
             : Container(),
       ),
@@ -102,7 +120,16 @@ class Video extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (Platform.isWindows) {
-      return WinVideoPlayer(_controller);
+      return FittedBox(
+        fit: BoxFit.cover,
+        child: SizedBox(
+          width: _controller.value.size.width,
+          height: _controller.value.size.height,
+          child: AspectRatio(
+              aspectRatio: _controller.value.aspectRatio,
+              child: WinVideoPlayer(_controller)),
+        ),
+      );
     } else {
       return VideoPlayer(_controller);
     }

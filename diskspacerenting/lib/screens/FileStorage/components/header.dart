@@ -39,16 +39,11 @@ class Header extends StatelessWidget {
               style: TextStyle(
                   foreground: Paint()..shader = linearGradient,
                   fontSize: ResponsiveWidget.isSmallScreen(context)
-                      ? MediaQuery.of(context).size.width * 0.1
+                      ? MediaQuery.of(context).size.width * 0.08
                       : MediaQuery.of(context).size.width * 0.03,
                   decoration: TextDecoration.none,
                   fontWeight: FontWeight.bold),
               textAlign: TextAlign.left),
-        ),
-        SizedBox(
-          height: ResponsiveWidget.isSmallScreen(context)
-              ? MediaQuery.of(context).size.height * 0.03
-              : MediaQuery.of(context).size.height * 0.005,
         ),
       ],
     );

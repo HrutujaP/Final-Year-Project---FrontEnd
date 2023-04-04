@@ -4,11 +4,9 @@ import 'dart:math';
 
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
-import 'package:diskspacerenting/screens/Components/topbar.dart';
 import 'package:diskspacerenting/screens/FileStorage/components/header.dart';
 import 'package:diskspacerenting/screens/FileStorage/components/individualfiles.dart';
 import 'package:diskspacerenting/screens/FileStorage/components/mystoragedetails.dart';
-import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
 
 class FileStoarage extends StatefulWidget {
@@ -38,23 +36,23 @@ class _FileStoarageState extends State<FileStoarage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Header(),
-            Spacer(),
+            const Header(),
+            const Spacer(),
             ResponsiveWidget.isSmallScreen(context)
                 ? Column(
-                    children: [
+                    children: const [
                       MyStorageDetails(),
                       IndividualFiles(),
                     ],
                   )
                 : Row(
                 
-                    children: [
+                    children: const [
                       MyStorageDetails(),
                       IndividualFiles(),
                     ],
                   ),
-            Spacer()
+            const Spacer()
           ],
         ),
       ),
