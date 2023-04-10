@@ -10,15 +10,18 @@ import 'package:diskspacerenting/screens/RegisterScreen/registerScreen.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/rentstoragescreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   FirebaseFirestore.instance
       .collection("collectionPath")
       .doc("documentId")
       .set({
-    "key": "value",
+    "key1": "value1",
   });
   runApp(const MyApp());
 }
