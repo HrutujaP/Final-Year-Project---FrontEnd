@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1052056528612",
+    "project_id": "disk-space-renting",
+    "storage_bucket": "disk-space-renting.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1052056528612:android:d45e6d0aa09114bdbfaef1",
+        "android_client_info": {
+          "package_name": "com.example.diskspacerenting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1052056528612-jeego82iv5criq5nh82tvsk281as3h0h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPEa0wKWg1U0r-CL8qrsTAJXzeHu5AeEU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1052056528612-jeego82iv5criq5nh82tvsk281as3h0h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
