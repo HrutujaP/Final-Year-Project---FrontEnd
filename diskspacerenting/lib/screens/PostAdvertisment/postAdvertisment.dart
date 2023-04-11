@@ -99,7 +99,6 @@ class _postAdvertismentState extends State<postAdvertisment> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 1.2,
                       width: ResponsiveWidget.isSmallScreen(context)
                           ? MediaQuery.of(context).size.width
                           : MediaQuery.of(context).size.width / 2,

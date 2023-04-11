@@ -1,15 +1,12 @@
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/screens/Components/topbaritems.dart';
 import 'package:diskspacerenting/screens/HomeScreen/components/blockchainvideoloop.dart';
-import 'package:diskspacerenting/screens/HomeScreen/components/bottomdotbar.dart';
 import 'package:diskspacerenting/screens/HomeScreen/components/mainoptions.dart';
-import 'package:diskspacerenting/screens/Components/topbar.dart';
 import 'package:diskspacerenting/screens/MarketPlaceScreen/marketplacescreen.dart';
 import 'package:diskspacerenting/screens/MyStoragesScreen/mystorages.dart';
 import 'package:diskspacerenting/screens/PostAdvertisment/postAdvertisment.dart';
 import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_glow/flutter_glow.dart';
 
 import '../../Constants/Responsive/responsiveWidget.dart';
 
@@ -76,15 +73,15 @@ class _HomeScreenState extends State<HomeScreen>
                         ResponsiveWidget.isSmallScreen(context)
                             ? 'D.S.R'
                             : 'Disk Space Renting',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 38,
                           color: kBackgroundEndColor,
                           fontWeight: FontWeight.w600,
                           decoration: TextDecoration.none,
                         ),
                       ),
-                      Spacer(),
-                      TopBarItems(
+                      const Spacer(),
+                      const TopBarItems(
                         color: kBackgroundEndColor,
                       )
                     ],
@@ -344,7 +341,7 @@ class _HomeScreenState extends State<HomeScreen>
                                                         .height *
                                                     0.03,
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 10,
                                               ),
                                               const Text(
@@ -380,7 +377,7 @@ class _HomeScreenState extends State<HomeScreen>
                                                         .height *
                                                     0.028,
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 10,
                                               ),
                                               const Text('Storage Rented',
@@ -464,7 +461,7 @@ class _HomeScreenState extends State<HomeScreen>
                             width: MediaQuery.of(context).size.width / 2,
                             child: const BlockChainVideoLoop(),
                           )
-                        : Center(),
+                        : const Center(),
                   ],
                 ),
               ]),

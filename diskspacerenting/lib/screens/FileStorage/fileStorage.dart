@@ -37,16 +37,17 @@ class _FileStoarageState extends State<FileStoarage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Header(),
-            const Spacer(),
+            SizedBox(
+              height: 15,
+            ),
             ResponsiveWidget.isSmallScreen(context)
                 ? Column(
-                    children: const [
-                      MyStorageDetails(),
-                      IndividualFiles(),
-                    ],
-                  )
+                  children: const [
+                    MyStorageDetails(),
+                    IndividualFiles(),
+                  ],
+                )
                 : Row(
-                
                     children: const [
                       MyStorageDetails(),
                       IndividualFiles(),

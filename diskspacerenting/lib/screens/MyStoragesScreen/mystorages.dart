@@ -65,16 +65,15 @@ class _MyStoragesState extends State<MyStorages> {
                           fontWeight: FontWeight.bold)),
                 ],
               ),
-              const Spacer(),
               ResponsiveWidget.isSmallScreen(context)
-                  ? SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.88,
+                  ? Expanded(
                       child: Column(
                         children: [
                           StorageRadialGraph(chartData: chartData),
-                          const Spacer(),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.5,
+                            height: 10,
+                          ),
+                          Expanded(
                             child: ListView.builder(
                               scrollDirection: Axis.vertical,
                               physics: const BouncingScrollPhysics(),
@@ -95,26 +94,26 @@ class _MyStoragesState extends State<MyStorages> {
                       children: [
                         StorageRadialGraph(chartData: chartData),
                         const Spacer(),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.85,
-                          width: MediaQuery.of(context).size.width * 0.55,
-                          child: ListView.builder(
-                            scrollDirection: Axis.vertical,
-                            physics: const BouncingScrollPhysics(),
-                            itemCount: 10,
-                            itemBuilder: (context, index) {
-                              var img = index % 4;
+                        Expanded(
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.55,
+                            child: ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              physics: const BouncingScrollPhysics(),
+                              itemCount: 10,
+                              itemBuilder: (context, index) {
+                                var img = index % 4;
 
-                              return SingleDeive(
-                                img: img.toString(),
-                              );
-                            },
+                                return SingleDeive(
+                                  img: img.toString(),
+                                );
+                              },
+                            ),
                           ),
                         ),
                         const Spacer()
                       ],
                     ),
-              const Spacer(),
             ],
           ),
         ),

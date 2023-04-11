@@ -31,7 +31,9 @@ class MarketPlaceScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const TopWidgetCard(),
-                    const Spacer(),
+                    SizedBox(
+                      height: 15,
+                    ),
                     Padding(
                       padding:
                           const EdgeInsets.only(top: 20.0, left: 18, right: 18),
@@ -54,24 +56,28 @@ class MarketPlaceScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 18.0, right: 18, top: 10),
-                      child: SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.55,
-                        child: ListView(
-                          scrollDirection: Axis.vertical,
-                          physics: const BouncingScrollPhysics(),
-                          children: const [
-                            ProductCollections(),
-                            SizedBox(
-                              height: 15,
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 18.0, right: 18, top: 10),
+                        child: Expanded(
+                          child: SizedBox(
+                            // height: MediaQuery.of(context).size.height * 0.55,
+                            child: ListView(
+                              scrollDirection: Axis.vertical,
+                              physics: const BouncingScrollPhysics(),
+                              children: const [
+                                ProductCollections(),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                                ProductCollections(),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                              ],
                             ),
-                            ProductCollections(),
-                            SizedBox(
-                              height: 15,
-                            ),
-                          ],
+                          ),
                         ),
                       ),
                     ),
