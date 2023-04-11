@@ -2,16 +2,20 @@
 
 import 'dart:ui';
 
+import 'package:diskspacerenting/Authentication/googleSignIn.dart';
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
+import 'package:diskspacerenting/screens/HomeScreen/homescreen.dart';
 import 'package:diskspacerenting/screens/LoginScreen/components/inputTextField.dart';
 import 'package:diskspacerenting/screens/LoginScreen/components/loginScreenAnimation.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class registerScreen extends StatefulWidget {
   static const String id = 'registerScreen';
@@ -58,7 +62,7 @@ class _registerScreenState extends State<registerScreen> {
             padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
             child: Row(
               children: [
-                 ResponsiveWidget.isSmallScreen(context) ? SizedBox() : Spacer(),
+                ResponsiveWidget.isSmallScreen(context) ? SizedBox() : Spacer(),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -125,13 +129,13 @@ class _registerScreenState extends State<registerScreen> {
                                       color: kContainerEndColor,
                                     ),
                                     focusedBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: kContainerEndColor)),
+                                        borderSide: BorderSide(
+                                            color: kContainerEndColor)),
                                     border: OutlineInputBorder(
                                         borderSide: BorderSide()),
                                     disabledBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: kContainerEndColor)),
+                                        borderSide: BorderSide(
+                                            color: kContainerEndColor)),
                                   )),
                             ),
                             const SizedBox(
@@ -171,13 +175,13 @@ class _registerScreenState extends State<registerScreen> {
                                       color: kContainerEndColor,
                                     ),
                                     focusedBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: kContainerEndColor)),
+                                        borderSide: BorderSide(
+                                            color: kContainerEndColor)),
                                     border: OutlineInputBorder(
                                         borderSide: BorderSide()),
                                     disabledBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: kContainerEndColor)),
+                                        borderSide: BorderSide(
+                                            color: kContainerEndColor)),
                                   )),
                             ),
                             const SizedBox(
@@ -217,13 +221,13 @@ class _registerScreenState extends State<registerScreen> {
                                       color: kContainerEndColor,
                                     ),
                                     focusedBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: kContainerEndColor)),
+                                        borderSide: BorderSide(
+                                            color: kContainerEndColor)),
                                     border: OutlineInputBorder(
                                         borderSide: BorderSide()),
                                     disabledBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: kContainerEndColor)),
+                                        borderSide: BorderSide(
+                                            color: kContainerEndColor)),
                                   )),
                             ),
                             const SizedBox(
@@ -245,7 +249,8 @@ class _registerScreenState extends State<registerScreen> {
                                   // ),
                                 ),
                                 onPressed: () async {
-                                  if (!_registerformKey.currentState!.validate()) {
+                                  if (!_registerformKey.currentState!
+                                      .validate()) {
                                     setState(() {
                                       _error =
                                           'Please provide a valid email/password combination';
@@ -269,11 +274,14 @@ class _registerScreenState extends State<registerScreen> {
                                 ),
                               ),
                             ),
+                            GoogleSignInButton(),
+                            
                           ],
                         ))
                   ],
                 ),
-               ResponsiveWidget.isSmallScreen(context) ? SizedBox() : Spacer(),],
+                ResponsiveWidget.isSmallScreen(context) ? SizedBox() : Spacer(),
+              ],
             ),
           ),
         ],
@@ -281,6 +289,88 @@ class _registerScreenState extends State<registerScreen> {
     ));
   }
 }
+
+bool _isSigningIn = false;
+
+class GoogleSignInButton extends StatefulWidget {
+  @override
+  _GoogleSignInButtonState createState() => _GoogleSignInButtonState();
+}
+
+class _GoogleSignInButtonState extends State<GoogleSignInButton> {
+  bool _isSigningIn = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: _isSigningIn
+          ? CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+            )
+          : OutlinedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.white),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                ),
+              ),
+              onPressed: () async {
+                setState(() {
+                  _isSigningIn = true;
+                });
+
+                User? user = await WebAuthenticationSignIN.signInWithGoogle(
+                    context: context);
+
+                setState(() {
+                  _isSigningIn = false;
+                });
+
+                if (user != null) {
+                  // Navigator.of(context).pushReplacement(
+                  //   MaterialPageRoute(
+                  //     builder: (context) => UserInfoScreen(
+                  //       user: user,
+                  //     ),
+                  //   ),
+                  // );
+                  print(user);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(),
+                    ),
+                  );
+                }
+              },
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Text(
+                        'Sign in with Google',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black54,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+    );
+  }
+}
+
 
  //   suffixIcon: InkWell(
                         //     onTap: () {

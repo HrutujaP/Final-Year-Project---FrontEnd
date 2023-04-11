@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: HomeScreen.id,
-      // initialRoute: MyStorages.id,
+      // initialRoute: registerScreen.id,
 
       routes: {
         HomeScreen.id: (context) => const HomeScreen(),

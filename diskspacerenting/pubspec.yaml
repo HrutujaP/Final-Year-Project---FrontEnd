@@ -45,6 +45,8 @@ dependencies:
   video_player_win: ^2.2.2
   firebase_core: ^2.9.0
   cloud_firestore: ^4.5.0
+  google_sign_in: ^6.1.0
+  firebase_auth: ^4.4.0
 
 dev_dependencies:
   flutter_test:
