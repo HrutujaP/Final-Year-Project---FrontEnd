@@ -1,6 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'dart:io';
+// import 'dart:io';
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:flutter/material.dart';
@@ -15,19 +15,28 @@ class BlockChainVideoLoop extends StatefulWidget {
 }
 
 class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
-  late var _controller;
+  late VideoPlayerController _controller;
+  Future<void> initializeVideoPlayer() async {
+    try {
+      // Wait for controller to initialize before performing any action
+      await _controller.initialize();
+    } catch (e) {
+      print(e);
+      return;
+    }
+
+    // Set state variables from within UI thread
+    setState(() {
+      print("Hellow");
+      _controller.setLooping(true);
+      _controller.play();
+    });
+  }
 
   @override
   void initState() {
-    if (Platform.isAndroid || Platform.isIOS) {
-      _controller = VideoPlayerController.asset('assets/new3.mp4');
-      _controller.setLooping(true);
-      _controller.initialize().then((_) => setState(() {}));
-    }else{
-      _controller = VideoPlayerController.network('https://www.youtube.com/watch?v=QH2-TGUlwu4');
-      _controller.setLooping(true);
-      _controller.initialize().then((_) => setState(() {}));
-    }
+    _controller = VideoPlayerController.asset('assets/new3.mp4');
+    initializeVideoPlayer();
 
     super.initState();
   }
@@ -90,6 +99,7 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
             : Container(),
       ),
     );
+    // return Video(controller: _controller);
   }
 
   @override
@@ -102,26 +112,13 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
 class Video extends StatelessWidget {
   const Video({
     super.key,
-    required controller,
-  }) : _controller = controller;
+    required this.controller,
+  });
 
-  final _controller;
+  final VideoPlayerController controller;
 
   @override
   Widget build(BuildContext context) {
-    if (Platform.isWindows) {
-      return FittedBox(
-        fit: BoxFit.cover,
-        child: SizedBox(
-          width: _controller.value.size.width,
-          height: _controller.value.size.height,
-          child: AspectRatio(
-              aspectRatio: _controller.value.aspectRatio,
-              child: WinVideoPlayer(_controller)),
-        ),
-      );
-    } else {
-      return VideoPlayer(_controller);
-    }
+    return VideoPlayer(controller);
   }
 }
