@@ -66,6 +66,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1052056528612',
     projectId: 'disk-space-renting',
     storageBucket: 'disk-space-renting.appspot.com',
+    androidClientId: '1052056528612-bdr0ll539butng12skj1kut5hfr03b2g.apps.googleusercontent.com',
     iosClientId: '1052056528612-lal3pgetjbsvu1c38r88oe5p97fdf6g1.apps.googleusercontent.com',
     iosBundleId: 'com.example.diskspacerenting',
   );
@@ -76,6 +77,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1052056528612',
     projectId: 'disk-space-renting',
     storageBucket: 'disk-space-renting.appspot.com',
+    androidClientId: '1052056528612-bdr0ll539butng12skj1kut5hfr03b2g.apps.googleusercontent.com',
     iosClientId: '1052056528612-lal3pgetjbsvu1c38r88oe5p97fdf6g1.apps.googleusercontent.com',
     iosBundleId: 'com.example.diskspacerenting',
   );

@@ -19,24 +19,14 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
 
   @override
   void initState() {
-    if (Platform.isWindows) {
-      _controller = WinVideoPlayerController.file(File('assets/new3.mp4'))
-        ..initialize().then((_) {
-          // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-          setState(() {
-            _controller.setLooping(true);
-            _controller.play();
-          });
-        });
-    } else {
-      _controller = VideoPlayerController.asset('assets/new3.mp4')
-        ..initialize().then((_) {
-          // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-          setState(() {
-            _controller.setLooping(true);
-            _controller.play();
-          });
-        });
+    if (Platform.isAndroid || Platform.isIOS) {
+      _controller = VideoPlayerController.asset('assets/new3.mp4');
+      _controller.setLooping(true);
+      _controller.initialize().then((_) => setState(() {}));
+    }else{
+      _controller = VideoPlayerController.network('https://www.youtube.com/watch?v=QH2-TGUlwu4');
+      _controller.setLooping(true);
+      _controller.initialize().then((_) => setState(() {}));
     }
 
     super.initState();

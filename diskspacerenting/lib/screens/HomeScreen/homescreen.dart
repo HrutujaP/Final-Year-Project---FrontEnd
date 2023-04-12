@@ -1,4 +1,3 @@
-import 'package:diskspacerenting/Authentication/googleSignIn.dart';
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/screens/Components/topbaritems.dart';
 import 'package:diskspacerenting/screens/HomeScreen/components/blockchainvideoloop.dart';
@@ -6,7 +5,6 @@ import 'package:diskspacerenting/screens/HomeScreen/components/mainoptions.dart'
 import 'package:diskspacerenting/screens/MarketPlaceScreen/marketplacescreen.dart';
 import 'package:diskspacerenting/screens/MyStoragesScreen/mystorages.dart';
 import 'package:diskspacerenting/screens/PostAdvertisment/postAdvertisment.dart';
-import 'package:diskspacerenting/screens/RegisterScreen/registerScreen.dart';
 import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
 
@@ -43,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void dispose() {
     _animationController.dispose();
+
     super.dispose();
   }
 
@@ -51,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen>
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
+              backgroundColor: Colors.transparent,
               elevation: 10,
               toolbarHeight: 50,
               shadowColor: kContainerEndColor,
@@ -325,8 +325,8 @@ class _HomeScreenState extends State<HomeScreen>
                                         bottomRight: Radius.circular(20)),
                                   ),
                                   child: SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.1,
+                                    // height: MediaQuery.of(context).size.height *
+                                    //     0.1,
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -407,55 +407,6 @@ class _HomeScreenState extends State<HomeScreen>
                               ],
                             ),
                           ),
-                          // const Spacer(),
-                          // Column(
-                          //   children: [
-                          //     CircleAvatar(
-                          //       backgroundColor: Colors.transparent,
-                          //       radius: 65,
-                          //       child: PageView(
-                          //         clipBehavior: Clip.none,
-                          //         controller: _pageController,
-                          //         scrollDirection: Axis.horizontal,
-                          //         physics: const BouncingScrollPhysics(),
-                          //         children: const [
-                          //           MainOptions(
-                          //             route: postAdvertisment.id,
-                          //             color: kTextDarkColor,
-                          //             icon: Icons.currency_exchange_sharp,
-                          //             hText: 'Rent',
-                          //             pText:
-                          //                 'Rent out your diskspace to other users and earn DSR tokens!',
-                          //           ),
-                          //           MainOptions(
-                          //             route: MarketPlaceScreen.id,
-                          //             color: kTextDarkColor,
-                          //             icon: Icons.payment,
-                          //             hText: 'Buy',
-                          //             pText:
-                          //                 'Buy diskspace from other users and store your data securely!',
-                          //           ),
-                          //           MainOptions(
-                          //               route: MyStorages.id,
-                          //               color: kTextDarkColor,
-                          //               icon: Icons.storage_rounded,
-                          //               hText: 'My\nStorage',
-                          //               pText:
-                          //                   'View your rented diskspace and manage your data!')
-                          //         ],
-                          //         onPageChanged: (int page) {
-                          //           setState(() {
-                          //             _currentPage = page;
-                          //           });
-                          //         },
-                          //       ),
-                          //     ),
-                          //     BottomDotBar(
-                          //       currentIndex: _currentPage,
-                          //       dotCount: 3,
-                          //     ),
-                          //   ],
-                          // )
                         ],
                       ),
                     ),
@@ -469,31 +420,5 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
               ]),
             )));
-  }
-}
-
-class _GradientSpherePainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    var paint = Paint()
-      ..shader = const RadialGradient(
-        center: Alignment.topCenter,
-        radius: 1,
-        colors: [
-          Colors.red,
-          Colors.orange,
-        ],
-      ).createShader(Rect.fromLTRB(0, -200, size.width, 0));
-
-    canvas.drawCircle(
-      Offset(size.width / 2, 0),
-      50,
-      paint,
-    );
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return true;
   }
 }
