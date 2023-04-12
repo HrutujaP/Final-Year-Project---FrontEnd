@@ -6,7 +6,6 @@ import 'package:diskspacerenting/screens/HomeScreen/components/mainoptions.dart'
 import 'package:diskspacerenting/screens/MarketPlaceScreen/marketplacescreen.dart';
 import 'package:diskspacerenting/screens/MyStoragesScreen/mystorages.dart';
 import 'package:diskspacerenting/screens/PostAdvertisment/postAdvertisment.dart';
-import 'package:diskspacerenting/screens/RegisterScreen/registerScreen.dart';
 import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
 
