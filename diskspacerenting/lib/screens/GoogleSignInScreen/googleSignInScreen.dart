@@ -104,7 +104,7 @@ class registerScreen extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    GoogleSignInButton(),
+                    const googleSignInButton(),
                   ],
                 ),
               ),
@@ -116,17 +116,17 @@ class registerScreen extends StatelessWidget {
   }
 }
 
-class GoogleSignInButton extends StatefulWidget {
-  const GoogleSignInButton({super.key});
+class googleSignInButton extends StatefulWidget {
+  const googleSignInButton({super.key});
 
   @override
-  _GoogleSignInButtonState createState() => _GoogleSignInButtonState();
+  _googleSignInButtonState createState() => _googleSignInButtonState();
 }
 
-class _GoogleSignInButtonState extends State<GoogleSignInButton> {
+class _googleSignInButtonState extends State<googleSignInButton> {
   bool _isSigningIn = false;
 
-  void CheckAndCreateAccount(User user, context) async {
+  void checkAndCreateAccount(User user, context) async {
     const String apiUrl = "http://10.0.2.2:3000/api/account/create_account";
 
     final Map<String, String> headers = {
@@ -150,6 +150,9 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
       setState(() {
         _isSigningIn = false;
       });
+      if(response.body.isEmpty ){
+        print("empty");
+      }
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -196,7 +199,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                   // print(user.displayName);
                   // print(user.email);
 
-                  CheckAndCreateAccount(user, context);
+                  checkAndCreateAccount(user, context);
                   // Navigator.push(
                   //   savedContext,
                   //   MaterialPageRoute(
