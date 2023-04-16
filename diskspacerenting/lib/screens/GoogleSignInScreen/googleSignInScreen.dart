@@ -1,22 +1,15 @@
 // ignore_for_file: camel_case_types, implementation_imports
 
-import 'dart:ui';
-
 import 'package:diskspacerenting/Authentication/googleSignIn.dart';
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:diskspacerenting/screens/HomeScreen/homescreen.dart';
-import 'package:diskspacerenting/screens/LoginScreen/components/inputTextField.dart';
-import 'package:diskspacerenting/screens/LoginScreen/components/loginScreenAnimation.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:floating_bubbles/floating_bubbles.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_glow/flutter_glow.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class registerScreen extends StatelessWidget {
   static const String id = 'registerScreen';
@@ -124,12 +117,50 @@ class registerScreen extends StatelessWidget {
 }
 
 class GoogleSignInButton extends StatefulWidget {
+  const GoogleSignInButton({super.key});
+
   @override
   _GoogleSignInButtonState createState() => _GoogleSignInButtonState();
 }
 
 class _GoogleSignInButtonState extends State<GoogleSignInButton> {
   bool _isSigningIn = false;
+
+  void CheckAndCreateAccount(User user, context) async {
+    const String apiUrl = "http://10.0.2.2:3000/api/account/create_account";
+
+    final Map<String, String> headers = {
+      "Content-type": "application/json; charset=UTF-8",
+    };
+
+    final Map<String, dynamic> body = {
+      "email": user.email,
+      "name": user.displayName,
+    };
+
+    print("sending request");
+    final http.Response response = await http.post(
+      Uri.parse(apiUrl),
+      headers: headers,
+      body: jsonEncode(body),
+    );
+
+    if (response.statusCode == 200) {
+      print(response.body);
+      setState(() {
+        _isSigningIn = false;
+      });
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomeScreen(),
+        ),
+      );
+    } else {
+      print(response.body);
+      print(response.statusCode);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -141,6 +172,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
             )
           : OutlinedButton(
               style: ButtonStyle(
+                elevation: MaterialStateProperty.all(5),
                 backgroundColor: MaterialStateProperty.all(
                   kContainerMiddleColor.withOpacity(0.9),
                 ),
@@ -159,28 +191,18 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 User? user = await WebAuthenticationSignIN.signInWithGoogle(
                     context: context);
 
-                setState(() {
-                  _isSigningIn = false;
-                });
-
                 if (user != null) {
-                  // Navigator.of(context).pushReplacement(
+                  // print(user);
+                  // print(user.displayName);
+                  // print(user.email);
+
+                  CheckAndCreateAccount(user, context);
+                  // Navigator.push(
+                  //   savedContext,
                   //   MaterialPageRoute(
-                  //     builder: (context) => UserInfoScreen(
-                  //       user: user,
-                  //     ),
+                  //     builder: (context) => const HomeScreen(),
                   //   ),
                   // );
-                  print(user);
-                  print(user.displayName);
-                  print(user.email);
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomeScreen(),
-                    ),
-                  );
                 }
               },
               child: Padding(
@@ -188,13 +210,12 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Image(
-                      image: AssetImage("/images/google_logo.png"),
+                      image: AssetImage("assets/images/google_logo.png"),
                       height: 40.0,
                       width: 40.0,
                     ),
-                   
                     Padding(
                       padding: EdgeInsets.only(left: 10),
                       child: Text(

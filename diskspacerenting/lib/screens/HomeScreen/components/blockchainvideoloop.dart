@@ -1,14 +1,12 @@
-// ignore_for_file: library_private_types_in_public_api
+import 'dart:io';
 
-// import 'dart:io';
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
-import 'package:video_player_win/video_player_win.dart';
 
 class BlockChainVideoLoop extends StatefulWidget {
-  const BlockChainVideoLoop({super.key});
+  const BlockChainVideoLoop({Key? key}) : super(key: key);
 
   @override
   _BlockChainVideoLoopState createState() => _BlockChainVideoLoopState();
@@ -16,29 +14,28 @@ class BlockChainVideoLoop extends StatefulWidget {
 
 class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
   late VideoPlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = VideoPlayerController.asset('assets/new3.mp4');
+    initializeVideoPlayer();
+  }
+
   Future<void> initializeVideoPlayer() async {
     try {
-      // Wait for controller to initialize before performing any action
       await _controller.initialize();
     } catch (e) {
       print(e);
       return;
     }
 
-    // Set state variables from within UI thread
-    setState(() {
-      print("Hellow");
-      _controller.setLooping(true);
-      _controller.play();
-    });
-  }
-
-  @override
-  void initState() {
-    _controller = VideoPlayerController.asset('assets/new3.mp4');
-    initializeVideoPlayer();
-
-    super.initState();
+    _controller.setLooping(true);
+    if (_controller.value.isInitialized) {
+      setState(() {
+        _controller.play();
+      });
+    }
   }
 
   @override
@@ -56,7 +53,6 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
             ? MediaQuery.of(context).size.width
             : MediaQuery.of(context).size.width / 2,
         decoration: BoxDecoration(
-          // border: Border.all(color: Colors.white, width: 2),
           borderRadius: BorderRadius.only(
             bottomLeft: const Radius.circular(25),
             bottomRight: const Radius.circular(25),
@@ -79,46 +75,35 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
                       ? MediaQuery.of(context).size.width
                       : MediaQuery.of(context).size.width / 2,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: const Radius.circular(25),
-                      bottomRight: const Radius.circular(25),
-                      topRight: ResponsiveWidget.isSmallScreen(context)
-                          ? Radius.zero
-                          : const Radius.circular(25),
-                      topLeft: ResponsiveWidget.isSmallScreen(context)
-                          ? Radius.zero
-                          : const Radius.circular(25),
-                    ),
-                    child: ColorFiltered(
-                        colorFilter: const ColorFilter.mode(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: const Radius.circular(25),
+                        bottomRight: const Radius.circular(25),
+                        topRight: ResponsiveWidget.isSmallScreen(context)
+                            ? Radius.zero
+                            : const Radius.circular(25),
+                        topLeft: ResponsiveWidget.isSmallScreen(context)
+                            ? Radius.zero
+                            : const Radius.circular(25),
+                      ),
+                      child: ColorFiltered(
+                        colorFilter: ColorFilter.mode(
                             kContainerStartColor, BlendMode.color),
-                        child: Video(controller: _controller)),
-                  ),
+                        child: VideoPlayer(_controller),
+                      )
+
+                      // VideoPlayer(_controller),
+
+                      ),
                 ),
               )
             : Container(),
       ),
     );
-    // return Video(controller: _controller);
   }
 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
-  }
-}
-
-class Video extends StatelessWidget {
-  const Video({
-    super.key,
-    required this.controller,
-  });
-
-  final VideoPlayerController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return VideoPlayer(controller);
   }
 }
