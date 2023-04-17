@@ -144,9 +144,14 @@ class _HomeScreenState extends State<HomeScreen>
                               child: Text(
                                 'Experience the future of storage with blockchain-powered diskspace rentals.',
                                 style: TextStyle(
+                                  
                                   letterSpacing: 2,
-                                  fontSize: MediaQuery.of(context).size.height *
-                                      0.025,
+                                  fontSize:
+                                      ResponsiveWidget.isSmallScreen(context)
+                                          ? MediaQuery.of(context).size.height *
+                                              0.025
+                                          : MediaQuery.of(context).size.height *
+                                              0.03,
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w600,
                                   foreground: Paint()..shader = linearGradient,

@@ -199,13 +199,13 @@ class _googleSignInButtonState extends State<googleSignInButton> {
                   // print(user.displayName);
                   // print(user.email);
 
-                  checkAndCreateAccount(user, context);
-                  // Navigator.push(
-                  //   savedContext,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => const HomeScreen(),
-                  //   ),
-                  // );
+                  // checkAndCreateAccount(user, context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HomeScreen(),
+                    ),
+                  );
                 }
               },
               child: Padding(
