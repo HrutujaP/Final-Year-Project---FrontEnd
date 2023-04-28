@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 
 class MyStorages extends StatefulWidget {
   static const String id = 'mystorages';
+  List<String> storageIds;
 
-  const MyStorages({super.key});
+  MyStorages({required this.storageIds, super.key});
 
   @override
   State<MyStorages> createState() => _MyStoragesState();
@@ -16,7 +17,6 @@ class MyStorages extends StatefulWidget {
 
 class _MyStoragesState extends State<MyStorages> {
   List<ChartData> chartData = [
-    ChartData('Ram', 22, '100%', kContainerStartColor),
     ChartData('Used', 10, '100%', kContainerMiddleColor),
     ChartData('Total', 32, '100%', kContainerEndColor),
   ];

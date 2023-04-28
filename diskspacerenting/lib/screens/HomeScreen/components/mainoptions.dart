@@ -8,14 +8,14 @@ class MainOptions extends StatelessWidget {
   final String hText;
   final String pText;
   final Color color;
-  final String route;
+  final Widget widget;
 
   const MainOptions({
     required this.icon,
     required this.hText,
     required this.pText,
     required this.color,
-    required this.route,
+    required this.widget,
     Key? key,
   }) : super(key: key);
 
@@ -31,7 +31,12 @@ class MainOptions extends StatelessWidget {
           child: InkWell(
             splashColor: kContainerStartColor, // splash color
             onTap: () {
-              Navigator.pushNamed(context, route);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => widget,
+                ),
+              );
               // button pressed
             }, // button pressed
             child: Column(

@@ -193,7 +193,7 @@ class _HomeScreenState extends State<HomeScreen>
                                         ? 55
                                         : 65,
                                     child: const MainOptions(
-                                      route: postAdvertisment.id,
+                                      widget: postAdvertisment(),
                                       color: kTextDarkColor,
                                       icon: Icons.currency_exchange_sharp,
                                       hText: 'Rent',
@@ -215,8 +215,8 @@ class _HomeScreenState extends State<HomeScreen>
                                                 context)
                                         ? 55
                                         : 65,
-                                    child: const MainOptions(
-                                      route: MarketPlaceScreen.id,
+                                    child:  const MainOptions(
+                                      widget: MarketPlaceScreen(),
                                       color: kTextDarkColor,
                                       icon: Icons.payment,
                                       hText: 'Buy',
@@ -238,8 +238,8 @@ class _HomeScreenState extends State<HomeScreen>
                                                 context)
                                         ? 55
                                         : 65,
-                                    child: const MainOptions(
-                                        route: MyStorages.id,
+                                    child:  MainOptions(
+                                        widget: MyStorages(storageIds: [],),
                                         color: kTextDarkColor,
                                         icon: Icons.storage_rounded,
                                         hText: 'My\nStorage',

@@ -70,7 +70,6 @@ class _MyAppState extends State<MyApp> {
           }),
       routes: {
         FileStoarage.id: (context) => const FileStoarage(),
-        MyStorages.id: (context) => const MyStorages(),
         registerScreen.id: (context) => const registerScreen(),
         MarketPlaceScreen.id: (context) => const MarketPlaceScreen(),
         postAdvertisment.id: (context) => const postAdvertisment(),
