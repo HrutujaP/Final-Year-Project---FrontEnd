@@ -3,6 +3,8 @@
 import 'package:diskspacerenting/Authentication/googleSignIn.dart';
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
+import 'package:diskspacerenting/Functions/functions.dart';
+import 'package:diskspacerenting/models/account.dart';
 import 'package:diskspacerenting/screens/HomeScreen/homescreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:floating_bubbles/floating_bubbles.dart';
@@ -10,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class registerScreen extends StatelessWidget {
   static const String id = 'registerScreen';
@@ -126,8 +129,14 @@ class googleSignInButton extends StatefulWidget {
 class _googleSignInButtonState extends State<googleSignInButton> {
   bool _isSigningIn = false;
 
-  void checkAndCreateAccount(User user, context) async {
-    const String apiUrl = "http://10.0.2.2:3000/api/account/create_account";
+  void setUser(String id) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('Id', id);
+    print("Set user id");
+  }
+
+  void checkAndCreateAccount(User user) async {
+    const String apiUrl = "http://10.0.2.2:8080/api/account/create_account";
 
     final Map<String, String> headers = {
       "Content-type": "application/json; charset=UTF-8",
@@ -147,16 +156,24 @@ class _googleSignInButtonState extends State<googleSignInButton> {
 
     if (response.statusCode == 200) {
       print(response.body);
+
       setState(() {
         _isSigningIn = false;
       });
-      if(response.body.isEmpty ){
-        print("empty");
+      setUser(response.body);
+      // ignore: use_build_context_synchronously
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      final String? id = prefs.getString("Id");
+      Account account = Account();
+      if (id != null) {
+        Functions function = Functions();
+        account = await function.readAccountDetails(id);
       }
-      Navigator.push(
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
+          builder: (context) =>  HomeScreen(account:account,),
         ),
       );
     } else {
@@ -195,17 +212,7 @@ class _googleSignInButtonState extends State<googleSignInButton> {
                     context: context);
 
                 if (user != null) {
-                  // print(user);
-                  // print(user.displayName);
-                  // print(user.email);
-
-                  // checkAndCreateAccount(user, context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const HomeScreen(),
-                    ),
-                  );
+                  checkAndCreateAccount(user);
                 }
               },
               child: Padding(

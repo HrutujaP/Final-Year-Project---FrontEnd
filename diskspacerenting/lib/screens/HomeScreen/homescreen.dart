@@ -1,19 +1,20 @@
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
-import 'package:diskspacerenting/screens/Components/topbaritems.dart';
+import 'package:diskspacerenting/models/account.dart';
+import 'package:diskspacerenting/screens/HomeScreen/components/backgroundbubbles.dart';
 import 'package:diskspacerenting/screens/HomeScreen/components/blockchainvideoloop.dart';
 import 'package:diskspacerenting/screens/HomeScreen/components/mainoptions.dart';
 import 'package:diskspacerenting/screens/MarketPlaceScreen/marketplacescreen.dart';
 import 'package:diskspacerenting/screens/MyStoragesScreen/mystorages.dart';
 import 'package:diskspacerenting/screens/PostAdvertisment/postAdvertisment.dart';
-import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
 
 import '../../Constants/Responsive/responsiveWidget.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
+  Account account = Account();
 
-  const HomeScreen({super.key});
+  HomeScreen({required this.account, super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -22,8 +23,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
-  // int _currentPage = 1;
-  // final PageController _pageController = PageController(initialPage: 1);
+
+  void startAnimation() {
+    _animationController.repeat();
+  }
 
   @override
   void initState() {
@@ -31,10 +34,13 @@ class _HomeScreenState extends State<HomeScreen>
       vsync: this,
       duration: const Duration(seconds: 5),
     );
+
     _animationController.addListener(() {
       setState(() {});
     });
-    _animationController.repeat();
+
+    startAnimation(); // call the method to start animation
+
     super.initState();
   }
 
@@ -83,8 +89,15 @@ class _HomeScreenState extends State<HomeScreen>
                         ),
                       ),
                       const Spacer(),
-                      const TopBarItems(
-                        color: kBackgroundEndColor,
+                      Text(
+                        "Welcome, ${widget.account.Name} ",
+                        style: TextStyle(
+                          fontSize:
+                              ResponsiveWidget.isSmallScreen(context) ? 18 : 22,
+                          color: kBackgroundStartColor,
+                          fontWeight: FontWeight.w700,
+                          decoration: TextDecoration.none,
+                        ),
                       )
                     ],
                   ),
@@ -106,26 +119,7 @@ class _HomeScreenState extends State<HomeScreen>
                   ),
                 ),
                 child: Stack(children: [
-                  // Positioned.fill(
-                  //   // top: 20,
-                  //   child: FloatingBubbles.alwaysRepeating(
-                  //     noOfBubbles: 20,
-                  //     colorsOfBubbles: const [
-                  //       kContainerStartColor,
-                  //       kContainerMiddleColor,
-                  //       // kContainerEndColor,
-                  //     ],
-
-                  //     sizeFactor: 0.2,
-                  //     // duration: 120, // 120 seconds.
-                  //     opacity: 100,
-                  //     paintingStyle: PaintingStyle.fill,
-                  //     strokeWidth: 8,
-                  //     shape: BubbleShape
-                  //         .circle, // circle is the default. No need to explicitly mention if its a circle.
-                  //     speed: BubbleSpeed.slow, // normal is the default
-                  //   ),
-                  // ),
+                  const BackgroundBubbles(),
                   Row(
                     children: [
                       SizedBox(
@@ -144,7 +138,6 @@ class _HomeScreenState extends State<HomeScreen>
                               child: Text(
                                 'Experience the future of storage with blockchain-powered diskspace rentals.',
                                 style: TextStyle(
-                                  
                                   letterSpacing: 2,
                                   fontSize:
                                       ResponsiveWidget.isSmallScreen(context)
@@ -366,7 +359,7 @@ class _HomeScreenState extends State<HomeScreen>
                                                   textAlign: TextAlign.left,
                                                 ),
                                                 const Spacer(),
-                                                Text('82,176',
+                                                Text(widget.account.balance,
                                                     style: TextStyle(
                                                         color: Colors
                                                             .grey.shade200,
