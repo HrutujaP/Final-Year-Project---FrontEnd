@@ -22,6 +22,13 @@ class _MyStoragesState extends State<MyStorages> {
   ];
 
   @override
+  void initState() {
+    // TODO: implement initState
+    print(widget.storageIds);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(

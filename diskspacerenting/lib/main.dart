@@ -1,10 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diskspacerenting/Functions/functions.dart';
 import 'package:diskspacerenting/models/account.dart';
 import 'package:diskspacerenting/screens/FileStorage/fileStorage.dart';
 import 'package:diskspacerenting/screens/HomeScreen/homescreen.dart';
 import 'package:diskspacerenting/screens/MarketPlaceScreen/marketplacescreen.dart';
-import 'package:diskspacerenting/screens/MyStoragesScreen/mystorages.dart';
 import 'package:diskspacerenting/screens/PaymentScreen/paymentscreen.dart';
 import 'package:diskspacerenting/screens/PostAdvertisment/postAdvertisment.dart';
 import 'package:diskspacerenting/screens/GoogleSignInScreen/googleSignInScreen.dart';
@@ -12,6 +10,7 @@ import 'package:diskspacerenting/screens/RentStorageScreen/rentstoragescreen.dar
 import 'package:diskspacerenting/screens/SplashScreen/splashscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 
@@ -20,12 +19,12 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  FirebaseFirestore.instance
-      .collection("collectionPath")
-      .doc("documentId")
-      .set({
-    "key1": "value1",
-  });
+
+  Map<Permission,PermissionStatus> statuses = await [
+    Permission.storage,
+    Permission.manageExternalStorage,
+  ].request();
+
   runApp(const MyApp());
 }
 
@@ -42,13 +41,19 @@ class _MyAppState extends State<MyApp> {
   Future<void> checkSavedUser() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? id = prefs.getString("Id");
+    print(id);
     Account account = Account();
-    if(id != null){
+    if (id == null) {
       Functions function = Functions();
-      account = await function.readAccountDetails(id);
+      account.Email = "test@email";
+      account.Name = "test";
+      account.balance = "1234";
+      account.Id = "1234";
+      account.ownedStorageIds = ["1", "2", "3"];
+      account.rentedStorageIds = ["4", "5", "6"];
+      // account = await function.readAccountDetails(id);
       intialWidget = HomeScreen(account: account);
-    }
-    else {
+    } else {
       print("User id not found");
     }
 
@@ -79,4 +84,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-

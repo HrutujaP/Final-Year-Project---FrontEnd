@@ -1,12 +1,17 @@
 // ignore_for_file: camel_case_types, file_names
 
+import 'dart:io';
+
 import 'package:analog_clock/analog_clock.dart';
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/screens/Components/datepicker.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:floating_bubbles/floating_bubbles.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:numberpicker/numberpicker.dart';
+import 'package:path_provider/path_provider.dart';
 
 import '../../Constants/Responsive/responsiveWidget.dart';
 
@@ -19,6 +24,23 @@ class postAdvertisment extends StatefulWidget {
 }
 
 class _postAdvertismentState extends State<postAdvertisment> {
+  Future<void> createFolderWithPassword(
+      BuildContext context, int folderSize, String password) async {
+    final directory = await FilePicker.platform.getDirectoryPath();
+    print(directory);
+    if (directory == null) return; // user canceled directory picker
+    final folder = Directory('$directory/MyFolder');
+    await folder.create();
+    final fileSize = folderSize * 1024 * 1024; // convert MB to bytes
+    final file = File('${folder.path}/MyFile');
+    await file.writeAsBytes(List.filled(fileSize, 0));
+    final secureStorage = FlutterSecureStorage();
+    await secureStorage.write(key: 'MyPassword', value: password);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Folder created with password protection')),
+    );
+  }
+
   bool isStep1Selected = true;
   bool isStep2Selected = false;
   bool isStep3Selected = false;
@@ -181,32 +203,39 @@ class _postAdvertismentState extends State<postAdvertisment> {
                                             ],
                                           ),
                                           isStep1Selected
-                                              ? Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: SizedBox(
-                                                    height: 140,
-                                                    child: GridView.builder(
-                                                      itemCount: 4,
-                                                      physics:
-                                                          const BouncingScrollPhysics(),
-                                                      gridDelegate:
-                                                          const SliverGridDelegateWithFixedCrossAxisCount(
-                                                        childAspectRatio:
-                                                            (8.2 / 2.0002),
-                                                        crossAxisSpacing: 1,
-                                                        mainAxisSpacing: 1,
-                                                        crossAxisCount: 2,
-                                                      ),
-                                                      itemBuilder:
-                                                          (context, index) {
-                                                        return const selectDisks(
-                                                            diskName: "A",
-                                                            isSelected: true);
-                                                      },
-                                                    ),
-                                                  ),
-                                                )
+                                              ?
+                                              // ? Padding(
+                                              //     padding:
+                                              //         const EdgeInsets.all(8.0),
+                                              //     child: SizedBox(
+                                              //       height: 140,
+                                              //       child: GridView.builder(
+                                              //         itemCount: 4,
+                                              //         physics:
+                                              //             const BouncingScrollPhysics(),
+                                              //         gridDelegate:
+                                              //             const SliverGridDelegateWithFixedCrossAxisCount(
+                                              //           childAspectRatio:
+                                              //               (8.2 / 2.0002),
+                                              //           crossAxisSpacing: 1,
+                                              //           mainAxisSpacing: 1,
+                                              //           crossAxisCount: 2,
+                                              //         ),
+                                              //         itemBuilder:
+                                              //             (context, index) {
+                                              //           return const selectDisks(
+                                              //               diskName: "A",
+                                              //               isSelected: true);
+                                              //         },
+                                              //       ),
+                                              //     ),
+                                              //   )
+                                              TextButton(
+                                                  onPressed: () {
+                                                    createFolderWithPassword(
+                                                        context, 123, "A");
+                                                  },
+                                                  child: Text("Create Storage"))
                                               : const Center(),
                                         ],
                                       ),
