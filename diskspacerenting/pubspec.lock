@@ -5,10 +5,18 @@ packages:
     dependency: transitive
     description:
       name: _flutterfire_internals
-      sha256: f175bc1414e4edf8c5b83372c98eeabecf8353f39c9da423c2cfdf1f1f508788
+      sha256: "6a0ad72b2bcdb461749e40c01c478212a78db848dfcb2f10f2a461988bc5fb29"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.1"
+  aes_crypt_null_safe:
+    dependency: transitive
+    description:
+      name: aes_crypt_null_safe
+      sha256: f73e782400d54056de2cbf3cb50f680d8fc1328ce59eb9749ec94c080ea4ec0d
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.2"
   analog_clock:
     dependency: "direct main"
     description:
@@ -129,6 +137,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  disks_desktop:
+    dependency: "direct main"
+    description:
+      name: disks_desktop
+      sha256: c4ebd30534c9dbf2f2fe3d02cbb498e1b67891d94e8c0a52fa271f4e933edb04
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   email_validator:
     dependency: "direct main"
     description:
@@ -205,10 +221,10 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_core
-      sha256: ed611fb8e67e43ecc7956f242cecca383d87cf71aace27287aa5dd4bdba4ac07
+      sha256: "239e4ac688674a7e7b5476fd16b0d8e2b5a453d464f32091af3ce1df4ebb7316"
       url: "https://pub.dev"
     source: hosted
-    version: "2.9.0"
+    version: "2.10.0"
   firebase_core_platform_interface:
     dependency: transitive
     description:
@@ -225,6 +241,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
+  firebase_storage:
+    dependency: "direct main"
+    description:
+      name: firebase_storage
+      sha256: "50f0916a04e351ae549582e66bd33d9eb39c2ccb426e8e8c601a17471259d06f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "11.1.1"
+  firebase_storage_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_storage_platform_interface
+      sha256: "2711e985fd61242914dd1253b496286b03d292c2ff0f8863cc17ed14cf1bb3da"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.1"
+  firebase_storage_web:
+    dependency: transitive
+    description:
+      name: firebase_storage_web
+      sha256: "16622540f424c871e71150140da6a02e9df60c9536e46d3243300f18c206cbc3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.4.1"
   fl_chart:
     dependency: "direct main"
     description:
@@ -400,6 +440,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.15.1"
+  html_character_entities:
+    dependency: transitive
+    description:
+      name: html_character_entities
+      sha256: "0eaf2acb67feeae8aba67c113aedbda71a57a36c38e3670fd677ec26e397faa3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0+1"
   http:
     dependency: "direct main"
     description:
@@ -480,6 +528,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.0"
+  nested:
+    dependency: transitive
+    description:
+      name: nested
+      sha256: "03bac4c528c64c95c722ec99280375a6f2fc708eec17c7b3f07253b626cd2a20"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   numberpicker:
     dependency: "direct main"
     description:
@@ -608,6 +664,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.4"
+  protect:
+    dependency: "direct main"
+    description:
+      name: protect
+      sha256: "8ee84aa188731de92ddd0b8510cc950b8996b5488bb96caeaa19f089490c89cb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
+  provider:
+    dependency: "direct main"
+    description:
+      name: provider
+      sha256: cdbe7530b12ecd9eb455bdaa2fcb8d4dad22e80b8afb4798b41479d5ce26847f
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.5"
   quiver:
     dependency: transitive
     description:
@@ -616,6 +688,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
+  recursive_regex:
+    dependency: transitive
+    description:
+      name: recursive_regex
+      sha256: f7252e3d3dfd1665e594d9fe035eca6bc54139b1f2fee38256fa427ea41adc60
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   sa4_migration_kit:
     dependency: transitive
     description:
@@ -789,6 +869,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.1"
+  universal_disk_space:
+    dependency: "direct main"
+    description:
+      name: universal_disk_space
+      sha256: "210d94e2da6c568770e4f0df83ad36a49c2d3314e8ce4e91b6ac7e6bfa6862af"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.3"
   universal_html:
     dependency: "direct main"
     description:
@@ -877,6 +965,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.0+2"
+  xml_parser:
+    dependency: transitive
+    description:
+      name: xml_parser
+      sha256: "5db4f4a1640320855caccad9c6de5a371c195ca36e703e977652e86f52424829"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
 sdks:
   dart: ">=2.18.2 <3.0.0"
-  flutter: ">=3.3.0"
+  flutter: ">=3.3.2"

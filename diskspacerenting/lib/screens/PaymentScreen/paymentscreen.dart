@@ -35,9 +35,11 @@ class PaymentScreen extends StatelessWidget {
                       const TopBar(color: kContainerStartColor),
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.025),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: DatePicker(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: DatePicker(
+                          range: "",
+                        ),
                       ),
                       const Spacer(),
                       const Padding(
@@ -59,13 +61,13 @@ class PaymentScreen extends StatelessWidget {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: const [
+                          children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 16.0, vertical: 16),
-                              child: DatePicker(),
+                              child: DatePicker(range: ""),
                             ),
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.symmetric(
                                   horizontal: 16.0, vertical: 16),
                               child: PaymentSection(),

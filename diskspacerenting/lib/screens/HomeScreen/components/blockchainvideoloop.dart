@@ -23,7 +23,6 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
   }
 
   Future<void> initializeVideoPlayer() async {
-   
     try {
       await _controller.initialize();
     } catch (e) {

@@ -5,114 +5,72 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:intl/intl.dart';
 
 class DatePicker extends StatefulWidget {
-  const DatePicker({super.key});
+  String range;
+  DatePicker({required this.range, super.key});
 
   @override
   State<DatePicker> createState() => _DatePickerState();
 }
 
 class _DatePickerState extends State<DatePicker> {
-  String _range = '';
-
   void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
     setState(() {
-      _range = '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} -'
+      widget.range =
+          '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} -'
           ' ${DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate)}';
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      Column(
-        children: [
-          Row(
-            children: [
-              ResponsiveWidget.isSmallScreen(context)
-                  ? const Spacer()
-                  : const SizedBox(),
-              const Text(
-                'Pick rent duration',
-                style: TextStyle(
-                  color: kBackgroundEndColor,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(children: [
+        Stack(alignment: Alignment.center, children: [
+          SizedBox(
+            height: ResponsiveWidget.isSmallScreen(context)
+                ? MediaQuery.of(context).size.height * 0.3
+                : MediaQuery.of(context).size.height * 0.35,
+            width: ResponsiveWidget.isSmallScreen(context)
+                ? double.infinity
+                : MediaQuery.of(context).size.width * 0.4,
+            child: Container(
+              decoration: BoxDecoration(
+                color: kContainerEndColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: SfDateRangePicker(
+                  selectionColor: kContainerStartColor,
+                  startRangeSelectionColor: kContainerEndColor,
+                  endRangeSelectionColor: kContainerStartColor,
+                  todayHighlightColor: kContainerStartColor,
+                  rangeSelectionColor: kContainerStartColor.withOpacity(0.5),
+                  enablePastDates: false,
+                  confirmText: 'Confirm',
+                  cancelText: 'Cancel',
+                  backgroundColor: kContainerMiddleColor.withOpacity(0.3),
+                  onSelectionChanged: _onSelectionChanged,
+                  selectionMode: DateRangePickerSelectionMode.range,
+                  initialSelectedRange: PickerDateRange(DateTime.now(),
+                      DateTime.now().add(const Duration(days: 30))),
                 ),
               ),
-            ],
+            ),
           ),
-          Stack(alignment: Alignment.center, children: [
-            Transform(
-              alignment: Alignment.center,
-              transform: Matrix4.rotationZ(0.05),
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.31,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: kContainerEndColor.withOpacity(0.6),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-            ),
-            Transform(
-              alignment: Alignment.center,
-              transform: Matrix4.rotationZ(0.1),
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.31,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: kContainerEndColor.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: ResponsiveWidget.isSmallScreen(context)
-                  ? MediaQuery.of(context).size.height * 0.3
-                  : MediaQuery.of(context).size.height * 0.54,
-              width: ResponsiveWidget.isSmallScreen(context)
-                  ? double.infinity
-                  : MediaQuery.of(context).size.width * 0.46,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: kContainerEndColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: SfDateRangePicker(
-                    selectionColor: kContainerStartColor,
-                    startRangeSelectionColor: kContainerEndColor,
-                    endRangeSelectionColor: kContainerStartColor,
-                    todayHighlightColor: kContainerStartColor,
-                    rangeSelectionColor: kContainerStartColor.withOpacity(0.5),
-                    enablePastDates: false,
-                    confirmText: 'Confirm',
-                    cancelText: 'Cancel',
-                    backgroundColor: kContainerMiddleColor.withOpacity(0.3),
-                    onSelectionChanged: _onSelectionChanged,
-                    selectionMode: DateRangePickerSelectionMode.range,
-                    initialSelectedRange: PickerDateRange(DateTime.now(),
-                        DateTime.now().add(const Duration(days: 30))),
-                  ),
-                ),
-              ),
-            ),
-          ]),
-        ],
-      ),
-      SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-      Text(
-        'Selected range: $_range',
-        softWrap: true,
-        style: const TextStyle(
-          color: kBackgroundEndColor,
-          fontSize: 14,
-          fontWeight: FontWeight.bold,
+        ]),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+        Text(
+          'Selected range: ${widget.range}',
+          softWrap: true,
+          style: const TextStyle(
+            color: kBackgroundEndColor,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-      ),
-    ]);
+      ]),
+    );
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:diskspacerenting/Functions/functions.dart';
 import 'package:diskspacerenting/models/account.dart';
 import 'package:diskspacerenting/screens/FileStorage/fileStorage.dart';
@@ -16,11 +18,14 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
 
-  Map<Permission,PermissionStatus> statuses = await [
+  if (!Platform.isWindows) {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
+
+  Map<Permission, PermissionStatus> statuses = await [
     Permission.storage,
     Permission.manageExternalStorage,
   ].request();

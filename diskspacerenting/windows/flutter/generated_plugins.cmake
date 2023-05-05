@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  disks_desktop
   flutter_secure_storage_windows
   permission_handler_windows
   video_player_win
