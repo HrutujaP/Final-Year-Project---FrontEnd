@@ -59,6 +59,9 @@ dependencies:
   universal_disk_space: ^0.2.3
   disks_desktop: ^1.0.1
   provider: ^6.0.5
+  url_launcher: ^6.1.10
+  googleapis_auth: ^1.4.0
+
 
 dev_dependencies:
   flutter_test:

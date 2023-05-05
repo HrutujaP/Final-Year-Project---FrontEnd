@@ -192,8 +192,8 @@ class _HomeScreenState extends State<HomeScreen>
                                                 context)
                                         ? 55
                                         : 65,
-                                    child: const MainOptions(
-                                      widget: postAdvertisment(),
+                                    child: MainOptions(
+                                      widget: postAdvertisment(account: widget.account,),
                                       color: kTextDarkColor,
                                       icon: Icons.currency_exchange_sharp,
                                       hText: 'Rent',

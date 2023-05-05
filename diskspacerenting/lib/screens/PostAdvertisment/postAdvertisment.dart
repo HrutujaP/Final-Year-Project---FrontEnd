@@ -1,16 +1,21 @@
 // ignore_for_file: camel_case_types, file_names
+import 'dart:ffi';
 
 import 'package:analog_clock/analog_clock.dart';
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
+import 'package:diskspacerenting/Functions/functions.dart';
+import 'package:diskspacerenting/models/account.dart';
 import 'package:diskspacerenting/screens/Components/datepicker.dart';
 import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
 import '../../Constants/Responsive/responsiveWidget.dart';
 import 'package:universal_disk_space/universal_disk_space.dart';
+import 'package:diskspacerenting/models/storage.dart';
 
 class postAdvertisment extends StatefulWidget {
   static const String id = 'postAdvertismentscreen';
-  const postAdvertisment({super.key});
+  Account account;
+  postAdvertisment({required this.account, super.key});
 
   @override
   State<postAdvertisment> createState() => _postAdvertismentState();
@@ -25,6 +30,16 @@ class _postAdvertismentState extends State<postAdvertisment> {
     disks = diskSpace.disks;
   }
 
+  void readData() {
+    int amt = rentAmt.floor();
+    int size = selectedSizeToRent.floor();
+    storage.duration = rentRange;
+    storage.price = amt.toString();
+    storage.ownerId = widget.account.Id;
+    storage.loc = selectedDisk;
+    storage.size = size.toString();
+  }
+
   // void createFile() async {
   //   final fileSize = 1024; // Change this to your desired file size in bytes
   //   final fileName = 'myFile'; // Change this to your desired file name
@@ -34,6 +49,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
   //   file.createSync();
   //   file.writeAsBytesSync(List.filled(fileSize, 0));
   // }
+  Storage storage = Storage();
 
   bool isStep3Selected = false;
   bool isStep4Selected = false;
@@ -864,7 +880,13 @@ class _postAdvertismentState extends State<postAdvertisment> {
                             backgroundColor: kContainerEndColor,
                             shadowColor: kContainerEndColor,
                           ),
-                          onPressed: () {},
+                          onPressed: () async {
+                            readData();
+                            Functions functions = Functions();
+                            
+                            String result =
+                                await functions.createStorage(storage);
+                          },
                           icon: const Padding(
                             padding: EdgeInsets.all(8.0),
                             child: Icon(

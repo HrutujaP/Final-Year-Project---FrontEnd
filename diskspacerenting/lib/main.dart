@@ -48,18 +48,13 @@ class _MyAppState extends State<MyApp> {
     final String? id = prefs.getString("Id");
     print(id);
     Account account = Account();
-    if (id == null) {
+    if (id != null) {
       Functions function = Functions();
-      account.Email = "test@email";
-      account.Name = "test";
-      account.balance = "1234";
-      account.Id = "1234";
-      account.ownedStorageIds = ["1", "2", "3"];
-      account.rentedStorageIds = ["4", "5", "6"];
-      // account = await function.readAccountDetails(id);
+      account = await function.readAccountDetails(id);
       intialWidget = HomeScreen(account: account);
     } else {
       print("User id not found");
+      intialWidget = const registerScreen();
     }
 
     await Future.delayed(const Duration(seconds: 3));
@@ -82,7 +77,6 @@ class _MyAppState extends State<MyApp> {
         FileStoarage.id: (context) => const FileStoarage(),
         registerScreen.id: (context) => const registerScreen(),
         MarketPlaceScreen.id: (context) => const MarketPlaceScreen(),
-        postAdvertisment.id: (context) => const postAdvertisment(),
         RentStorageScreen.id: (context) => const RentStorageScreen(),
         PaymentScreen.id: (context) => const PaymentScreen(),
       },

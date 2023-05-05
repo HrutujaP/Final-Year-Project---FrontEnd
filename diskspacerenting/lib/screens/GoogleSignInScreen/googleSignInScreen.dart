@@ -1,18 +1,19 @@
 // ignore_for_file: camel_case_types, implementation_imports
 
+import 'dart:io';
+
 import 'package:diskspacerenting/Authentication/googleSignIn.dart';
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:diskspacerenting/Functions/functions.dart';
-import 'package:diskspacerenting/models/account.dart';
-import 'package:diskspacerenting/screens/HomeScreen/homescreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:googleapis_auth/auth_io.dart';
 
 class registerScreen extends StatelessWidget {
   static const String id = 'registerScreen';
@@ -129,57 +130,38 @@ class googleSignInButton extends StatefulWidget {
 class _googleSignInButtonState extends State<googleSignInButton> {
   bool _isSigningIn = false;
 
-  void setUser(String id) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('Id', id);
-    print("Set user id");
+  void _lauchAuthInBrowser(String url) async {
+    launchUrl(Uri.parse(url));
   }
 
-  void checkAndCreateAccount(User user) async {
-    const String apiUrl = "http://10.0.2.2:8080/api/account/create_account";
-
-    final Map<String, String> headers = {
-      "Content-type": "application/json; charset=UTF-8",
-    };
-
-    final Map<String, dynamic> body = {
-      "email": user.email,
-      "name": user.displayName,
-    };
-
-    print("sending request");
-    final http.Response response = await http.post(
-      Uri.parse(apiUrl),
-      headers: headers,
-      body: jsonEncode(body),
+  void _loginWindowsDesktop() {
+    var id = ClientId(
+      "1052056528612-46dir4v3ur0pi4o8c5ssjsvdetqdjatp.apps.googleusercontent.com",
+      "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",
     );
+    var scopes = [
+      'email',
+      'https://www.googleapis.com/auth/contacts.readonly',
+      'https://www.googleapis.com/auth/userinfo.profile',
+      'https://www.googleapis.com/auth/userinfo.email'
+    ];
 
-    if (response.statusCode == 200) {
-      print(response.body);
-
-      setState(() {
-        _isSigningIn = false;
+    var client = Client();
+    obtainAccessCredentialsViaUserConsent(
+            id, scopes, client, (url) => _lauchAuthInBrowser(url))
+        .then((AccessCredentials credentials) {
+      // read name an email as User
+      var authClient = authenticatedClient(client, credentials);
+      authClient
+          .get(Uri.parse('https://www.googleapis.com/oauth2/v1/userinfo'))
+          .then((Response response) {
+        var user = jsonDecode(response.body);
+        print(user['name'] + user['email']);
+        Functions functions = Functions();
+        functions.checkAndCreateAccount(user['name'], user['email'], context);
+      client.close();
       });
-      setUser(response.body);
-      // ignore: use_build_context_synchronously
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-      final String? id = prefs.getString("Id");
-      Account account = Account();
-      if (id != null) {
-        Functions function = Functions();
-        account = await function.readAccountDetails(id);
-      }
-      // ignore: use_build_context_synchronously
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) =>  HomeScreen(account:account,),
-        ),
-      );
-    } else {
-      print(response.body);
-      print(response.statusCode);
-    }
+    });
   }
 
   @override
@@ -207,13 +189,23 @@ class _googleSignInButtonState extends State<googleSignInButton> {
                 setState(() {
                   _isSigningIn = true;
                 });
+                User? user;
+                if (Platform.isWindows) {
+                  // user = null;
+                  _loginWindowsDesktop();
+                } else {
+                  user = await WebAuthenticationSignIN.signInWithGoogle(
+                      context: context);
+                  if (user != null) {
+                    Functions functions = Functions();
 
-                User? user = await WebAuthenticationSignIN.signInWithGoogle(
-                    context: context);
-
-                if (user != null) {
-                  checkAndCreateAccount(user);
+                    functions.checkAndCreateAccount(
+                        user.displayName!, user.email!, context);
+                  }
                 }
+
+                // User? user = await WebAuthenticationSignIN.signInWithGoogle(
+                //     context: context);
               },
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -244,17 +236,3 @@ class _googleSignInButtonState extends State<googleSignInButton> {
     );
   }
 }
-
-//   suffixIcon: InkWell(
-//     onTap: () {
-//       setState(() {
-//         _visiblePassword = !_visiblePassword;
-//       });
-//     },
-//     child: Icon(
-//       _visiblePassword
-//           ? Icons.visibility_off
-//           : Icons.visibility,
-//       color: Colors.white,
-//     ),
-//   ),
