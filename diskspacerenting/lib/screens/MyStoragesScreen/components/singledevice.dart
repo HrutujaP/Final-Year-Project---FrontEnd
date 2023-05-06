@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 
 class SingleDeive extends StatelessWidget {
   final String img;
+  final String storageId;
 
   const SingleDeive({
+    required this.storageId,
     required this.img,
     Key? key,
   }) : super(key: key);

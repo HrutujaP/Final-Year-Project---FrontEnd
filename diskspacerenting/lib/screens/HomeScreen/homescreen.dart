@@ -193,7 +193,9 @@ class _HomeScreenState extends State<HomeScreen>
                                         ? 55
                                         : 65,
                                     child: MainOptions(
-                                      widget: postAdvertisment(account: widget.account,),
+                                      widget: postAdvertisment(
+                                        account: widget.account,
+                                      ),
                                       color: kTextDarkColor,
                                       icon: Icons.currency_exchange_sharp,
                                       hText: 'Rent',
@@ -215,8 +217,10 @@ class _HomeScreenState extends State<HomeScreen>
                                                 context)
                                         ? 55
                                         : 65,
-                                    child:   MainOptions(
-                                      widget: MarketPlaceScreen(account: widget.account,),
+                                    child: MainOptions(
+                                      widget: MarketPlaceScreen(
+                                        account: widget.account,
+                                      ),
                                       color: kTextDarkColor,
                                       icon: Icons.payment,
                                       hText: 'Buy',
@@ -238,8 +242,10 @@ class _HomeScreenState extends State<HomeScreen>
                                                 context)
                                         ? 55
                                         : 65,
-                                    child:  MainOptions(
-                                        widget: MyStorages(storageIds: [],),
+                                    child: MainOptions(
+                                        widget: MyStorages(
+                                          account: widget.account,
+                                        ),
                                         color: kTextDarkColor,
                                         icon: Icons.storage_rounded,
                                         hText: 'My\nStorage',
@@ -360,6 +366,39 @@ class _HomeScreenState extends State<HomeScreen>
                                                 ),
                                                 const Spacer(),
                                                 Text(widget.account.balance,
+                                                    style: TextStyle(
+                                                        color: Colors
+                                                            .grey.shade200,
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 14.0, vertical: 8),
+                                            child: Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.open_with_outlined,
+                                                  color: Colors.redAccent,
+                                                  size: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.028,
+                                                ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                ),
+                                                const Text('Storage Owned',
+                                                    style: TextStyle(
+                                                        color: kTextLightColor,
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                                const Spacer(),
+                                                Text('115 GB',
                                                     style: TextStyle(
                                                         color: Colors
                                                             .grey.shade200,

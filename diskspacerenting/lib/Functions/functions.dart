@@ -213,4 +213,33 @@ class Functions {
       print(response.body);
     }
   }
+
+  Future<List<List<String>>> getAccountStorages(String Id)async{
+
+    String apiUrl =
+        "http://localhost:8080/api/account/get_account?account_principal=$Id";
+
+    final Map<String, String> headers = {
+      "Content-type": "application/json; charset=UTF-8",
+    };
+
+    final http.Response response = await http.get(
+      Uri.parse(apiUrl),
+      headers: headers,
+    );
+
+    if (response.statusCode == 200) {
+      var result = response.body;
+
+      final Map<String, dynamic> body = jsonDecode(result);
+      List<String> ownedStorages = body["My_Storages"].cast<String>();
+      List<String> rentedStorages = body["Rented_Storages"].cast<String>();
+
+      return [ownedStorages, rentedStorages];
+    } else {
+      print(response.statusCode);
+      print(response.body);
+      return [[],[]];
+    }
+  }
 }
