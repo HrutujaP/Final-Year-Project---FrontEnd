@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:diskspacerenting/models/account.dart';
+import 'package:diskspacerenting/models/rent.dart';
 import 'package:diskspacerenting/models/storage.dart';
 import 'package:diskspacerenting/screens/GoogleSignInScreen/googleSignInScreen.dart';
 import 'package:diskspacerenting/screens/HomeScreen/homescreen.dart';
@@ -134,6 +135,14 @@ class Functions {
   }
 
   Future<List<Storage>> getStorages(int limit) async {
+    int min = limit <= 100
+        ? 0
+        : limit <= 500
+            ? 100
+            : limit <= 1000
+                ? 500
+                : 0;
+
     List<Storage> storages = [];
 
     const String apiUrl =
@@ -151,7 +160,8 @@ class Functions {
       var result = response.body;
 
       for (var node in jsonDecode(result)) {
-        if (int.parse(node["Space"]) < limit) {
+        if (min < int.parse(node["Space"]) &&
+            int.parse(node["Space"]) <= limit) {
           Storage storage = Storage();
           storage.id = node["Id"];
           storage.ownerId = node["OwnerPrincipal"];
@@ -159,12 +169,10 @@ class Functions {
           storage.size = node["Space"];
           storage.loc = node["Path"];
           storage.duration = node["TimePeriod"];
-          storage.rentDuration = node["RenteeDuration"].isEmpty
-              ? ""
-              : node["RenteeDuration"];
-          storage.renteeId = node["RenterPrincipal"].isEmpty
-              ? ""
-              : node["RenterPrincipal"];
+          storage.rentDuration =
+              node["RenteeDuration"].isEmpty ? "" : node["RenteeDuration"];
+          storage.renteeId =
+              node["RenterPrincipal"].isEmpty ? "" : node["RenterPrincipal"];
 
           storages.add(storage);
         }
@@ -174,6 +182,35 @@ class Functions {
       print(response.statusCode);
       print(response.body);
       return [];
+    }
+  }
+
+  Future<void> rentStorage(Rent rent) async {
+    const String apiUrl = "http://localhost:8080/api/account/add_rentee";
+
+    final Map<String, String> headers = {
+      "Content-type": "application/json; charset=UTF-8",
+    };
+
+    final Map<String, dynamic> body = {
+      "storage_principal":
+          rent.storageId,
+      "rentee_principal":
+          rent.renteeId,
+      "duration": rent.rentDuration,
+    };
+
+    final http.Response response = await http.post(
+      Uri.parse(apiUrl),
+      headers: headers,
+      body: jsonEncode(body),
+    );
+
+    if (response.statusCode == 200) {
+      print("Storage rented");
+    } else {
+      print(response.statusCode);
+      print(response.body);
     }
   }
 }

@@ -2,15 +2,23 @@ import 'dart:ui';
 
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
+import 'package:diskspacerenting/models/account.dart';
+import 'package:diskspacerenting/models/storage.dart';
 import 'package:diskspacerenting/screens/Components/topbar.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/components/detailsmaincard.dart';
 import 'package:flutter/material.dart';
 
-class RentStorageScreen extends StatelessWidget {
+class RentStorageScreen extends StatefulWidget {
   static const String id = 'rentstoragescreen';
+  Storage storage;
+  Account account;
+  RentStorageScreen({required this.storage, required this.account, super.key});
 
-  const RentStorageScreen({super.key});
+  @override
+  State<RentStorageScreen> createState() => _RentStorageScreenState();
+}
 
+class _RentStorageScreenState extends State<RentStorageScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -83,7 +91,10 @@ class RentStorageScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    const DetailsMainCard(),
+                    DetailsMainCard(
+                      account: widget.account,
+                      storage: widget.storage,
+                    ),
                   ],
                 ),
               )

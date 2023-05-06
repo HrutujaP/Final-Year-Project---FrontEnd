@@ -5,7 +5,8 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:intl/intl.dart';
 
 class DatePicker extends StatefulWidget {
-  String range;
+  // String range;
+  Function range;
   DatePicker({required this.range, super.key});
 
   @override
@@ -13,13 +14,7 @@ class DatePicker extends StatefulWidget {
 }
 
 class _DatePickerState extends State<DatePicker> {
-  void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
-    setState(() {
-      widget.range =
-          '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} -'
-          ' ${DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate)}';
-    });
-  }
+  String range = '';
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +46,15 @@ class _DatePickerState extends State<DatePicker> {
                   confirmText: 'Confirm',
                   cancelText: 'Cancel',
                   backgroundColor: kContainerMiddleColor.withOpacity(0.3),
-                  onSelectionChanged: _onSelectionChanged,
+                  onSelectionChanged:
+                      (DateRangePickerSelectionChangedArgs args) {
+                    setState(() {
+                      widget.range(args);
+                      range =
+                          '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} -'
+                          ' ${DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate)}';
+                    });
+                  },
                   selectionMode: DateRangePickerSelectionMode.range,
                   initialSelectedRange: PickerDateRange(DateTime.now(),
                       DateTime.now().add(const Duration(days: 30))),
@@ -62,7 +65,7 @@ class _DatePickerState extends State<DatePicker> {
         ]),
         SizedBox(height: MediaQuery.of(context).size.height * 0.01),
         Text(
-          'Selected range: ${widget.range}',
+          'Selected range: $range',
           softWrap: true,
           style: const TextStyle(
             color: kBackgroundEndColor,

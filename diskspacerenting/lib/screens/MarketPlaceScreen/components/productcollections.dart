@@ -1,14 +1,15 @@
-import 'dart:ffi';
-
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:diskspacerenting/Functions/functions.dart';
+import 'package:diskspacerenting/models/account.dart';
 import 'package:diskspacerenting/screens/MarketPlaceScreen/components/individualproduct.dart';
 import 'package:flutter/material.dart';
 
 class ProductCollections extends StatefulWidget {
+  Account account;
   String limit;
   ProductCollections({
+    required this.account,
     required this.limit,
     Key? key,
   }) : super(key: key);
@@ -75,13 +76,18 @@ class _ProductCollectionsState extends State<ProductCollections> {
                         scrollDirection: Axis.horizontal,
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
-                          return IndividualProduct();
+                          return IndividualProduct(
+                            account: widget.account,
+                            storage: snapshot.data![index],
+                          );
                         },
                       ),
                     );
                   } else {
                     return const Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(
+                        color: kContainerEndColor,
+                      ),
                     );
                   }
                 },

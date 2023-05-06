@@ -1,14 +1,35 @@
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
+import 'package:diskspacerenting/models/account.dart';
+import 'package:diskspacerenting/models/rent.dart';
+import 'package:diskspacerenting/models/storage.dart';
 import 'package:diskspacerenting/screens/Components/topbar.dart';
 import 'package:diskspacerenting/screens/Components/datepicker.dart';
 import 'package:diskspacerenting/screens/PaymentScreen/components/paymentsection.dart';
 import 'package:diskspacerenting/screens/PaymentScreen/components/slidetopay.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class PaymentScreen extends StatelessWidget {
+class PaymentScreen extends StatefulWidget {
+  Storage storage;
+  Account account;
+
   static const String id = 'paymentscreen';
-  const PaymentScreen({super.key});
+  PaymentScreen({required this.storage, required this.account, super.key});
+
+  @override
+  State<PaymentScreen> createState() => _PaymentScreenState();
+}
+
+class _PaymentScreenState extends State<PaymentScreen> {
+  Rent rent = Rent();
+
+  @override
+  void initState() {
+    rent.storageId = widget.storage.id;
+    rent.renteeId = widget.account.Id;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +59,17 @@ class PaymentScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         child: DatePicker(
-                          range: "",
+                          range: (args) {
+                            setState(() {
+                              rent.rentDuration =
+                                  '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} -'
+                                  ' ${DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate)}';
+
+                              print(
+                                  '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} -'
+                                  ' ${DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate)}');
+                            });
+                          },
                         ),
                       ),
                       const Spacer(),
@@ -47,7 +78,10 @@ class PaymentScreen extends StatelessWidget {
                         child: PaymentSection(),
                       ),
                       const Spacer(),
-                      const Center(child: SlideToPay()),
+                      Center(
+                          child: SlideToPay(
+                        rent: rent,
+                      )),
                       const SizedBox(height: 20),
                     ],
                   )
@@ -65,7 +99,17 @@ class PaymentScreen extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 16.0, vertical: 16),
-                              child: DatePicker(range: ""),
+                              child: DatePicker(range: (args) {
+                                setState(() {
+                                  rent.rentDuration =
+                                      '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} -'
+                                      ' ${DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate)}';
+
+                                  print(
+                                      '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} -'
+                                      ' ${DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate)}');
+                                });
+                              }),
                             ),
                             const Padding(
                               padding: EdgeInsets.symmetric(
@@ -77,7 +121,10 @@ class PaymentScreen extends StatelessWidget {
                         const Spacer(
                           flex: 2,
                         ),
-                        const Center(child: SlideToPay()),
+                        Center(
+                            child: SlideToPay(
+                          rent: rent,
+                        )),
                         const SizedBox(width: 20),
                         const Spacer(
                           flex: 1,

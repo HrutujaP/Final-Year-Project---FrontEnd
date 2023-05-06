@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
+import 'package:diskspacerenting/models/account.dart';
+import 'package:diskspacerenting/models/storage.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/components/allfeatures.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/components/pricerentbar.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/components/sla.dart';
@@ -9,7 +11,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DetailsMainCard extends StatelessWidget {
-  const DetailsMainCard({
+  Storage storage;
+  Account account;
+  DetailsMainCard({
+    required this.storage,
+    required this.account,
     Key? key,
   }) : super(key: key);
 
@@ -70,7 +76,7 @@ class DetailsMainCard extends StatelessWidget {
                       : MediaQuery.of(context).size.width * 0.0,
                 ),
                 child: Text(
-                  'STORAGE NAME',
+                  storage.name,
                   softWrap: true,
                   style: TextStyle(
                     fontFamily: 'sans-serif',
@@ -94,7 +100,7 @@ class DetailsMainCard extends StatelessWidget {
                     ? MediaQuery.of(context).size.width
                     : MediaQuery.of(context).size.width * 0.5,
                 child: Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus scelerisque urna sed dui accumsan dictum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.',
+                  storage.description,
                   softWrap: true,
                   style: TextStyle(
                       fontSize: ResponsiveWidget.isSmallScreen(context)
@@ -109,11 +115,16 @@ class DetailsMainCard extends StatelessWidget {
               const Spacer(
                 flex: 2,
               ),
-              const AllFeatures(),
+              AllFeatures(
+                storage: storage,
+              ),
               const Spacer(
                 flex: 1,
               ),
-              const PriceRentBar(),
+              PriceRentBar(
+                account: account,
+                storage: storage,
+              ),
             ]),
           ),
         ),

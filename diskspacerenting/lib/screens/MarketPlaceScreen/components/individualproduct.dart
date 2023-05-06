@@ -2,11 +2,17 @@ import 'dart:math';
 
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
+import 'package:diskspacerenting/models/account.dart';
+import 'package:diskspacerenting/models/storage.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/rentstoragescreen.dart';
 import 'package:flutter/material.dart';
 
 class IndividualProduct extends StatefulWidget {
-  const IndividualProduct({
+  Account account;
+  Storage storage;
+  IndividualProduct({
+    required this.account,
+    required this.storage,
     Key? key,
   }) : super(key: key);
 
@@ -32,7 +38,13 @@ class _IndividualProductState extends State<IndividualProduct> {
       padding: const EdgeInsets.only(right: 8.0),
       child: GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, RentStorageScreen.id);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => RentStorageScreen(
+                        storage: widget.storage,
+                        account: widget.account,
+                      )));
         },
         child: Container(
           height: ResponsiveWidget.isSmallScreen(context)
@@ -49,13 +61,13 @@ class _IndividualProductState extends State<IndividualProduct> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                Spacer(),
+                const Spacer(),
                 Icon(Icons.storage_outlined,
                     color: generateRandomColor(), size: 85),
-                Spacer(),
+                const Spacer(),
                 Row(
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       'Size',
                       style: TextStyle(
                           color: kBackgroundEndColor,
@@ -63,10 +75,10 @@ class _IndividualProductState extends State<IndividualProduct> {
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w600),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Text(
-                      '25 GB',
-                      style: TextStyle(
+                      '${widget.storage.size} GB',
+                      style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w800,
                           color: kContainerStartColor),
@@ -74,8 +86,8 @@ class _IndividualProductState extends State<IndividualProduct> {
                   ],
                 ),
                 Row(
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       'Price',
                       style: TextStyle(
                           color: kBackgroundEndColor,
@@ -83,13 +95,13 @@ class _IndividualProductState extends State<IndividualProduct> {
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w600),
                     ),
-                    Spacer(),
-                    Text('25',
-                        style: TextStyle(
+                    const Spacer(),
+                    Text(widget.storage.price,
+                        style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w800,
                             color: kContainerStartColor)),
-                    Icon(
+                    const Icon(
                       Icons.currency_bitcoin_rounded,
                       color: kContainerStartColor,
                       size: 20,
@@ -114,7 +126,7 @@ class _IndividualProductState extends State<IndividualProduct> {
                     )
                   ],
                 ),
-                Spacer()
+                const Spacer()
               ],
             ),
           ),

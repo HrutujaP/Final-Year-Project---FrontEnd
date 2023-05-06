@@ -1,4 +1,7 @@
 class Storage {
+  String timings = "";
+  String name = "";
+  String description = "";
   late String id;
   late String ownerId;
   late String duration;

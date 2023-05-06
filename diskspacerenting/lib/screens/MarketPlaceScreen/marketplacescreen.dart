@@ -135,12 +135,14 @@ class _MarketPlaceScreenState extends State<MarketPlaceScreen> {
                               physics: const BouncingScrollPhysics(),
                               children: [
                                 ProductCollections(
+                                  account: widget.account,
                                   limit: "100",
                                 ),
                                 const SizedBox(
                                   height: 15,
                                 ),
                                 ProductCollections(
+                                  account: widget.account,
                                   limit: "500",
                                 ),
                                 const SizedBox(
@@ -196,18 +198,21 @@ class _MarketPlaceScreenState extends State<MarketPlaceScreen> {
                               physics: const BouncingScrollPhysics(),
                               children: [
                                 ProductCollections(
+                                  account: widget.account,
                                   limit: "100",
                                 ),
                                 const SizedBox(
                                   height: 15,
                                 ),
                                 ProductCollections(
+                                  account: widget.account,
                                   limit: "500",
                                 ),
                                 const SizedBox(
                                   height: 15,
                                 ),
                                 ProductCollections(
+                                  account: widget.account,
                                   limit: "1000",
                                 ),
                                 const SizedBox(

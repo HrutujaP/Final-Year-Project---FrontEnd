@@ -1,6 +1,5 @@
 // ignore_for_file: camel_case_types, file_names
-import 'dart:ffi';
-
+import 'package:intl/intl.dart';
 import 'package:analog_clock/analog_clock.dart';
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Functions/functions.dart';
@@ -8,6 +7,7 @@ import 'package:diskspacerenting/models/account.dart';
 import 'package:diskspacerenting/screens/Components/datepicker.dart';
 import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import '../../Constants/Responsive/responsiveWidget.dart';
 import 'package:universal_disk_space/universal_disk_space.dart';
 import 'package:diskspacerenting/models/storage.dart';
@@ -23,6 +23,13 @@ class postAdvertisment extends StatefulWidget {
 
 class _postAdvertismentState extends State<postAdvertisment> {
   late List<Disk> disks;
+
+  void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
+    setState(() {
+      rentRange = '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} -'
+          ' ${DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate)}';
+    });
+  }
 
   Future<void> readDisks() async {
     final diskSpace = DiskSpace();
@@ -187,10 +194,12 @@ class _postAdvertismentState extends State<postAdvertisment> {
                             fontWeight: FontWeight.w700,
                           ),
                         ),
-                        SizedBox(height: 15,),
+                        SizedBox(
+                          height: 15,
+                        ),
                         CircularProgressIndicator(
                           strokeWidth: 6,
-                          color:kTextLightColor,
+                          color: kTextLightColor,
                         ),
                       ],
                     ),
@@ -207,6 +216,181 @@ class _postAdvertismentState extends State<postAdvertisment> {
                           child: SingleChildScrollView(
                             child: Column(
                               children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Material(
+                                    elevation: 20,
+                                    shadowColor: kContainerEndColor,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(15)),
+                                    child: Container(
+                                      width: ResponsiveWidget.isSmallScreen(
+                                              context)
+                                          ? MediaQuery.of(context).size.width
+                                          : MediaQuery.of(context).size.width /
+                                              2,
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            // Color(0xffFFD4E2), Color(0xffFF8FB3)
+                                            kContainerStartColor
+                                                .withOpacity(0.6),
+                                            kContainerMiddleColor
+                                                .withOpacity(0.7),
+                                            kContainerEndColor.withOpacity(0.7),
+                                          ],
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(15)),
+                                        border: Border.all(
+                                          color: kBackgroundEndColor,
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.5,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              const Text(
+                                                "Step 0 : ",
+                                                style: TextStyle(
+                                                  color: kBackgroundEndColor,
+                                                  fontSize: 17,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                              Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceAround,
+                                                    children: [
+                                                      const Text(
+                                                        "Enter Name of Storage",
+                                                        style: TextStyle(
+                                                          color:
+                                                              kBackgroundEndColor,
+                                                          fontSize: 20,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 50,
+                                                      ),
+                                                      SizedBox(
+                                                        width: 200,
+                                                        child: TextField(
+                                                          cursorColor:
+                                                              kBackgroundEndColor,
+                                                          maxLines: 1,
+                                                          keyboardType:
+                                                              TextInputType
+                                                                  .number,
+                                                          controller:
+                                                              TextEditingController(),
+                                                          onChanged: (value) {
+                                                            storage.name =
+                                                                value;
+                                                          },
+                                                          decoration:
+                                                              const InputDecoration(
+                                                            hintText:
+                                                                "Enter Storage Name",
+                                                            hintStyle:
+                                                                TextStyle(
+                                                              color:
+                                                                  kTextLightColor,
+                                                              fontSize: 20,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 10,
+                                                      )
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceAround,
+                                                    children: [
+                                                      const Text(
+                                                        "Enter Description of Storage",
+                                                        style: TextStyle(
+                                                          color:
+                                                              kBackgroundEndColor,
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                      // const Spacer(),
+                                                      const SizedBox(
+                                                        width: 50,
+                                                      ),
+                                                      SizedBox(
+                                                        width: 300,
+                                                        child: TextField(
+                                                          cursorColor:
+                                                              kBackgroundEndColor,
+                                                          maxLines: 1,
+                                                          keyboardType:
+                                                              TextInputType
+                                                                  .number,
+                                                          controller:
+                                                              TextEditingController(),
+                                                          onChanged: (value) {
+                                                            storage.name =
+                                                                value;
+                                                          },
+                                                          decoration:
+                                                              const InputDecoration(
+                                                            hintText:
+                                                                "Enter Description of Storage",
+                                                            hintStyle:
+                                                                TextStyle(
+                                                              color:
+                                                                  kTextLightColor,
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 10,
+                                                      )
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                                 Padding(
                                   padding: const EdgeInsets.all(15.0),
                                   child: Material(
@@ -628,7 +812,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
                                             ),
                                             isStep3Selected
                                                 ? DatePicker(
-                                                    range: rentRange,
+                                                    range: _onSelectionChanged,
                                                   )
                                                 : const Center(),
                                           ],

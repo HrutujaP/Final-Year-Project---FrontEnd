@@ -1,11 +1,17 @@
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
+import 'package:diskspacerenting/models/account.dart';
+import 'package:diskspacerenting/models/storage.dart';
 import 'package:diskspacerenting/screens/PaymentScreen/paymentscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PriceRentBar extends StatelessWidget {
-  const PriceRentBar({
+  Account account;
+  Storage storage;
+  PriceRentBar({
+    required this.account,
+    required this.storage,
     Key? key,
   }) : super(key: key);
 
@@ -18,7 +24,7 @@ class PriceRentBar extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('DSR 18.6',
+              Text("${storage.price} DSR/-",
                   style: GoogleFonts.poppins(
                       color: kBackgroundEndColor,
                       fontSize: MediaQuery.of(context).size.height * 0.035,
@@ -33,7 +39,13 @@ class PriceRentBar extends StatelessWidget {
           const Spacer(),
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, PaymentScreen.id);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PaymentScreen(
+                            storage: storage,
+                            account: account,
+                          )));
             },
             child: SizedBox(
               width: ResponsiveWidget.isSmallScreen(context)
