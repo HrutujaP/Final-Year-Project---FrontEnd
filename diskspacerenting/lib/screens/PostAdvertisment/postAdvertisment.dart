@@ -53,7 +53,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
 
   bool isStep3Selected = false;
   bool isStep4Selected = false;
-
+  bool isLoading = false;
   String selectedDisk = "";
   double selectedMaxSize = 0;
   double selectedSizeToRent = 0;
@@ -171,38 +171,270 @@ class _postAdvertismentState extends State<postAdvertisment> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: ResponsiveWidget.isSmallScreen(context)
-                            ? MediaQuery.of(context).size.width
-                            : MediaQuery.of(context).size.width / 2,
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: Material(
-                                  elevation: 20,
-                                  shadowColor: kContainerEndColor,
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(15),
+                Visibility(
+                  visible: !isLoading,
+                  replacement: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const [
+                        Text(
+                          'Your Advert is Being Created Please Wait',
+                          softWrap: true,
+                          style: TextStyle(
+                            color: kTextLightColor,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        SizedBox(height: 15,),
+                        CircularProgressIndicator(
+                          strokeWidth: 6,
+                          color:kTextLightColor,
+                        ),
+                      ],
+                    ),
+                  ),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: ResponsiveWidget.isSmallScreen(context)
+                              ? MediaQuery.of(context).size.width
+                              : MediaQuery.of(context).size.width / 2,
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Material(
+                                    elevation: 20,
+                                    shadowColor: kContainerEndColor,
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(15),
+                                    ),
+                                    child: Container(
+                                        // width: MediaQuery.of(context).size.width * 0.95,
+                                        width: ResponsiveWidget.isSmallScreen(
+                                                context)
+                                            ? MediaQuery.of(context).size.width
+                                            : MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                2,
+                                        // height: 200,
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              // Color(0xffFFD4E2), Color(0xffFF8FB3)
+                                              kContainerStartColor
+                                                  .withOpacity(0.6),
+                                              kContainerMiddleColor
+                                                  .withOpacity(0.7),
+                                              kContainerEndColor
+                                                  .withOpacity(0.7),
+                                            ],
+                                            begin: Alignment.topCenter,
+                                            end: Alignment.bottomRight,
+                                          ),
+                                          borderRadius: const BorderRadius.all(
+                                            Radius.circular(15),
+                                          ),
+                                          border: Border.all(
+                                            color: kBackgroundEndColor,
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: const [
+                                                  Text(
+                                                    "Step 1: ",
+                                                    style: TextStyle(
+                                                      color:
+                                                          kBackgroundEndColor,
+                                                      fontSize: 17,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    "Select Disk To Rent",
+                                                    style: TextStyle(
+                                                      color:
+                                                          kBackgroundEndColor,
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              FutureBuilder(
+                                                future: readDisksFuture,
+                                                builder: (context, snapshot) {
+                                                  if (snapshot
+                                                          .connectionState ==
+                                                      ConnectionState.done) {
+                                                    return SizedBox(
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height /
+                                                              7,
+                                                      child: Scrollbar(
+                                                        controller:
+                                                            scrollController,
+                                                        thumbVisibility: true,
+                                                        scrollbarOrientation:
+                                                            ScrollbarOrientation
+                                                                .bottom,
+                                                        child: ListView.builder(
+                                                            controller:
+                                                                scrollController,
+                                                            physics:
+                                                                const BouncingScrollPhysics(),
+                                                            scrollDirection:
+                                                                Axis.horizontal,
+                                                            itemCount:
+                                                                disks.length,
+                                                            itemBuilder:
+                                                                (context,
+                                                                    index) {
+                                                              return Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .all(
+                                                                        8.0),
+                                                                child: SizedBox(
+                                                                  width: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.19,
+                                                                  child:
+                                                                      RadioListTile(
+                                                                    activeColor:
+                                                                        kContainerEndColor,
+                                                                    shape: RoundedRectangleBorder(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(15)),
+                                                                    tileColor:
+                                                                        kBackgroundEndColor,
+                                                                    title: Row(
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .center,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .center,
+                                                                      children: [
+                                                                        Text(
+                                                                          disks[index]
+                                                                              .mountPath
+                                                                              .toString()
+                                                                              .replaceAll(":", ""),
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontSize:
+                                                                                MediaQuery.of(context).size.width * 0.02,
+                                                                            color:
+                                                                                kTextDarkColor,
+                                                                            fontWeight:
+                                                                                FontWeight.w500,
+                                                                          ),
+                                                                        ),
+                                                                        const SizedBox(
+                                                                          width:
+                                                                              10,
+                                                                        ),
+                                                                        Column(
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.center,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          children: [
+                                                                            Text(
+                                                                              'Total Space: ${bytesToGigabytes(disks[index].totalSize)} GB',
+                                                                              style: TextStyle(
+                                                                                fontSize: MediaQuery.of(context).size.width * 0.01,
+                                                                                color: kTextLightColor,
+                                                                                fontWeight: FontWeight.w500,
+                                                                              ),
+                                                                            ),
+                                                                            Text(
+                                                                              'Free Space: ${bytesToGigabytes(disks[index].availableSpace)} GB',
+                                                                              style: TextStyle(
+                                                                                fontSize: MediaQuery.of(context).size.width * 0.01,
+                                                                                color: kTextLightColor,
+                                                                                fontWeight: FontWeight.w500,
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                    value: disks[
+                                                                            index]
+                                                                        .mountPath,
+                                                                    groupValue:
+                                                                        selectedDisk,
+                                                                    onChanged:
+                                                                        (value) {
+                                                                      setState(
+                                                                          () {
+                                                                        selectedDisk =
+                                                                            value.toString();
+                                                                        selectedMaxSize =
+                                                                            bytesToGigabytes(disks[index].availableSpace).toDouble();
+
+                                                                        selectedSizeToRent =
+                                                                            selectedMaxSize /
+                                                                                2;
+                                                                      });
+                                                                    },
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            }),
+                                                      ),
+                                                    );
+                                                  } else {
+                                                    return const Center(
+                                                      child:
+                                                          CircularProgressIndicator(),
+                                                    );
+                                                  }
+                                                },
+                                              )
+                                            ],
+                                          ),
+                                        )),
                                   ),
-                                  child: Container(
-                                      // width: MediaQuery.of(context).size.width * 0.95,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Material(
+                                    elevation: 20,
+                                    shadowColor: kContainerEndColor,
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(15),
+                                    ),
+                                    child: Container(
                                       width: ResponsiveWidget.isSmallScreen(
                                               context)
                                           ? MediaQuery.of(context).size.width
                                           : MediaQuery.of(context).size.width /
                                               2,
-                                      // height: 200,
                                       decoration: BoxDecoration(
                                         gradient: LinearGradient(
                                           colors: [
-                                            // Color(0xffFFD4E2), Color(0xffFF8FB3)
                                             kContainerStartColor
                                                 .withOpacity(0.6),
                                             kContainerMiddleColor
@@ -210,11 +442,10 @@ class _postAdvertismentState extends State<postAdvertisment> {
                                             kContainerEndColor.withOpacity(0.7),
                                           ],
                                           begin: Alignment.topCenter,
-                                          end: Alignment.bottomRight,
+                                          end: Alignment.bottomCenter,
                                         ),
                                         borderRadius: const BorderRadius.all(
-                                          Radius.circular(15),
-                                        ),
+                                            Radius.circular(15)),
                                         border: Border.all(
                                           color: kBackgroundEndColor,
                                         ),
@@ -230,14 +461,14 @@ class _postAdvertismentState extends State<postAdvertisment> {
                                                   MainAxisAlignment.start,
                                               children: const [
                                                 Text(
-                                                  "Step 1: ",
+                                                  "Step 2: ",
                                                   style: TextStyle(
                                                     color: kBackgroundEndColor,
                                                     fontSize: 17,
                                                   ),
                                                 ),
                                                 Text(
-                                                  "Select Disk To Rent",
+                                                  "Set Size To Rent",
                                                   style: TextStyle(
                                                     color: kBackgroundEndColor,
                                                     fontSize: 20,
@@ -246,436 +477,424 @@ class _postAdvertismentState extends State<postAdvertisment> {
                                                 ),
                                               ],
                                             ),
-                                            FutureBuilder(
-                                              future: readDisksFuture,
-                                              builder: (context, snapshot) {
-                                                if (snapshot.connectionState ==
-                                                    ConnectionState.done) {
-                                                  return SizedBox(
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height /
-                                                            7,
-                                                    child: Scrollbar(
-                                                      controller:
-                                                          scrollController,
-                                                      thumbVisibility: true,
-                                                      scrollbarOrientation:
-                                                          ScrollbarOrientation
-                                                              .bottom,
-                                                      child: ListView.builder(
-                                                          controller:
-                                                              scrollController,
-                                                          physics:
-                                                              const BouncingScrollPhysics(),
-                                                          scrollDirection:
-                                                              Axis.horizontal,
-                                                          itemCount:
-                                                              disks.length,
-                                                          itemBuilder:
-                                                              (context, index) {
-                                                            return Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(8.0),
-                                                              child: SizedBox(
-                                                                width: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .width *
-                                                                    0.19,
-                                                                child:
-                                                                    RadioListTile(
-                                                                  activeColor:
-                                                                      kContainerEndColor,
-                                                                  shape: RoundedRectangleBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              15)),
-                                                                  tileColor:
-                                                                      kBackgroundEndColor,
-                                                                  title: Row(
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .center,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Text(
-                                                                        disks[index]
-                                                                            .mountPath
-                                                                            .toString()
-                                                                            .replaceAll(":",
-                                                                                ""),
-                                                                        style:
-                                                                            TextStyle(
-                                                                          fontSize:
-                                                                              MediaQuery.of(context).size.width * 0.02,
-                                                                          color:
-                                                                              kTextDarkColor,
-                                                                          fontWeight:
-                                                                              FontWeight.w500,
-                                                                        ),
-                                                                      ),
-                                                                      const SizedBox(
-                                                                        width:
-                                                                            10,
-                                                                      ),
-                                                                      Column(
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.center,
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.center,
-                                                                        children: [
-                                                                          Text(
-                                                                            'Total Space: ${bytesToGigabytes(disks[index].totalSize)} GB',
-                                                                            style:
-                                                                                TextStyle(
-                                                                              fontSize: MediaQuery.of(context).size.width * 0.01,
-                                                                              color: kTextLightColor,
-                                                                              fontWeight: FontWeight.w500,
-                                                                            ),
-                                                                          ),
-                                                                          Text(
-                                                                            'Free Space: ${bytesToGigabytes(disks[index].availableSpace)} GB',
-                                                                            style:
-                                                                                TextStyle(
-                                                                              fontSize: MediaQuery.of(context).size.width * 0.01,
-                                                                              color: kTextLightColor,
-                                                                              fontWeight: FontWeight.w500,
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                  value: disks[
-                                                                          index]
-                                                                      .mountPath,
-                                                                  groupValue:
-                                                                      selectedDisk,
-                                                                  onChanged:
-                                                                      (value) {
-                                                                    setState(
-                                                                        () {
-                                                                      selectedDisk =
-                                                                          value
-                                                                              .toString();
-                                                                      selectedMaxSize =
-                                                                          bytesToGigabytes(disks[index].availableSpace)
-                                                                              .toDouble();
-
-                                                                      selectedSizeToRent =
-                                                                          selectedMaxSize /
-                                                                              2;
-                                                                    });
-                                                                  },
-                                                                ),
-                                                              ),
-                                                            );
-                                                          }),
+                                            Visibility(
+                                              visible: selectedDisk.isNotEmpty,
+                                              replacement: const Center(
+                                                child: Text(
+                                                  "Select Disk To Rent",
+                                                  style: TextStyle(
+                                                    color: kTextLightColor,
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    'Size: ${selectedSizeToRent.toStringAsFixed(2)} GB',
+                                                    style: const TextStyle(
+                                                      color:
+                                                          kBackgroundEndColor,
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.w700,
                                                     ),
-                                                  );
-                                                } else {
-                                                  return const Center(
-                                                    child:
-                                                        CircularProgressIndicator(),
-                                                  );
-                                                }
-                                              },
+                                                  ),
+                                                  SliderTheme(
+                                                    data: const SliderThemeData(
+                                                      trackHeight: 4,
+                                                      thumbShape:
+                                                          RoundSliderThumbShape(
+                                                              enabledThumbRadius:
+                                                                  12),
+                                                      activeTrackColor:
+                                                          Colors.black,
+                                                      inactiveTrackColor:
+                                                          Colors.grey,
+                                                      thumbColor:
+                                                          kContainerEndColor,
+                                                    ),
+                                                    child: Slider(
+                                                      min: 0,
+                                                      max: selectedMaxSize,
+                                                      value: selectedSizeToRent,
+                                                      onChanged: (value) {
+                                                        setState(() {
+                                                          selectedSizeToRent =
+                                                              value;
+                                                        });
+                                                      },
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  ElevatedButton(
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        foregroundColor:
+                                                            kContainerEndColor,
+                                                        backgroundColor:
+                                                            kContainerEndColor,
+                                                        shadowColor:
+                                                            kContainerEndColor,
+                                                      ),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          isStep3Selected =
+                                                              !isStep3Selected;
+                                                        });
+                                                      },
+                                                      child: const Padding(
+                                                        padding:
+                                                            EdgeInsets.all(6.0),
+                                                        child: Text(
+                                                          "Next",
+                                                          style: TextStyle(
+                                                            color:
+                                                                kBackgroundEndColor,
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                      ))
+                                                ],
+                                              ),
                                             )
                                           ],
                                         ),
-                                      )),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: Material(
-                                  elevation: 20,
-                                  shadowColor: kContainerEndColor,
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(15),
-                                  ),
-                                  child: Container(
-                                    width: ResponsiveWidget.isSmallScreen(
-                                            context)
-                                        ? MediaQuery.of(context).size.width
-                                        : MediaQuery.of(context).size.width / 2,
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          kContainerStartColor.withOpacity(0.6),
-                                          kContainerMiddleColor
-                                              .withOpacity(0.7),
-                                          kContainerEndColor.withOpacity(0.7),
-                                        ],
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                      ),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(15)),
-                                      border: Border.all(
-                                        color: kBackgroundEndColor,
                                       ),
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: const [
-                                              Text(
-                                                "Step 2: ",
-                                                style: TextStyle(
-                                                  color: kBackgroundEndColor,
-                                                  fontSize: 17,
-                                                ),
-                                              ),
-                                              Text(
-                                                "Set Size To Rent",
-                                                style: TextStyle(
-                                                  color: kBackgroundEndColor,
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Visibility(
-                                            visible: selectedDisk.isNotEmpty,
-                                            replacement: const Center(
-                                              child: Text(
-                                                "Select Disk To Rent",
-                                                style: TextStyle(
-                                                  color: kTextLightColor,
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                            ),
-                                            child: Column(
-                                              children: [
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Material(
+                                    elevation: 20,
+                                    shadowColor: kContainerEndColor,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(15)),
+                                    child: Container(
+                                      width: ResponsiveWidget.isSmallScreen(
+                                              context)
+                                          ? MediaQuery.of(context).size.width
+                                          : MediaQuery.of(context).size.width /
+                                              2,
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            kContainerStartColor
+                                                .withOpacity(0.6),
+                                            kContainerMiddleColor
+                                                .withOpacity(0.7),
+                                            kContainerEndColor.withOpacity(0.7),
+                                          ],
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(15)),
+                                        border: Border.all(
+                                          color: kBackgroundEndColor,
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: const [
                                                 Text(
-                                                  'Size: ${selectedSizeToRent.toStringAsFixed(2)} GB',
-                                                  style: const TextStyle(
+                                                  "Step 3: ",
+                                                  style: TextStyle(
+                                                    color: kBackgroundEndColor,
+                                                    fontSize: 17,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "Set Days To Rent",
+                                                  style: TextStyle(
                                                     color: kBackgroundEndColor,
                                                     fontSize: 20,
-                                                    fontWeight: FontWeight.w700,
+                                                    fontWeight: FontWeight.w500,
                                                   ),
                                                 ),
-                                                SliderTheme(
-                                                  data: const SliderThemeData(
-                                                    trackHeight: 4,
-                                                    thumbShape:
-                                                        RoundSliderThumbShape(
-                                                            enabledThumbRadius:
-                                                                12),
-                                                    activeTrackColor:
-                                                        Colors.black,
-                                                    inactiveTrackColor:
-                                                        Colors.grey,
-                                                    thumbColor:
-                                                        kContainerEndColor,
-                                                  ),
-                                                  child: Slider(
-                                                    min: 0,
-                                                    max: selectedMaxSize,
-                                                    value: selectedSizeToRent,
-                                                    onChanged: (value) {
-                                                      setState(() {
-                                                        selectedSizeToRent =
-                                                            value;
-                                                      });
-                                                    },
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                ElevatedButton(
-                                                    style: ElevatedButton
-                                                        .styleFrom(
-                                                      foregroundColor:
-                                                          kContainerEndColor,
-                                                      backgroundColor:
-                                                          kContainerEndColor,
-                                                      shadowColor:
-                                                          kContainerEndColor,
-                                                    ),
-                                                    onPressed: () {
-                                                      setState(() {
-                                                        isStep3Selected =
-                                                            !isStep3Selected;
-                                                      });
-                                                    },
-                                                    child: const Padding(
-                                                      padding:
-                                                          EdgeInsets.all(6.0),
-                                                      child: Text(
-                                                        "Next",
-                                                        style: TextStyle(
-                                                          color:
-                                                              kBackgroundEndColor,
-                                                          fontSize: 20,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                      ),
-                                                    ))
                                               ],
                                             ),
-                                          )
-                                        ],
+                                            isStep3Selected
+                                                ? DatePicker(
+                                                    range: rentRange,
+                                                  )
+                                                : const Center(),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: Material(
-                                  elevation: 20,
-                                  shadowColor: kContainerEndColor,
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(15)),
-                                  child: Container(
-                                    width: ResponsiveWidget.isSmallScreen(
-                                            context)
-                                        ? MediaQuery.of(context).size.width
-                                        : MediaQuery.of(context).size.width / 2,
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          kContainerStartColor.withOpacity(0.6),
-                                          kContainerMiddleColor
-                                              .withOpacity(0.7),
-                                          kContainerEndColor.withOpacity(0.7),
-                                        ],
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Material(
+                                    elevation: 20,
+                                    shadowColor: kContainerEndColor,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(15)),
+                                    child: Container(
+                                      width: ResponsiveWidget.isSmallScreen(
+                                              context)
+                                          ? MediaQuery.of(context).size.width
+                                          : MediaQuery.of(context).size.width /
+                                              2,
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            // Color(0xffFFD4E2), Color(0xffFF8FB3)
+                                            kContainerStartColor
+                                                .withOpacity(0.6),
+                                            kContainerMiddleColor
+                                                .withOpacity(0.7),
+                                            kContainerEndColor.withOpacity(0.7),
+                                          ],
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(15)),
+                                        border: Border.all(
+                                          color: kBackgroundEndColor,
+                                        ),
                                       ),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(15)),
-                                      border: Border.all(
-                                        color: kBackgroundEndColor,
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            children: const [
-                                              Text(
-                                                "Step 3: ",
-                                                style: TextStyle(
-                                                  color: kBackgroundEndColor,
-                                                  fontSize: 17,
-                                                  fontWeight: FontWeight.w500,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: const [
+                                                Text(
+                                                  "Step 4 : ",
+                                                  style: TextStyle(
+                                                    color: kBackgroundEndColor,
+                                                    fontSize: 17,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "Set Active Time",
+                                                  style: TextStyle(
+                                                    color: kBackgroundEndColor,
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.5,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Visibility(
+                                                  visible: isStep3Selected,
+                                                  replacement: const Center(
+                                                    child: Text(
+                                                      "Select Disk To Rent",
+                                                      style: TextStyle(
+                                                        color: kTextLightColor,
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      MouseRegion(
+                                                        cursor:
+                                                            SystemMouseCursors
+                                                                .click,
+                                                        child: GestureDetector(
+                                                          onTap: () =>
+                                                              _selectStartTime(
+                                                                  context),
+                                                          child: Column(
+                                                            children: [
+                                                              const Text(
+                                                                'Start Time',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color:
+                                                                      kTextDarkColor,
+                                                                  fontSize: 20,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                              ),
+                                                              Text(
+                                                                _startTime
+                                                                    .format(
+                                                                        context),
+                                                                style:
+                                                                    const TextStyle(
+                                                                  color:
+                                                                      kBackgroundEndColor,
+                                                                  fontSize: 22,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      MouseRegion(
+                                                        cursor:
+                                                            SystemMouseCursors
+                                                                .click,
+                                                        child: GestureDetector(
+                                                          onTap: () =>
+                                                              _selectEndTime(
+                                                                  context),
+                                                          child: Column(
+                                                            children: [
+                                                              const Text(
+                                                                'End Time',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color:
+                                                                      kTextDarkColor,
+                                                                  fontSize: 20,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                              ),
+                                                              Text(
+                                                                _endTime.format(
+                                                                    context),
+                                                                style:
+                                                                    const TextStyle(
+                                                                  color:
+                                                                      kBackgroundEndColor,
+                                                                  fontSize: 22,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
-                                              Text(
-                                                "Set Days To Rent",
-                                                style: TextStyle(
-                                                  color: kBackgroundEndColor,
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          isStep3Selected
-                                              ? DatePicker(
-                                                  range: rentRange,
-                                                )
-                                              : const Center(),
-                                        ],
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: Material(
-                                  elevation: 20,
-                                  shadowColor: kContainerEndColor,
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(15)),
-                                  child: Container(
-                                    width: ResponsiveWidget.isSmallScreen(
-                                            context)
-                                        ? MediaQuery.of(context).size.width
-                                        : MediaQuery.of(context).size.width / 2,
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          // Color(0xffFFD4E2), Color(0xffFF8FB3)
-                                          kContainerStartColor.withOpacity(0.6),
-                                          kContainerMiddleColor
-                                              .withOpacity(0.7),
-                                          kContainerEndColor.withOpacity(0.7),
-                                        ],
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Material(
+                                    elevation: 20,
+                                    shadowColor: kContainerEndColor,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(15)),
+                                    child: Container(
+                                      width: ResponsiveWidget.isSmallScreen(
+                                              context)
+                                          ? MediaQuery.of(context).size.width
+                                          : MediaQuery.of(context).size.width /
+                                              2,
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            // Color(0xffFFD4E2), Color(0xffFF8FB3)
+                                            kContainerStartColor
+                                                .withOpacity(0.6),
+                                            kContainerMiddleColor
+                                                .withOpacity(0.7),
+                                            kContainerEndColor.withOpacity(0.7),
+                                          ],
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(15)),
+                                        border: Border.all(
+                                          color: kBackgroundEndColor,
+                                        ),
                                       ),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(15)),
-                                      border: Border.all(
-                                        color: kBackgroundEndColor,
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Row(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.5,
+                                          child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
-                                            children: const [
-                                              Text(
-                                                "Step 4 : ",
+                                            children: [
+                                              const Text(
+                                                "Step 5 : ",
                                                 style: TextStyle(
                                                   color: kBackgroundEndColor,
                                                   fontSize: 17,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                               ),
-                                              Text(
-                                                "Set Active Time",
+                                              const Text(
+                                                "Enter Price of Disk per Month",
                                                 style: TextStyle(
                                                   color: kBackgroundEndColor,
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                               ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.5,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Visibility(
-                                                visible: isStep3Selected,
-                                                replacement: const Center(
-                                                  child: Text(
-                                                    "Select Disk To Rent",
-                                                    style: TextStyle(
+                                              const Spacer(),
+                                              SizedBox(
+                                                width: 100,
+                                                child: TextField(
+                                                  cursorColor:
+                                                      kBackgroundEndColor,
+                                                  maxLines: 1,
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  controller:
+                                                      TextEditingController(),
+                                                  onChanged: (value) {
+                                                    rentAmt = value.isEmpty
+                                                        ? 0
+                                                        : int.parse(value);
+                                                  },
+                                                  decoration:
+                                                      const InputDecoration(
+                                                    hintText: "Enter Price",
+                                                    hintStyle: TextStyle(
                                                       color: kTextLightColor,
                                                       fontSize: 20,
                                                       fontWeight:
@@ -683,231 +902,81 @@ class _postAdvertismentState extends State<postAdvertisment> {
                                                     ),
                                                   ),
                                                 ),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    MouseRegion(
-                                                      cursor: SystemMouseCursors
-                                                          .click,
-                                                      child: GestureDetector(
-                                                        onTap: () =>
-                                                            _selectStartTime(
-                                                                context),
-                                                        child: Column(
-                                                          children: [
-                                                            const Text(
-                                                              'Start Time',
-                                                              style: TextStyle(
-                                                                color:
-                                                                    kTextDarkColor,
-                                                                fontSize: 20,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
-                                                            ),
-                                                            Text(
-                                                              _startTime.format(
-                                                                  context),
-                                                              style:
-                                                                  const TextStyle(
-                                                                color:
-                                                                    kBackgroundEndColor,
-                                                                fontSize: 22,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    MouseRegion(
-                                                      cursor: SystemMouseCursors
-                                                          .click,
-                                                      child: GestureDetector(
-                                                        onTap: () =>
-                                                            _selectEndTime(
-                                                                context),
-                                                        child: Column(
-                                                          children: [
-                                                            const Text(
-                                                              'End Time',
-                                                              style: TextStyle(
-                                                                color:
-                                                                    kTextDarkColor,
-                                                                fontSize: 20,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
-                                                            ),
-                                                            Text(
-                                                              _endTime.format(
-                                                                  context),
-                                                              style:
-                                                                  const TextStyle(
-                                                                color:
-                                                                    kBackgroundEndColor,
-                                                                fontSize: 22,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
                                               ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: Material(
-                                  elevation: 20,
-                                  shadowColor: kContainerEndColor,
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(15)),
-                                  child: Container(
-                                    width: ResponsiveWidget.isSmallScreen(
-                                            context)
-                                        ? MediaQuery.of(context).size.width
-                                        : MediaQuery.of(context).size.width / 2,
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          // Color(0xffFFD4E2), Color(0xffFF8FB3)
-                                          kContainerStartColor.withOpacity(0.6),
-                                          kContainerMiddleColor
-                                              .withOpacity(0.7),
-                                          kContainerEndColor.withOpacity(0.7),
-                                        ],
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                      ),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(15)),
-                                      border: Border.all(
-                                        color: kBackgroundEndColor,
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.5,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            const Text(
-                                              "Step 5 : ",
-                                              style: TextStyle(
-                                                color: kBackgroundEndColor,
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
-                                            const Text(
-                                              "Enter Price of Disk per Month",
-                                              style: TextStyle(
-                                                color: kBackgroundEndColor,
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
-                                            const Spacer(),
-                                            SizedBox(
-                                              width: 100,
-                                              child: TextField(
-                                                cursorColor:
-                                                    kBackgroundEndColor,
-                                                maxLines: 1,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                controller:
-                                                    TextEditingController(),
-                                                onChanged: (value) {
-                                                  rentAmt = value.isEmpty
-                                                      ? 0
-                                                      : int.parse(value);
-                                                },
-                                                decoration:
-                                                    const InputDecoration(
-                                                  hintText: "Enter Price",
-                                                  hintStyle: TextStyle(
-                                                    color: kTextLightColor,
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              width: 10,
-                                            )
-                                          ],
+                                              const SizedBox(
+                                                width: 10,
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ElevatedButton.icon(
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: kContainerStartColor,
-                            backgroundColor: kContainerEndColor,
-                            shadowColor: kContainerEndColor,
-                          ),
-                          onPressed: () async {
-                            readData();
-                            Functions functions = Functions();
-                            
-                            String result =
-                                await functions.createStorage(storage);
-                          },
-                          icon: const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.post_add,
-                              color: kBackgroundEndColor,
+                              ],
                             ),
                           ),
-                          label: const Padding(
-                            padding: EdgeInsets.fromLTRB(0, 8, 8, 8),
-                            child: Text(
-                              "Post",
-                              style: TextStyle(
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ElevatedButton.icon(
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor: kContainerStartColor,
+                              backgroundColor: kContainerEndColor,
+                              shadowColor: kContainerEndColor,
+                            ),
+                            onPressed: () async {
+                              setState(() {
+                                isLoading = true;
+                              });
+
+                              readData();
+                              Functions functions = Functions();
+
+                              String result =
+                                  await functions.createStorage(storage);
+
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                backgroundColor: Colors.transparent,
+                                content: Text(
+                                  "Storage Created With Id : $result",
+                                  style: const TextStyle(
+                                    color: kTextColor,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                duration: const Duration(seconds: 3),
+                              ));
+
+                              setState(() {
+                                isLoading = false;
+                              });
+                              Navigator.pop(context);
+                            },
+                            icon: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Icon(
+                                Icons.post_add,
                                 color: kBackgroundEndColor,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            label: const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 8, 8, 8),
+                              child: Text(
+                                "Post",
+                                style: TextStyle(
+                                  color: kBackgroundEndColor,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
 

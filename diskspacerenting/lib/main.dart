@@ -6,7 +6,6 @@ import 'package:diskspacerenting/screens/FileStorage/fileStorage.dart';
 import 'package:diskspacerenting/screens/HomeScreen/homescreen.dart';
 import 'package:diskspacerenting/screens/MarketPlaceScreen/marketplacescreen.dart';
 import 'package:diskspacerenting/screens/PaymentScreen/paymentscreen.dart';
-import 'package:diskspacerenting/screens/PostAdvertisment/postAdvertisment.dart';
 import 'package:diskspacerenting/screens/GoogleSignInScreen/googleSignInScreen.dart';
 import 'package:diskspacerenting/screens/RentStorageScreen/rentstoragescreen.dart';
 import 'package:diskspacerenting/screens/SplashScreen/splashscreen.dart';
@@ -47,10 +46,16 @@ class _MyAppState extends State<MyApp> {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? id = prefs.getString("Id");
     print(id);
-    Account account = Account();
+    Account? account;
     if (id != null) {
       Functions function = Functions();
       account = await function.readAccountDetails(id);
+      if(account == null){
+        print("Account not found");
+        intialWidget = const registerScreen();
+        return;
+      }
+
       intialWidget = HomeScreen(account: account);
     } else {
       print("User id not found");
@@ -76,7 +81,6 @@ class _MyAppState extends State<MyApp> {
       routes: {
         FileStoarage.id: (context) => const FileStoarage(),
         registerScreen.id: (context) => const registerScreen(),
-        MarketPlaceScreen.id: (context) => const MarketPlaceScreen(),
         RentStorageScreen.id: (context) => const RentStorageScreen(),
         PaymentScreen.id: (context) => const PaymentScreen(),
       },

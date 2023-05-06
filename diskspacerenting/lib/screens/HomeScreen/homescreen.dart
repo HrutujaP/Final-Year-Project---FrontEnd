@@ -215,8 +215,8 @@ class _HomeScreenState extends State<HomeScreen>
                                                 context)
                                         ? 55
                                         : 65,
-                                    child:  const MainOptions(
-                                      widget: MarketPlaceScreen(),
+                                    child:   MainOptions(
+                                      widget: MarketPlaceScreen(account: widget.account,),
                                       color: kTextDarkColor,
                                       icon: Icons.payment,
                                       hText: 'Buy',

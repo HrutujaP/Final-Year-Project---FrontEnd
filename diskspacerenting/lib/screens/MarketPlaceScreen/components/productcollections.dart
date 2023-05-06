@@ -1,13 +1,24 @@
+import 'dart:ffi';
+
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
+import 'package:diskspacerenting/Functions/functions.dart';
 import 'package:diskspacerenting/screens/MarketPlaceScreen/components/individualproduct.dart';
 import 'package:flutter/material.dart';
 
-class ProductCollections extends StatelessWidget {
-  const ProductCollections({
+class ProductCollections extends StatefulWidget {
+  String limit;
+  ProductCollections({
+    required this.limit,
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<ProductCollections> createState() => _ProductCollectionsState();
+}
+
+class _ProductCollectionsState extends State<ProductCollections> {
+  Functions functions = Functions();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,15 +44,16 @@ class ProductCollections extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              children: const [
-                Text(' < 50 GB Capacity',
-                    style: TextStyle(
+              children: [
+                Text(' < ${widget.limit} GB Capacity',
+                    style: const TextStyle(
                       color: kSecondaryColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                     )),
-                Spacer(),
-                Icon(Icons.sort_rounded, color: kContainerEndColor, size: 28)
+                const Spacer(),
+                const Icon(Icons.sort_rounded,
+                    color: kContainerEndColor, size: 28)
               ],
             ),
             const SizedBox(
@@ -49,23 +61,30 @@ class ProductCollections extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(4.0),
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                height: ResponsiveWidget.isSmallScreen(context)
-                    ? MediaQuery.of(context).size.height * 0.216
-                    : MediaQuery.of(context).size.height * 0.25,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  physics: const BouncingScrollPhysics(),
-                  children: const [
-                    IndividualProduct(),
-                    IndividualProduct(),
-                    IndividualProduct(),
-                    IndividualProduct(),
-                    IndividualProduct(),
-                    IndividualProduct(),
-                  ],
-                ),
+              child: FutureBuilder(
+                future: functions.getStorages(int.parse(widget.limit)),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      height: ResponsiveWidget.isSmallScreen(context)
+                          ? MediaQuery.of(context).size.height * 0.216
+                          : MediaQuery.of(context).size.height * 0.25,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index) {
+                          return IndividualProduct();
+                        },
+                      ),
+                    );
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
               ),
             )
           ],
