@@ -50,13 +50,14 @@ class _MyAppState extends State<MyApp> {
     if (id != null) {
       Functions function = Functions();
       account = await function.readAccountDetails(id);
-      if(account == null){
+
+      if (account == null) {
         print("Account not found");
         intialWidget = const registerScreen();
-        return;
+      } else {
+        print("Account found");
+        intialWidget = HomeScreen(account: account);
       }
-
-      intialWidget = HomeScreen(account: account);
     } else {
       print("User id not found");
       intialWidget = const registerScreen();

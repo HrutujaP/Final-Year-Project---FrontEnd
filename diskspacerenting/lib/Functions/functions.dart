@@ -13,11 +13,11 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Functions {
-  // static const String apiUrl = "http://localhost:8080/api/account";
-  static const String apiUrl = "http://app-07824057-9a46-44d4-8c9a-6e76e325f03e.cleverapps.io/api/account";
+  static const String apiUrl = "http://localhost:8080/api/account";
+  // static const String apiUrl = "http://app-07824057-9a46-44d4-8c9a-6e76e325f03e.cleverapps.io/api/account";
   // static const String apiUrl = "http://10.0.2.2:8080/api/account";  // For emulator
 
-  Future<Account> readAccountDetails(String id) async {
+  Future<Account?> readAccountDetails(String id) async {
     Account account = Account();
     String url = "$apiUrl/get_account?account_principal=$id";
 
@@ -30,21 +30,26 @@ class Functions {
       headers: headers,
     );
 
-    if (response.statusCode == 200) {
-      var result = response.body;
+    try {
+      if (response.statusCode == 200) {
+        var result = response.body;
 
-      final Map<String, dynamic> body = jsonDecode(result);
-      account.Email = body["Email"];
-      account.Name = body["Name"];
-      account.Id = body["Id"];
-      account.balance = body["Balance"];
-      account.ownedStorageIds = body["My_Storages"].cast<String>();
-      account.rentedStorageIds = body["Rented_Storages"].cast<String>();
+        final Map<String, dynamic> body = jsonDecode(result);
+        account.Email = body["Email"];
+        account.Name = body["Name"];
+        account.Id = body["Id"];
+        account.balance = body["Balance"];
+        account.ownedStorageIds = body["My_Storages"].cast<String>();
+        account.rentedStorageIds = body["Rented_Storages"].cast<String>();
 
-      print("Account details read");
-    } else {
-      print(response.statusCode);
-      print(response.body);
+        print("Account details read");
+      } else {
+        print(response.statusCode);
+        print(response.body);
+      }
+    } catch (e) {
+      print(e);
+      return null;
     }
 
     return account;
@@ -68,11 +73,17 @@ class Functions {
 
       final Map<String, dynamic> body = jsonDecode(result);
       storage.id = body["Id"];
+      storage.name = body["Name"];
+      storage.description = body["Description"];
+      storage.timings = body["Timings"];
+      storage.fileExts = body["FileExt"].cast<String>();
+      storage.files = body["Files"].cast<String>();
       storage.ownerId = body["OwnerPrincipal"];
       storage.price = body["Rent"];
       storage.size = body["Space"];
       storage.loc = body["Path"];
       storage.duration = body["TimePeriod"];
+      storage.used = body["UsedSpace"];
       storage.rentDuration =
           body["RenteeDuration"].isEmpty ? "" : body["RenteeDuration"][0];
       storage.renteeId =
@@ -88,8 +99,8 @@ class Functions {
   }
 
   void createFile(String dir, Storage storage) async {
-
-    final fileSize = (int.parse(storage.size) * 1e9).toInt(); // Change this to your desired file size in bytes
+    final fileSize = (int.parse(storage.size) * 1e9)
+        .toInt(); // Change this to your desired file size in bytes
     final fileName = storage.ownerId; // Change this to your desired file name
     final directoryPath = dir;
     final filePath = '$directoryPath/$fileName';
@@ -109,7 +120,10 @@ class Functions {
       "owner_principal": strorage.ownerId,
       "storage_size": strorage.size,
       "path": strorage.loc,
-      "timeperiod": strorage.duration
+      "timeperiod": strorage.duration,
+      "name": strorage.name,
+      "description": strorage.description,
+      "timings": strorage.timings,
     };
 
     final http.Response response = await http.post(
@@ -220,6 +234,12 @@ class Functions {
           storage.price = node["Rent"];
           storage.size = node["Space"];
           storage.loc = node["Path"];
+          storage.name = node["Name"];
+          storage.description = node["Description"];
+          storage.timings = node["Timings"];
+          storage.fileExts = node["FileExt"].cast<String>();
+          storage.files = node["Files"].cast<String>();
+          storage.used = node["UsedSpace"];
           storage.duration = node["TimePeriod"];
           storage.rentDuration =
               node["RenteeDuration"].isEmpty ? "" : node["RenteeDuration"];

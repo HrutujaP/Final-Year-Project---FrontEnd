@@ -7,6 +7,7 @@ import 'package:diskspacerenting/screens/Components/topbar.dart';
 import 'package:diskspacerenting/screens/Components/datepicker.dart';
 import 'package:diskspacerenting/screens/PaymentScreen/components/paymentsection.dart';
 import 'package:diskspacerenting/screens/PaymentScreen/components/slidetopay.dart';
+import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -35,21 +36,44 @@ class _PaymentScreenState extends State<PaymentScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            decoration: const BoxDecoration(
-              color: kContainerMiddleColor,
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  kBackgroundStartColor,
-                  kBackgroundEndColor,
-                ],
+        body: Stack(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              decoration: const BoxDecoration(
+                color: kContainerMiddleColor,
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    kBackgroundStartColor,
+                    kBackgroundEndColor,
+                  ],
+                ),
               ),
             ),
-            child: ResponsiveWidget.isSmallScreen(context)
+            Positioned.fill(
+              // top: 20,
+              child: FloatingBubbles.alwaysRepeating(
+                noOfBubbles: 20,
+                colorsOfBubbles: const [
+                  kContainerStartColor,
+                  kContainerMiddleColor,
+                  // kContainerEndColor,
+                ],
+
+                sizeFactor: 0.2,
+                // duration: 120, // 120 seconds.
+                opacity: 100,
+                paintingStyle: PaintingStyle.fill,
+                strokeWidth: 8,
+                shape: BubbleShape
+                    .circle, // circle is the default. No need to explicitly mention if its a circle.
+                speed: BubbleSpeed.slow, // normal is the default
+              ),
+            ),
+            ResponsiveWidget.isSmallScreen(context)
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -73,9 +97,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         ),
                       ),
                       const Spacer(),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: PaymentSection(),
+                        child: PaymentSection(
+                          storage: widget.storage,
+                          account: widget.account,
+                          rent: rent,
+                        ),
                       ),
                       const Spacer(),
                       Center(
@@ -89,6 +117,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     width: MediaQuery.of(context).size.width,
                     child: Column(
                       children: [
+                        const TopBar(color: kContainerStartColor),
                         const Spacer(
                           flex: 1,
                         ),
@@ -111,10 +140,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 });
                               }),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 16.0, vertical: 16),
-                              child: PaymentSection(),
+                              child: PaymentSection(
+                                storage: widget.storage,
+                                account: widget.account,
+                                rent: rent,
+                              ),
                             ),
                           ],
                         ),
@@ -131,7 +164,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         )
                       ],
                     ),
-                  )),
+                  )
+          ],
+        ),
       ),
     );
   }

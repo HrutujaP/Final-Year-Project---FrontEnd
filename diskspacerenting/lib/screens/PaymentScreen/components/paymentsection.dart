@@ -1,9 +1,18 @@
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
+import 'package:diskspacerenting/models/account.dart';
+import 'package:diskspacerenting/models/rent.dart';
+import 'package:diskspacerenting/models/storage.dart';
 import 'package:flutter/material.dart';
 
 class PaymentSection extends StatelessWidget {
-  const PaymentSection({
+  Storage storage;
+  Account account;
+  Rent rent;
+  PaymentSection({
+    required this.storage,
+    required this.account,
+    required this.rent,
     Key? key,
   }) : super(key: key);
 
@@ -57,59 +66,78 @@ class PaymentSection extends StatelessWidget {
                             Text(
                               'Subscriptions wallet',
                               style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.height *
-                                      0.018,
-                                  color: kTextColor,
+                                  fontSize:
+                                      ResponsiveWidget.isSmallScreen(context)
+                                          ? MediaQuery.of(context).size.height *
+                                              0.018
+                                          : MediaQuery.of(context).size.height *
+                                              0.03,
+                                  color: kTextLightColor,
                                   fontWeight: FontWeight.bold),
                             ),
-                            ResponsiveWidget.isSmallScreen(context)
-                                ? const Spacer()
-                                : const SizedBox(width: 10),
+                            const Spacer(
+                              flex: 8,
+                            ),
                             const Icon(
                               Icons.circle_outlined,
                               color: Color.fromARGB(255, 41, 33, 75),
                               size: 30,
-                            )
+                            ),
+                            const Spacer()
                           ],
                         ),
-                        ResponsiveWidget.isSmallScreen(context)
-                            ? const Spacer()
-                            : const SizedBox(height: 10),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(
+                              'Available balance: DSR ${account.balance}',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  color: kTextDarkColor,
+                                  fontSize: MediaQuery.of(context).size.height *
+                                      0.026)),
+                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Row(
                             children: [
-                              Text('DSR 324',
+                              Text('Total Cost',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w700,
-                                      color: kContainerStartColor,
+                                      color: kTextDarkColor,
+                                      fontSize:
+                                          MediaQuery.of(context).size.height *
+                                              0.025)),
+                              Text(' DSR ${storage.price}',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w800,
+                                      color: kBackgroundEndColor,
                                       fontSize:
                                           MediaQuery.of(context).size.height *
                                               0.03)),
-                              Text('.25',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      color: kContainerStartColor,
-                                      fontSize:
-                                          MediaQuery.of(context).size.height *
-                                              0.02))
                             ],
                           ),
                         ),
-                        ResponsiveWidget.isSmallScreen(context)
-                            ? const Spacer()
-                            : const SizedBox(height: 10),
-                        Row(
-                          children: [
-                            const Text(
-                              'Monthly expenses: DSR 69',
-                              style: TextStyle(color: kContainerStartColor),
-                            ),
-                            ResponsiveWidget.isSmallScreen(context)
-                                ? const Spacer()
-                                : const SizedBox(width: 10),
-                            const Icon(Icons.remove_red_eye_outlined)
-                          ],
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Monthly expenses: DSR ${storage.price}',
+                                style: TextStyle(
+                                    color: kContainerEndColor,
+                                    fontSize:
+                                        MediaQuery.of(context).size.height *
+                                            0.022,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              ResponsiveWidget.isSmallScreen(context)
+                                  ? const Spacer()
+                                  : const SizedBox(width: 10),
+                              const Icon(Icons.remove_red_eye_outlined)
+                            ],
+                          ),
                         )
                       ]),
                 ),

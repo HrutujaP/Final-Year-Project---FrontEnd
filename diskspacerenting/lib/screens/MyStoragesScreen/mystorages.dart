@@ -8,6 +8,7 @@ import 'package:diskspacerenting/screens/MyStoragesScreen/components/desktoprent
 import 'package:diskspacerenting/screens/MyStoragesScreen/components/mobileowned.dart';
 import 'package:diskspacerenting/screens/MyStoragesScreen/components/mobilerented.dart';
 import 'package:diskspacerenting/screens/MyStoragesScreen/components/storageradialgraph.dart';
+import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
 
 class MyStorages extends StatefulWidget {
@@ -67,139 +68,163 @@ class _MyStoragesState extends State<MyStorages> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          decoration: const BoxDecoration(
-              color: kContainerMiddleColor,
-              gradient: LinearGradient(
-                colors: [kBackgroundStartColor, kBackgroundEndColor],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              )),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const TopBar(
-                color: kContainerEndColor,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.04,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Text('My Storages',
-                        style: TextStyle(
-                            color: kSecondaryColor,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold)),
-                  ),
+        body: Stack(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              decoration: const BoxDecoration(
+                  color: kContainerMiddleColor,
+                  gradient: LinearGradient(
+                    colors: [kBackgroundStartColor, kBackgroundEndColor],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  )),
+            ),
+            Positioned.fill(
+              // top: 20,
+              child: FloatingBubbles.alwaysRepeating(
+                noOfBubbles: 20,
+                colorsOfBubbles: const [
+                  kContainerStartColor,
+                  kContainerMiddleColor,
+                  // kContainerEndColor,
                 ],
-              ),
-              SizedBox(
-                height: ResponsiveWidget.isSmallScreen(context)
-                    ? MediaQuery.of(context).size.height * 0.835
-                    : MediaQuery.of(context).size.height * 0.9,
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: FutureBuilder(
-                  future: functions.getAccountStorages(widget.account.Id),
-                  builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    if (snapshot.hasData) {
-                      ownedStorages = snapshot.data[0];
-                      rentedStorages = snapshot.data[1];
-                      mobile = [
-                        MobileOwned(
-                          storageIds: ownedStorages,
-                        ),
-                        MobileRented(
-                          storageIds: rentedStorages,
-                        )
-                      ];
-                      desktop = [
-                        DesktopOwned(
-                          storageIds: ownedStorages,
-                        ),
-                        DesktopRented(
-                          storageIds: rentedStorages,
-                        )
-                      ];
 
-                      return ResponsiveWidget.isSmallScreen(context)
-                          ? Column(
-                              children: [
-                                StorageRadialGraph(chartData: chartData),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.523,
-                                  width: MediaQuery.of(context).size.width,
-                                  child: PageView(
-                                    controller: _pageController,
-                                    onPageChanged: (index) {
-                                      setState(() {
-                                        _currentPage = index;
-                                      });
-                                    },
-                                    children: mobile,
-                                  ),
-                                )
-                              ],
-                            )
-                          : Row(
-                              children: [
-                                StorageRadialGraph(chartData: chartData),
-                                const Spacer(),
-                                IconButton(
-                                  icon: const Icon(
-                                    Icons.arrow_back_ios,
-                                    size: 40,
-                                    color: kTextLightColor,
-                                  ),
-                                  onPressed: _onPreviousButtonPressed,
-                                ),
-                                SizedBox(
-                                  height: MediaQuery.of(context).size.height,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.5,
-                                  child: PageView(
-                                    controller: _pageController,
-                                    onPageChanged: (index) {
-                                      setState(() {
-                                        _currentPage = index;
-                                      });
-                                    },
-                                    children: desktop,
-                                  ),
-                                ),
-                                IconButton(
-                                  icon: const Icon(
-                                    Icons.arrow_forward_ios,
-                                    size: 40,
-                                    color: kTextLightColor,
-                                  ),
-                                  onPressed: _onNextButtonPressed,
-                                ),
-                                const Spacer()
-                              ],
-                            );
-                    } else {
-                      return const Center(
-                        child: CircularProgressIndicator(
-                          strokeWidth: 8,
-                          color: kContainerMiddleColor,
-                        ),
-                      );
-                    }
-                  },
-                ),
+                sizeFactor: 0.2,
+                // duration: 120, // 120 seconds.
+                opacity: 100,
+                paintingStyle: PaintingStyle.fill,
+                strokeWidth: 8,
+                shape: BubbleShape
+                    .circle, // circle is the default. No need to explicitly mention if its a circle.
+                speed: BubbleSpeed.slow, // normal is the default
               ),
-            ],
-          ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const TopBar(
+                  color: kContainerEndColor,
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.04,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Text('My Storages',
+                          style: TextStyle(
+                              color: kSecondaryColor,
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: ResponsiveWidget.isSmallScreen(context)
+                      ? MediaQuery.of(context).size.height * 0.835
+                      : MediaQuery.of(context).size.height * 0.83,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  child: FutureBuilder(
+                    future: functions.getAccountStorages(widget.account.Id),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      if (snapshot.hasData) {
+                        ownedStorages = snapshot.data[0];
+                        rentedStorages = snapshot.data[1];
+                        mobile = [
+                          MobileOwned(
+                            storageIds: ownedStorages,
+                          ),
+                          MobileRented(
+                            storageIds: rentedStorages,
+                          )
+                        ];
+                        desktop = [
+                          DesktopOwned(
+                            storageIds: ownedStorages,
+                          ),
+                          DesktopRented(
+                            storageIds: rentedStorages,
+                          )
+                        ];
+
+                        return ResponsiveWidget.isSmallScreen(context)
+                            ? Column(
+                                children: [
+                                  StorageRadialGraph(chartData: chartData),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.523,
+                                    width: MediaQuery.of(context).size.width,
+                                    child: PageView(
+                                      controller: _pageController,
+                                      onPageChanged: (index) {
+                                        setState(() {
+                                          _currentPage = index;
+                                        });
+                                      },
+                                      children: mobile,
+                                    ),
+                                  )
+                                ],
+                              )
+                            : Row(
+                                children: [
+                                  StorageRadialGraph(chartData: chartData),
+                                  const Spacer(),
+                                  IconButton(
+                                    icon: const Icon(
+                                      Icons.arrow_back_ios,
+                                      size: 40,
+                                      color: kTextLightColor,
+                                    ),
+                                    onPressed: _onPreviousButtonPressed,
+                                  ),
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.5,
+                                    child: PageView(
+                                      controller: _pageController,
+                                      onPageChanged: (index) {
+                                        setState(() {
+                                          _currentPage = index;
+                                        });
+                                      },
+                                      children: desktop,
+                                    ),
+                                  ),
+                                  IconButton(
+                                    icon: const Icon(
+                                      Icons.arrow_forward_ios,
+                                      size: 40,
+                                      color: kTextLightColor,
+                                    ),
+                                    onPressed: _onNextButtonPressed,
+                                  ),
+                                  const Spacer()
+                                ],
+                              );
+                      } else {
+                        return const Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 8,
+                            color: kContainerMiddleColor,
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

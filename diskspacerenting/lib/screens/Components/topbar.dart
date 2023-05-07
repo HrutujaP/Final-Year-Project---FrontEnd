@@ -12,6 +12,7 @@ class TopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      width: MediaQuery.of(context).size.width,
       child: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(

@@ -1,5 +1,4 @@
 // ignore_for_file: camel_case_types, file_names
-import 'dart:io';
 import 'package:intl/intl.dart';
 import 'package:analog_clock/analog_clock.dart';
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
@@ -83,6 +82,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
     if (newStartTime != null) {
       setState(() {
         _startTime = newStartTime;
+        storage.timings = "$_startTime - $_endTime";
       });
     }
   }
@@ -95,6 +95,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
     if (newEndTime != null) {
       setState(() {
         _endTime = newEndTime;
+        storage.timings = "$_startTime - $_endTime";
       });
     }
   }
@@ -163,7 +164,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
                 strokeWidth: 8,
                 shape: BubbleShape
                     .circle, // circle is the default. No need to explicitly mention if its a circle.
-                speed: BubbleSpeed.normal, // normal is the default
+                speed: BubbleSpeed.slow, // normal is the default
               ),
             ),
             Row(
@@ -350,7 +351,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
                                                           controller:
                                                               TextEditingController(),
                                                           onChanged: (value) {
-                                                            storage.name =
+                                                            storage.description =
                                                                 value;
                                                           },
                                                           decoration:

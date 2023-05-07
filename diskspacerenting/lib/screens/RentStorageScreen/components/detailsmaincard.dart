@@ -27,7 +27,7 @@ class DetailsMainCard extends StatelessWidget {
         child: Container(
           height: ResponsiveWidget.isSmallScreen(context)
               ? MediaQuery.of(context).size.height * 0.7
-              : MediaQuery.of(context).size.height * 0.85,
+              : MediaQuery.of(context).size.height * 0.8,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -108,9 +108,6 @@ class DetailsMainCard extends StatelessWidget {
                           : MediaQuery.of(context).size.width * 0.015,
                       color: kBackgroundStartColor),
                 ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.02,
               ),
               const Spacer(
                 flex: 2,

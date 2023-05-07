@@ -36,7 +36,7 @@ class TopWidgetCard extends StatelessWidget {
         SizedBox(
           height: ResponsiveWidget.isSmallScreen(context)
               ? MediaQuery.of(context).size.height * 0.32
-              : MediaQuery.of(context).size.height,
+              : MediaQuery.of(context).size.height * 0.92,
           width: ResponsiveWidget.isSmallScreen(context)
               ? MediaQuery.of(context).size.width
               : MediaQuery.of(context).size.width * 0.4,

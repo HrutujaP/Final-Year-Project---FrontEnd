@@ -19,7 +19,7 @@ class Features extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.15,
+      height: MediaQuery.of(context).size.height * 0.2,
       width: MediaQuery.of(context).size.width / 4.5,
       child: Column(
         children: [
@@ -54,6 +54,7 @@ class Features extends StatelessWidget {
                       fontSize: MediaQuery.of(context).size.height * 0.015,
                       fontWeight: FontWeight.w800)),
               Text(value,
+                  softWrap: true,
                   style: GoogleFonts.poppins(
                       color: kContainerEndColor,
                       fontSize: MediaQuery.of(context).size.height * 0.015,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class DesktopRented extends StatelessWidget {
   List<String> storageIds;
-   DesktopRented({
+  DesktopRented({
     required this.storageIds,
     super.key,
   });
@@ -22,7 +22,7 @@ class DesktopRented extends StatelessWidget {
         ),
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.55,
-          height: MediaQuery.of(context).size.height * 0.8,
+          height: MediaQuery.of(context).size.height * 0.78,
           child: ListView.builder(
             scrollDirection: Axis.vertical,
             physics: const BouncingScrollPhysics(),
