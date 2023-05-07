@@ -8,6 +8,7 @@ class Storage {
   late String price;
   late String loc;
   late String size;
+  String used = "0";
   String renteeId = "";
   String rentDuration = "";
 }

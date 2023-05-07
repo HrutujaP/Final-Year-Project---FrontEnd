@@ -79,7 +79,6 @@ class _MyAppState extends State<MyApp> {
             }
           }),
       routes: {
-        FileStoarage.id: (context) => const FileStoarage(),
         registerScreen.id: (context) => const registerScreen(),
       },
     );

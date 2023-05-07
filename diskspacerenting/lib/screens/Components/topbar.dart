@@ -28,6 +28,15 @@ class TopBar extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Row(
             children: [
+              IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: kSecondaryColor,
+                    size: 28,
+                  )),
               const Text(
                 'DSR',
                 style: TextStyle(

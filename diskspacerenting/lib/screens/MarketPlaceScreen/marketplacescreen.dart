@@ -15,70 +15,11 @@ class MarketPlaceScreen extends StatefulWidget {
 }
 
 class _MarketPlaceScreenState extends State<MarketPlaceScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.chevron_left_rounded,
-              size: ResponsiveWidget.isLargeScreen(context) ? 50 : 30,
-              color: kBackgroundEndColor,
-            ),
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: 10,
-          toolbarHeight: 50,
-          shadowColor: kContainerEndColor,
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: <Color>[
-                  // kBackgroundEndColor.withOpacity(0.9),
-                  kContainerStartColor,
-                  kContainerMiddleColor,
-                  kContainerEndColor,
-                ],
-              ),
-            ),
-          ),
-          title: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              children: [
-                Text(
-                  ResponsiveWidget.isSmallScreen(context)
-                      ? 'D.S.R'
-                      : 'Disk Space Renting',
-                  style: const TextStyle(
-                    fontSize: 38,
-                    color: kBackgroundEndColor,
-                    fontWeight: FontWeight.w600,
-                    decoration: TextDecoration.none,
-                  ),
-                ),
-                const Spacer(),
-                Text(
-                  "Welcome, ${widget.account.Name} ",
-                  style: TextStyle(
-                    fontSize: ResponsiveWidget.isSmallScreen(context) ? 18 : 22,
-                    color: kBackgroundStartColor,
-                    fontWeight: FontWeight.w700,
-                    decoration: TextDecoration.none,
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
+      
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
@@ -144,6 +85,13 @@ class _MarketPlaceScreenState extends State<MarketPlaceScreen> {
                                 ProductCollections(
                                   account: widget.account,
                                   limit: "500",
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                ProductCollections(
+                                  account: widget.account,
+                                  limit: "1000",
                                 ),
                                 const SizedBox(
                                   height: 15,

@@ -1,10 +1,13 @@
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
+import 'package:diskspacerenting/models/storage.dart';
 import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
 
 class IndividualFiles extends StatelessWidget {
-  const IndividualFiles({
+  Storage storage;
+  IndividualFiles({
+    required this.storage,
     super.key,
   });
 
@@ -13,7 +16,7 @@ class IndividualFiles extends StatelessWidget {
     return SingleChildScrollView(
       child: SizedBox(
         height: ResponsiveWidget.isSmallScreen(context)
-            ? null
+            ? MediaQuery.of(context).size.height * 0.44
             : MediaQuery.of(context).size.height * 0.7,
         width: ResponsiveWidget.isSmallScreen(context)
             ? null
@@ -36,7 +39,7 @@ class IndividualFiles extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
                 height: ResponsiveWidget.isSmallScreen(context)
-                    ? MediaQuery.of(context).size.height / 3.1
+                    ? MediaQuery.of(context).size.height * 0.375
                     : MediaQuery.of(context).size.height * 0.6,
                 width: ResponsiveWidget.isSmallScreen(context)
                     ? MediaQuery.of(context).size.width

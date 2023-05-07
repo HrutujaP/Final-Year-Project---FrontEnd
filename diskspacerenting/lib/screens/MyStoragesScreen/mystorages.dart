@@ -81,23 +81,11 @@ class _MyStoragesState extends State<MyStorages> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ResponsiveWidget.isSmallScreen(context)
-                  ? const TopBar(
-                      color: kContainerEndColor,
-                    )
-                  : const SizedBox(),
+              const TopBar(
+                color: kContainerEndColor,
+              ),
               Row(
                 children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back_ios_new_rounded,
-                      color: Colors.white,
-                      size: 28,
-                    ),
-                  ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.04,
                   ),
@@ -111,11 +99,15 @@ class _MyStoragesState extends State<MyStorages> {
                   ),
                 ],
               ),
-              FutureBuilder(
-                future: functions.getAccountStorages(widget.account.Id),
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  if (snapshot.hasData) {
-               
+              SizedBox(
+                height: ResponsiveWidget.isSmallScreen(context)
+                    ? MediaQuery.of(context).size.height * 0.835
+                    : MediaQuery.of(context).size.height * 0.9,
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: FutureBuilder(
+                  future: functions.getAccountStorages(widget.account.Id),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    if (snapshot.hasData) {
                       ownedStorages = snapshot.data[0];
                       rentedStorages = snapshot.data[1];
                       mobile = [
@@ -134,82 +126,77 @@ class _MyStoragesState extends State<MyStorages> {
                           storageIds: rentedStorages,
                         )
                       ];
-                 
-                    return Expanded(
-                      child: ResponsiveWidget.isSmallScreen(context)
-                          ? Expanded(
-                              child: Column(
-                                children: [
-                                  StorageRadialGraph(chartData: chartData),
-                                  const SizedBox(
-                                    height: 10,
+
+                      return ResponsiveWidget.isSmallScreen(context)
+                          ? Column(
+                              children: [
+                                StorageRadialGraph(chartData: chartData),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height *
+                                      0.523,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: PageView(
+                                    controller: _pageController,
+                                    onPageChanged: (index) {
+                                      setState(() {
+                                        _currentPage = index;
+                                      });
+                                    },
+                                    children: mobile,
                                   ),
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.55,
-                                    width: MediaQuery.of(context).size.width,
-                                    child: PageView(
-                                      controller: _pageController,
-                                      onPageChanged: (index) {
-                                        setState(() {
-                                          _currentPage = index;
-                                        });
-                                      },
-                                      children: mobile,
-                                    ),
-                                  )
-                                ],
-                              ),
+                                )
+                              ],
                             )
-                          : Expanded(
-                              child: Row(
-                                children: [
-                                  StorageRadialGraph(chartData: chartData),
-                                  const Spacer(),
-                                  IconButton(
-                                    icon: const Icon(
-                                      Icons.arrow_back_ios,
-                                      size: 40,
-                                      color: kTextLightColor,
-                                    ),
-                                    onPressed: _onPreviousButtonPressed,
+                          : Row(
+                              children: [
+                                StorageRadialGraph(chartData: chartData),
+                                const Spacer(),
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.arrow_back_ios,
+                                    size: 40,
+                                    color: kTextLightColor,
                                   ),
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height,
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.5,
-                                    child: PageView(
-                                      controller: _pageController,
-                                      onPageChanged: (index) {
-                                        setState(() {
-                                          _currentPage = index;
-                                        });
-                                      },
-                                      children: desktop,
-                                    ),
+                                  onPressed: _onPreviousButtonPressed,
+                                ),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.5,
+                                  child: PageView(
+                                    controller: _pageController,
+                                    onPageChanged: (index) {
+                                      setState(() {
+                                        _currentPage = index;
+                                      });
+                                    },
+                                    children: desktop,
                                   ),
-                                  IconButton(
-                                    icon: const Icon(
-                                      Icons.arrow_forward_ios,
-                                      size: 40,
-                                      color: kTextLightColor,
-                                    ),
-                                    onPressed: _onNextButtonPressed,
+                                ),
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.arrow_forward_ios,
+                                    size: 40,
+                                    color: kTextLightColor,
                                   ),
-                                  const Spacer()
-                                ],
-                              ),
-                            ),
-                    );
-                  } else {
-                    return const Center(
-                      child: CircularProgressIndicator(
-                        strokeWidth: 8,
-                        color: kContainerMiddleColor,
-                      ),
-                    );
-                  }
-                },
+                                  onPressed: _onNextButtonPressed,
+                                ),
+                                const Spacer()
+                              ],
+                            );
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          strokeWidth: 8,
+                          color: kContainerMiddleColor,
+                        ),
+                      );
+                    }
+                  },
+                ),
               ),
             ],
           ),

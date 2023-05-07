@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:diskspacerenting/models/account.dart';
 import 'package:diskspacerenting/models/rent.dart';
@@ -12,19 +13,20 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Functions {
-  Future<Account?> readAccountDetails(String id) async {
+  // static const String apiUrl = "http://localhost:8080/api/account";
+  static const String apiUrl = "http://app-07824057-9a46-44d4-8c9a-6e76e325f03e.cleverapps.io/api/account";
+  // static const String apiUrl = "http://10.0.2.2:8080/api/account";  // For emulator
+
+  Future<Account> readAccountDetails(String id) async {
     Account account = Account();
-    // String apiUrl =
-    //     "http://10.0.2.2:8080/api/account/get_account?account_principal=$id";
-    String apiUrl =
-        "http://localhost:8080/api/account/get_account?account_principal=$id";
+    String url = "$apiUrl/get_account?account_principal=$id";
 
     final Map<String, String> headers = {
       "Content-type": "application/json; charset=UTF-8",
     };
 
     final http.Response response = await http.get(
-      Uri.parse(apiUrl),
+      Uri.parse(url),
       headers: headers,
     );
 
@@ -48,8 +50,56 @@ class Functions {
     return account;
   }
 
+  Future<Storage> getStorageDetails(String id) async {
+    Storage storage = Storage();
+    String url = "$apiUrl/get_storage?storage_principal=$id";
+
+    final Map<String, String> headers = {
+      "Content-type": "application/json; charset=UTF-8",
+    };
+
+    final http.Response response = await http.get(
+      Uri.parse(url),
+      headers: headers,
+    );
+
+    if (response.statusCode == 200) {
+      var result = response.body;
+
+      final Map<String, dynamic> body = jsonDecode(result);
+      storage.id = body["Id"];
+      storage.ownerId = body["OwnerPrincipal"];
+      storage.price = body["Rent"];
+      storage.size = body["Space"];
+      storage.loc = body["Path"];
+      storage.duration = body["TimePeriod"];
+      storage.rentDuration =
+          body["RenteeDuration"].isEmpty ? "" : body["RenteeDuration"][0];
+      storage.renteeId =
+          body["RenterPrincipal"].isEmpty ? "" : body["RenterPrincipal"];
+
+      print("Account details read");
+    } else {
+      print(response.statusCode);
+      print(response.body);
+    }
+
+    return storage;
+  }
+
+  void createFile(String dir, Storage storage) async {
+
+    final fileSize = (int.parse(storage.size) * 1e9).toInt(); // Change this to your desired file size in bytes
+    final fileName = storage.ownerId; // Change this to your desired file name
+    final directoryPath = dir;
+    final filePath = '$directoryPath/$fileName';
+    final file = File(filePath);
+    file.createSync();
+    file.writeAsBytesSync(List.filled(fileSize, 0));
+  }
+
   Future<String> createStorage(Storage strorage) async {
-    const String apiUrl = "http://localhost:8080/api/account/create_storage";
+    const String url = "$apiUrl/create_storage";
     final Map<String, String> headers = {
       "Content-type": "application/json; charset=UTF-8",
     };
@@ -63,13 +113,16 @@ class Functions {
     };
 
     final http.Response response = await http.post(
-      Uri.parse(apiUrl),
+      Uri.parse(url),
       headers: headers,
       body: jsonEncode(body),
     );
 
     if (response.statusCode == 200) {
       var decoded = jsonDecode(response.body);
+
+      createFile(strorage.loc, strorage);
+
       return decoded["Id"];
     } else {
       print(response.statusCode);
@@ -87,7 +140,7 @@ class Functions {
   void checkAndCreateAccount(
       String name, String email, BuildContext context) async {
     // const String apiUrl = "http://10.0.2.2:8080/api/account/create_account";
-    const String apiUrl = "http://localhost:8080/api/account/create_account";
+    const String url = "$apiUrl/create_account";
 
     final Map<String, String> headers = {
       "Content-type": "application/json; charset=UTF-8",
@@ -99,7 +152,7 @@ class Functions {
     };
 
     final http.Response response = await http.post(
-      Uri.parse(apiUrl),
+      Uri.parse(url),
       headers: headers,
       body: jsonEncode(body),
     );
@@ -145,14 +198,13 @@ class Functions {
 
     List<Storage> storages = [];
 
-    const String apiUrl =
-        "http://localhost:8080/api/account/get_available_storages";
+    const String url = "$apiUrl/get_available_storages";
     final Map<String, String> headers = {
       "Content-type": "application/json; charset=UTF-8",
     };
 
     final http.Response response = await http.get(
-      Uri.parse(apiUrl),
+      Uri.parse(url),
       headers: headers,
     );
 
@@ -186,22 +238,20 @@ class Functions {
   }
 
   Future<void> rentStorage(Rent rent) async {
-    const String apiUrl = "http://localhost:8080/api/account/add_rentee";
+    const String url = "$apiUrl/add_rentee";
 
     final Map<String, String> headers = {
       "Content-type": "application/json; charset=UTF-8",
     };
 
     final Map<String, dynamic> body = {
-      "storage_principal":
-          rent.storageId,
-      "rentee_principal":
-          rent.renteeId,
+      "storage_principal": rent.storageId,
+      "rentee_principal": rent.renteeId,
       "duration": rent.rentDuration,
     };
 
     final http.Response response = await http.post(
-      Uri.parse(apiUrl),
+      Uri.parse(url),
       headers: headers,
       body: jsonEncode(body),
     );
@@ -214,17 +264,15 @@ class Functions {
     }
   }
 
-  Future<List<List<String>>> getAccountStorages(String Id)async{
-
-    String apiUrl =
-        "http://localhost:8080/api/account/get_account?account_principal=$Id";
+  Future<List<List<String>>> getAccountStorages(String Id) async {
+    String url = "$apiUrl/get_account?account_principal=$Id";
 
     final Map<String, String> headers = {
       "Content-type": "application/json; charset=UTF-8",
     };
 
     final http.Response response = await http.get(
-      Uri.parse(apiUrl),
+      Uri.parse(url),
       headers: headers,
     );
 
@@ -239,7 +287,7 @@ class Functions {
     } else {
       print(response.statusCode);
       print(response.body);
-      return [[],[]];
+      return [[], []];
     }
   }
 }

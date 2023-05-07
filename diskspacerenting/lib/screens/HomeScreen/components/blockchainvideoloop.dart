@@ -48,7 +48,7 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
       child: Container(
         height: !ResponsiveWidget.isSmallScreen(context)
             ? MediaQuery.of(context).size.height * 0.5
-            : MediaQuery.of(context).size.height * 0.3,
+            : MediaQuery.of(context).size.height * 0.28,
         width: ResponsiveWidget.isSmallScreen(context)
             ? MediaQuery.of(context).size.width
             : MediaQuery.of(context).size.width / 2,
@@ -70,7 +70,7 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
                 child: SizedBox(
                   height: !ResponsiveWidget.isSmallScreen(context)
                       ? MediaQuery.of(context).size.height * 0.5
-                      : MediaQuery.of(context).size.height * 0.3,
+                      : MediaQuery.of(context).size.height * 0.28,
                   width: ResponsiveWidget.isSmallScreen(context)
                       ? MediaQuery.of(context).size.width
                       : MediaQuery.of(context).size.width / 2,

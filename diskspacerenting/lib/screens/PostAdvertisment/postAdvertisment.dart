@@ -1,4 +1,5 @@
 // ignore_for_file: camel_case_types, file_names
+import 'dart:io';
 import 'package:intl/intl.dart';
 import 'package:analog_clock/analog_clock.dart';
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
@@ -47,15 +48,6 @@ class _postAdvertismentState extends State<postAdvertisment> {
     storage.size = size.toString();
   }
 
-  // void createFile() async {
-  //   final fileSize = 1024; // Change this to your desired file size in bytes
-  //   final fileName = 'myFile'; // Change this to your desired file name
-  //   final directoryPath = await FilePicker.platform.getDirectoryPath();
-  //   final filePath = '$directoryPath/$fileName';
-  //   final file = File(filePath);
-  //   file.createSync();
-  //   file.writeAsBytesSync(List.filled(fileSize, 0));
-  // }
   Storage storage = Storage();
 
   bool isStep3Selected = false;

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/models/account.dart';
 import 'package:diskspacerenting/screens/HomeScreen/components/backgroundbubbles.dart';
@@ -179,28 +181,31 @@ class _HomeScreenState extends State<HomeScreen>
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Material(
-                                  elevation: 10,
-                                  color: Colors.transparent,
-                                  shadowColor: kContainerEndColor,
-                                  borderRadius: BorderRadius.circular(65),
-                                  child: CircleAvatar(
-                                    backgroundColor: Colors.transparent,
-                                    radius: ResponsiveWidget.isSmallScreen(
-                                                context) ||
-                                            ResponsiveWidget.isMediumScreen(
-                                                context)
-                                        ? 55
-                                        : 65,
-                                    child: MainOptions(
-                                      widget: postAdvertisment(
-                                        account: widget.account,
+                                Visibility(
+                                  visible:Platform.isWindows,
+                                  child: Material(
+                                    elevation: 10,
+                                    color: Colors.transparent,
+                                    shadowColor: kContainerEndColor,
+                                    borderRadius: BorderRadius.circular(65),
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.transparent,
+                                      radius: ResponsiveWidget.isSmallScreen(
+                                                  context) ||
+                                              ResponsiveWidget.isMediumScreen(
+                                                  context)
+                                          ? 55
+                                          : 65,
+                                      child: MainOptions(
+                                        widget: postAdvertisment(
+                                          account: widget.account,
+                                        ),
+                                        color: kTextDarkColor,
+                                        icon: Icons.currency_exchange_sharp,
+                                        hText: 'Rent',
+                                        pText:
+                                            'Rent out your diskspace to other users and earn DSR tokens!',
                                       ),
-                                      color: kTextDarkColor,
-                                      icon: Icons.currency_exchange_sharp,
-                                      hText: 'Rent',
-                                      pText:
-                                          'Rent out your diskspace to other users and earn DSR tokens!',
                                     ),
                                   ),
                                 ),

@@ -1,14 +1,19 @@
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
+import 'package:diskspacerenting/models/storage.dart';
 import 'package:flutter/material.dart';
 
 class MyStorageDetails extends StatelessWidget {
-  const MyStorageDetails({
+  Storage storage;
+  MyStorageDetails({
+    required this.storage,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    String rem = (int.parse(storage.size) - int.parse(storage.used)).toString();
+
     return SizedBox(
       height: ResponsiveWidget.isSmallScreen(context)
           ? null
@@ -98,7 +103,7 @@ class MyStorageDetails extends StatelessWidget {
                           ),
                           const Spacer(),
                           Text(
-                            "32 GB",
+                            "${storage.size} GB",
                             style: TextStyle(
                               color: kTextLightColor,
                               fontSize: ResponsiveWidget.isSmallScreen(context)
@@ -135,7 +140,7 @@ class MyStorageDetails extends StatelessWidget {
                           ),
                           const Spacer(),
                           Text(
-                            "8 GB",
+                            "${storage.used} GB",
                             style: TextStyle(
                               color: kTextLightColor,
                               fontSize: ResponsiveWidget.isSmallScreen(context)
@@ -172,7 +177,7 @@ class MyStorageDetails extends StatelessWidget {
                           ),
                           const Spacer(),
                           Text(
-                            "16 GB",
+                            "$rem GB",
                             style: TextStyle(
                               color: kTextLightColor,
                               fontSize: ResponsiveWidget.isSmallScreen(context)

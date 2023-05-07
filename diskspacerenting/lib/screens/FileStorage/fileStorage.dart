@@ -4,13 +4,15 @@ import 'dart:math';
 
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
+import 'package:diskspacerenting/models/storage.dart';
 import 'package:diskspacerenting/screens/FileStorage/components/header.dart';
 import 'package:diskspacerenting/screens/FileStorage/components/individualfiles.dart';
 import 'package:diskspacerenting/screens/FileStorage/components/mystoragedetails.dart';
 import 'package:flutter/material.dart';
 
 class FileStoarage extends StatefulWidget {
-  const FileStoarage({super.key});
+  Storage storage;
+  FileStoarage({required this.storage, super.key});
   static const String id = 'FileStoarage_screen';
 
   @override
@@ -21,40 +23,53 @@ class _FileStoarageState extends State<FileStoarage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Container(
-        decoration: const BoxDecoration(
-          // color: kPrimaryColor1,
-          gradient: LinearGradient(
-            colors: [
-              kBackgroundStartColor,
-              kBackgroundEndColor,
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Header(),
-            SizedBox(
-              height: 15,
+      child: Scaffold(
+        body: Container(
+          decoration: const BoxDecoration(
+            // color: kPrimaryColor1,
+            gradient: LinearGradient(
+              colors: [
+                kBackgroundStartColor,
+                kBackgroundEndColor,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
             ),
-            ResponsiveWidget.isSmallScreen(context)
-                ? Column(
-                  children: const [
-                    MyStorageDetails(),
-                    IndividualFiles(),
-                  ],
-                )
-                : Row(
-                    children: const [
-                      MyStorageDetails(),
-                      IndividualFiles(),
-                    ],
-                  ),
-            const Spacer()
-          ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Header(),
+              const SizedBox(
+                height: 15,
+              ),
+              ResponsiveWidget.isSmallScreen(context)
+                  ? Column(
+                      children: [
+                        MyStorageDetails(
+                          storage: widget.storage,
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        IndividualFiles(
+                          storage: widget.storage,
+                        ),
+                      ],
+                    )
+                  : Row(
+                      children: [
+                        MyStorageDetails(
+                          storage: widget.storage,
+                        ),
+                        IndividualFiles(
+                          storage: widget.storage,
+                        ),
+                      ],
+                    ),
+              const Spacer()
+            ],
+          ),
         ),
       ),
     );
