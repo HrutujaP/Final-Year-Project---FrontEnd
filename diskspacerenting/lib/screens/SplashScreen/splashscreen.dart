@@ -1,4 +1,5 @@
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
+import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -48,6 +49,26 @@ class _SplashScreenState extends State<SplashScreen>
             ),
           ),
         ),
+         Positioned.fill(
+              // top: 20,
+              child: FloatingBubbles.alwaysRepeating(
+                noOfBubbles: 20,
+                colorsOfBubbles: const [
+                  kContainerStartColor,
+                  kContainerMiddleColor,
+                  // kContainerEndColor,
+                ],
+
+                sizeFactor: 0.2,
+                // duration: 120, // 120 seconds.
+                opacity: 100,
+                paintingStyle: PaintingStyle.fill,
+                strokeWidth: 8,
+                shape: BubbleShape
+                    .circle, // circle is the default. No need to explicitly mention if its a circle.
+                speed: BubbleSpeed.slow, // normal is the default
+              ),
+            ),
         Center(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -64,7 +85,7 @@ class _SplashScreenState extends State<SplashScreen>
                     end: 1.0,
                   ).animate(_animationController),
                   child: Image.asset(
-                    'assets/images/google_logo.png',
+                    'assets/images/splashlogo.png',
                     fit: BoxFit.cover,
                     height: MediaQuery.of(context).size.width * 0.5,
                     width: MediaQuery.of(context).size.width * 0.5,

@@ -13,8 +13,8 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Functions {
-  static const String apiUrl = "http://localhost:8080/api/account";
-  // static const String apiUrl = "http://app-07824057-9a46-44d4-8c9a-6e76e325f03e.cleverapps.io/api/account";
+  // static const String apiUrl = "http://localhost:8080/api/account";
+  static const String apiUrl = "http://app-07824057-9a46-44d4-8c9a-6e76e325f03e.cleverapps.io/api/account";
   // static const String apiUrl = "http://10.0.2.2:8080/api/account";  // For emulator
 
   Future<Account?> readAccountDetails(String id) async {
