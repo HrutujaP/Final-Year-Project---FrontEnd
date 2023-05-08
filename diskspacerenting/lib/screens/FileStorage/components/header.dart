@@ -13,9 +13,7 @@ class Header extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ResponsiveWidget.isSmallScreen(context)
-            ? const TopBar(color: kSecondaryColor)
-            : const SizedBox(),
+        const TopBar(color: kSecondaryColor),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.03,
         ),

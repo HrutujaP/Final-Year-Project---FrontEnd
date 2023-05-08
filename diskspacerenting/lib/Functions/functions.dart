@@ -98,16 +98,16 @@ class Functions {
     return storage;
   }
 
-  void createFile(String dir, Storage storage) async {
-    final fileSize = (int.parse(storage.size) * 1e9)
-        .toInt(); // Change this to your desired file size in bytes
-    final fileName = storage.ownerId; // Change this to your desired file name
-    final directoryPath = dir;
-    final filePath = '$directoryPath/$fileName';
-    final file = File(filePath);
-    file.createSync();
-    file.writeAsBytesSync(List.filled(fileSize, 0));
-  }
+  // void createFile(String dir, Storage storage) async {
+  //   final fileSize = (int.parse(storage.size) * 1e9)
+  //       .toInt(); // Change this to your desired file size in bytes
+  //   final fileName = storage.ownerId; // Change this to your desired file name
+  //   final directoryPath = dir;
+  //   final filePath = '$directoryPath/$fileName';
+  //   final file = File(filePath);
+  //   file.createSync();
+  //   file.writeAsBytesSync(List.filled(fileSize, 0));
+  // }
 
   Future<String> createStorage(Storage strorage) async {
     const String url = "$apiUrl/create_storage";
@@ -135,7 +135,7 @@ class Functions {
     if (response.statusCode == 200) {
       var decoded = jsonDecode(response.body);
 
-      createFile(strorage.loc, strorage);
+      // createFile(strorage.loc, strorage);
 
       return decoded["Id"];
     } else {

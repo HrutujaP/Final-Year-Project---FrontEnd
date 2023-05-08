@@ -17,7 +17,7 @@ class DesktopOwned extends StatelessWidget {
           "Owned Storages",
           style: TextStyle(
               color: kContainerMiddleColor,
-              fontSize: 23,
+              fontSize: 30,
               fontWeight: FontWeight.bold),
         ),
         SizedBox(

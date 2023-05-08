@@ -2,12 +2,8 @@ import 'dart:io';
 
 import 'package:diskspacerenting/Functions/functions.dart';
 import 'package:diskspacerenting/models/account.dart';
-import 'package:diskspacerenting/screens/FileStorage/fileStorage.dart';
 import 'package:diskspacerenting/screens/HomeScreen/homescreen.dart';
-import 'package:diskspacerenting/screens/MarketPlaceScreen/marketplacescreen.dart';
-import 'package:diskspacerenting/screens/PaymentScreen/paymentscreen.dart';
 import 'package:diskspacerenting/screens/GoogleSignInScreen/googleSignInScreen.dart';
-import 'package:diskspacerenting/screens/RentStorageScreen/rentstoragescreen.dart';
 import 'package:diskspacerenting/screens/SplashScreen/splashscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

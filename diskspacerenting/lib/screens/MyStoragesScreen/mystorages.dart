@@ -108,17 +108,20 @@ class _MyStoragesState extends State<MyStorages> {
                 const TopBar(
                   color: kContainerEndColor,
                 ),
+                const Spacer(),
                 Row(
                   children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.04,
                     ),
-                    const Padding(
-                      padding: EdgeInsets.all(16.0),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
                       child: Text('My Storages',
                           style: TextStyle(
                               color: kSecondaryColor,
-                              fontSize: 25,
+                              fontSize: ResponsiveWidget.isSmallScreen(context)
+                                  ? 20
+                                  : 40,
                               fontWeight: FontWeight.bold)),
                     ),
                   ],

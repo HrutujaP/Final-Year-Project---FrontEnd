@@ -1,4 +1,5 @@
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
+import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
 
@@ -87,8 +88,8 @@ class _SplashScreenState extends State<SplashScreen>
                   child: Image.asset(
                     'assets/images/splashlogo.png',
                     fit: BoxFit.cover,
-                    height: MediaQuery.of(context).size.width * 0.5,
-                    width: MediaQuery.of(context).size.width * 0.5,
+                    height:ResponsiveWidget.isSmallScreen(context)? MediaQuery.of(context).size.width * 0.5 : MediaQuery.of(context).size.width * 0.3,
+                    width: ResponsiveWidget.isSmallScreen(context)? MediaQuery.of(context).size.width * 0.5 : MediaQuery.of(context).size.width * 0.3,
                   ),
                 ),
               ),
