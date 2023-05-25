@@ -65,6 +65,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+    
       debugShowCheckedModeBanner: false,
       home: FutureBuilder(
           future: checkSavedUser(),
@@ -78,6 +79,7 @@ class _MyAppState extends State<MyApp> {
       routes: {
         registerScreen.id: (context) => const registerScreen(),
       },
+      
     );
   }
 }
