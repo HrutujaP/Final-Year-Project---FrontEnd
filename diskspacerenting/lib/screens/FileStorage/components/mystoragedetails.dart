@@ -16,7 +16,7 @@ class MyStorageDetails extends StatelessWidget {
 
     return SizedBox(
       height: ResponsiveWidget.isSmallScreen(context)
-          ? null
+          ? MediaQuery.of(context).size.height * 0.3
           : MediaQuery.of(context).size.height * 0.7,
       width: ResponsiveWidget.isSmallScreen(context)
           ? null
@@ -58,7 +58,7 @@ class MyStorageDetails extends StatelessWidget {
               color: Colors.white.withOpacity(0.1),
               child: Container(
                 height: ResponsiveWidget.isSmallScreen(context)
-                    ? MediaQuery.of(context).size.height * 0.25
+                    ? MediaQuery.of(context).size.height * 0.2
                     : MediaQuery.of(context).size.height * 0.6,
                 width: ResponsiveWidget.isSmallScreen(context)
                     ? MediaQuery.of(context).size.width

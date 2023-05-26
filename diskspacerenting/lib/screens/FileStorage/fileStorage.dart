@@ -49,9 +49,6 @@ class _FileStoarageState extends State<FileStoarage> {
                         MyStorageDetails(
                           storage: widget.storage,
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
                         IndividualFiles(
                           storage: widget.storage,
                         ),

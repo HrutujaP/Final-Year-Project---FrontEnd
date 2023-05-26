@@ -173,11 +173,11 @@ class _postAdvertismentState extends State<postAdvertisment> {
               children: [
                 Visibility(
                   visible: !isLoading,
-                  replacement: Center(
+                  replacement: const Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
+                      children: [
                         Text(
                           'Your Advert is Being Created Please Wait',
                           softWrap: true,
@@ -429,10 +429,10 @@ class _postAdvertismentState extends State<postAdvertisment> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
                                             children: [
-                                              Row(
+                                              const Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Step 1: ",
                                                     style: TextStyle(
@@ -633,10 +633,10 @@ class _postAdvertismentState extends State<postAdvertisment> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
                                           children: [
-                                            Row(
+                                            const Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
-                                              children: const [
+                                              children: [
                                                 Text(
                                                   "Step 2: ",
                                                   style: TextStyle(
@@ -783,8 +783,8 @@ class _postAdvertismentState extends State<postAdvertisment> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
                                           children: [
-                                            Row(
-                                              children: const [
+                                            const Row(
+                                              children: [
                                                 Text(
                                                   "Step 3: ",
                                                   style: TextStyle(
@@ -852,10 +852,10 @@ class _postAdvertismentState extends State<postAdvertisment> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
                                           children: [
-                                            Row(
+                                            const Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
-                                              children: const [
+                                              children: [
                                                 Text(
                                                   "Step 4 : ",
                                                   style: TextStyle(

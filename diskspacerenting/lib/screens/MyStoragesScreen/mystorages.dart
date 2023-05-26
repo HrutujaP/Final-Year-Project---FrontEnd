@@ -128,7 +128,7 @@ class _MyStoragesState extends State<MyStorages> {
                 ),
                 SizedBox(
                   height: ResponsiveWidget.isSmallScreen(context)
-                      ? MediaQuery.of(context).size.height * 0.835
+                      ? MediaQuery.of(context).size.height * 0.788
                       : MediaQuery.of(context).size.height * 0.83,
                   width: MediaQuery.of(context).size.width * 0.9,
                   child: FutureBuilder(
@@ -163,7 +163,7 @@ class _MyStoragesState extends State<MyStorages> {
                                   ),
                                   SizedBox(
                                     height: MediaQuery.of(context).size.height *
-                                        0.523,
+                                        0.466,
                                     width: MediaQuery.of(context).size.width,
                                     child: PageView(
                                       controller: _pageController,

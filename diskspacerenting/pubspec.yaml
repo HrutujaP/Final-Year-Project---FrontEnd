@@ -51,7 +51,7 @@ dependencies:
   analog_clock: ^0.1.1
   video_player_win: ^2.2.2
   firebase_core: ^2.9.0
-  cloud_firestore: ^4.5.0
+  cloud_firestore: ^4.7.1
   google_sign_in: ^6.1.0
   firebase_auth: ^4.4.0
   universal_html: ^2.2.1
@@ -60,7 +60,7 @@ dependencies:
   permission_handler: ^10.2.0
   flutter_secure_storage: ^8.0.0
   path_provider: ^2.0.14
-  file_picker: ^5.2.11
+  file_picker: ^5.3.1
   firebase_storage: ^11.1.1
   protect: ^1.0.0
   universal_disk_space: ^0.2.3
@@ -69,6 +69,7 @@ dependencies:
   url_launcher: ^6.1.10
   googleapis_auth: ^1.4.0
   flutter_launcher_icons: ^0.13.1
+
 
 dev_dependencies:
   flutter_test:

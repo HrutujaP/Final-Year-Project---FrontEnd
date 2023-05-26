@@ -3,19 +3,23 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diskspacerenting/models/account.dart';
 import 'package:diskspacerenting/models/rent.dart';
 import 'package:diskspacerenting/models/storage.dart';
 import 'package:diskspacerenting/screens/GoogleSignInScreen/googleSignInScreen.dart';
 import 'package:diskspacerenting/screens/HomeScreen/homescreen.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Functions {
   // static const String apiUrl = "http://localhost:8080/api/account";
-  static const String apiUrl = "http://app-07824057-9a46-44d4-8c9a-6e76e325f03e.cleverapps.io/api/account";
-  // static const String apiUrl = "http://10.0.2.2:8080/api/account";  // For emulator
+  // static const String apiUrl =
+  //     "http://app-07824057-9a46-44d4-8c9a-6e76e325f03e.cleverapps.io/api/account";
+  static const String apiUrl = "http://10.0.2.2:8080/api/account";  // For emulator
 
   Future<Account?> readAccountDetails(String id) async {
     Account account = Account();
@@ -308,6 +312,57 @@ class Functions {
       print(response.statusCode);
       print(response.body);
       return [[], []];
+    }
+  }
+
+  void uploadFiles(String id, List<PlatformFile> files) async {
+    final Map<String, String> headers = {
+      "Content-type": "application/json; charset=UTF-8",
+    };
+    Reference strref = FirebaseStorage.instance.ref().child(id);
+
+    for (PlatformFile file in files) {
+      print(file.name);
+      try {
+        UploadTask uploadTask = strref.putFile(File(file.path!));
+
+        await uploadTask.whenComplete(() async {
+          String downloadUrl = await strref.getDownloadURL();
+          print(downloadUrl);
+          FirebaseFirestore firestore = FirebaseFirestore.instance;
+          firestore.collection(id).doc(file.name).set({
+            "name": file.name,
+            "url": downloadUrl,
+            "size": file.size,
+            "extension": file.extension,
+            "path": file.path,
+          });
+
+          print("File uploaded");
+        });
+      } catch (e) {
+        print(e);
+      }
+      String url = "$apiUrl/add_file";
+      final Map<String, dynamic> body = {
+        "storage_principal": id,
+        "file_name": file.name,
+        "file_size": file.size / 1024 / 1024 / 1024,
+        "file_ext": file.extension,
+      };
+
+      final http.Response response = await http.post(
+        Uri.parse(url),
+        headers: headers,
+        body: jsonEncode(body),
+      );
+
+      if (response.statusCode == 200) {
+        print("File added");
+      } else {
+        print(response.statusCode);
+        print(response.body);
+      }
     }
   }
 }
