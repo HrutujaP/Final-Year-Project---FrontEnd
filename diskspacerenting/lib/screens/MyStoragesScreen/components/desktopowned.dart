@@ -31,6 +31,7 @@ class DesktopOwned extends StatelessWidget {
               var img = index % 4;
 
               return SingleDeive(
+                isowned: true,
                 storageId: storageIds[index],
                 img: img.toString(),
               );

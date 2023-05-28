@@ -31,6 +31,7 @@ class DesktopRented extends StatelessWidget {
               var img = index % 4;
 
               return SingleDeive(
+                isowned: false,
                 storageId: storageIds[index],
                 img: img.toString(),
               );

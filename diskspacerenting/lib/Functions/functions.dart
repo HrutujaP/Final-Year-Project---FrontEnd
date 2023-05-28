@@ -230,8 +230,8 @@ class Functions {
       var result = response.body;
 
       for (var node in jsonDecode(result)) {
-        if (min < int.parse(node["Space"]) &&
-            int.parse(node["Space"]) <= limit) {
+        if (min < int.parse(node["Space"])/1024/1024/1024 &&
+            int.parse(node["Space"])/1024/1024/1024 <= limit) {
           Storage storage = Storage();
           storage.id = node["Id"];
           storage.ownerId = node["OwnerPrincipal"];
@@ -324,7 +324,13 @@ class Functions {
     for (PlatformFile file in files) {
       print(file.name);
       try {
-        UploadTask uploadTask = strref.putFile(File(file.path!));
+        UploadTask uploadTask = strref.putFile(File(file.path!), SettableMetadata(
+  
+          customMetadata: {
+            "uploaded_by": id,
+            "file_name": file.name,
+          },
+        ));
 
         await uploadTask.whenComplete(() async {
           String downloadUrl = await strref.getDownloadURL();
@@ -347,7 +353,7 @@ class Functions {
       final Map<String, dynamic> body = {
         "storage_principal": id,
         "file_name": file.name,
-        "file_size": file.size / 1024 / 1024 / 1024,
+        "file_size": file.size,
         "file_ext": file.extension,
       };
 
@@ -363,6 +369,35 @@ class Functions {
         print(response.statusCode);
         print(response.body);
       }
+    }
+  }
+
+  Future<void> deletefile(String id,String file,String ext) async {
+    final Map<String, String> headers = {
+      "Content-type": "application/json; charset=UTF-8",
+    };
+    Reference strref = FirebaseStorage.instance.ref().child(id);
+    strref.child("$file.$ext").delete();
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    firestore.collection(id).doc(file).delete();
+    String url = "$apiUrl/delete_file";
+    final Map<String, dynamic> body = {
+      "storage_principal": id,
+      "file_name": file,
+      "ext": ext,
+    };
+
+    final http.Response response = await http.post(
+      Uri.parse(url),
+      headers: headers,
+      body: jsonEncode(body),
+    );
+
+    if (response.statusCode == 200) {
+      print("File deleted");
+    } else {
+      print(response.statusCode);
+      print(response.body);
     }
   }
 }

@@ -77,7 +77,7 @@ class _IndividualProductState extends State<IndividualProduct> {
                     ),
                     const Spacer(),
                     Text(
-                      '${widget.storage.size} GB',
+                      '${int.parse(widget.storage.size)/1024/1024/1024} GB',
                       style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w800,

@@ -39,7 +39,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
 
   void readData() {
     int amt = rentAmt.floor();
-    int size = selectedSizeToRent.floor();
+    int size = selectedSizeToRent.floor() * 1024*1024*1024;
     storage.duration = rentRange;
     storage.price = amt.toString();
     storage.ownerId = widget.account.Id;
@@ -293,8 +293,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
                                                           keyboardType:
                                                               TextInputType
                                                                   .number,
-                                                          controller:
-                                                              TextEditingController(),
+                                                          
                                                           onChanged: (value) {
                                                             storage.name =
                                                                 value;
@@ -348,8 +347,7 @@ class _postAdvertismentState extends State<postAdvertisment> {
                                                           keyboardType:
                                                               TextInputType
                                                                   .number,
-                                                          controller:
-                                                              TextEditingController(),
+                                                      
                                                           onChanged: (value) {
                                                             storage.description =
                                                                 value;

@@ -103,7 +103,7 @@ class MyStorageDetails extends StatelessWidget {
                           ),
                           const Spacer(),
                           Text(
-                            "${storage.size} GB",
+                            "${(int.parse(storage.size) / 1024 / 1024 / 1024).toStringAsFixed(2)} GB",
                             style: TextStyle(
                               color: kTextLightColor,
                               fontSize: ResponsiveWidget.isSmallScreen(context)
@@ -140,7 +140,7 @@ class MyStorageDetails extends StatelessWidget {
                           ),
                           const Spacer(),
                           Text(
-                            "${storage.used} GB",
+                            "${(int.parse(storage.used) / 1024 / 1024 / 1024).toStringAsFixed(2)} GB",
                             style: TextStyle(
                               color: kTextLightColor,
                               fontSize: ResponsiveWidget.isSmallScreen(context)
@@ -177,7 +177,7 @@ class MyStorageDetails extends StatelessWidget {
                           ),
                           const Spacer(),
                           Text(
-                            "$rem GB",
+                            "${(int.parse(rem) / 1024 / 1024 / 1024).toStringAsFixed(2)} GB",
                             style: TextStyle(
                               color: kTextLightColor,
                               fontSize: ResponsiveWidget.isSmallScreen(context)

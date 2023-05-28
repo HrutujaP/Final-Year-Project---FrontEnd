@@ -5,10 +5,12 @@ import 'package:diskspacerenting/screens/FileStorage/fileStorage.dart';
 import 'package:flutter/material.dart';
 
 class SingleDeive extends StatefulWidget {
+  final bool isowned;
   final String img;
   final String storageId;
 
   const SingleDeive({
+    required this.isowned,
     required this.storageId,
     required this.img,
     Key? key,
@@ -23,42 +25,51 @@ class _SingleDeiveState extends State<SingleDeive> {
 
   @override
   Widget build(BuildContext context) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4),
-            child: Container(
-              height: ResponsiveWidget.isSmallScreen(context)
-                  ? MediaQuery.of(context).size.height * 0.15
-                  : MediaQuery.of(context).size.height * 0.3,
-              width: MediaQuery.of(context).size.width * 0.9,
-              decoration: BoxDecoration(
-                border:
-                    Border.all(color: kContainerStartColor.withOpacity(0.7)),
-                borderRadius: BorderRadius.circular(20),
-                gradient: LinearGradient(
-                  colors: [
-                    kContainerStartColor.withOpacity(0.8),
-                    kContainerMiddleColor.withOpacity(0.8),
-                    kContainerEndColor.withOpacity(0.8),
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              ),
-              child: FutureBuilder(
-      future: functions.getStorageDetails(widget.storageId),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          String rem =
-            (int.parse(snapshot.data!.size) - int.parse(snapshot.data!.used))
-                .toString();
-                return  GestureDetector(
-                  onTap: (){
-                    Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => FileStoarage(
-                              storage: snapshot.data!,
-                            )));
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4),
+      child: Container(
+        height: ResponsiveWidget.isSmallScreen(context)
+            ? MediaQuery.of(context).size.height * 0.15
+            : MediaQuery.of(context).size.height * 0.3,
+        width: MediaQuery.of(context).size.width * 0.9,
+        decoration: BoxDecoration(
+          border: Border.all(color: kContainerStartColor.withOpacity(0.7)),
+          borderRadius: BorderRadius.circular(20),
+          gradient: LinearGradient(
+            colors: [
+              kContainerStartColor.withOpacity(0.8),
+              kContainerMiddleColor.withOpacity(0.8),
+              kContainerEndColor.withOpacity(0.8),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: FutureBuilder(
+            future: functions.getStorageDetails(widget.storageId),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                String rem = (int.parse(snapshot.data!.size) -
+                        int.parse(snapshot.data!.used))
+                    .toString();
+                return GestureDetector(
+                  onTap: () {
+                    !widget.isowned
+                        ? Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FileStoarage(
+                                      storage: snapshot.data!,
+                                    )))
+                        : () {
+                            SnackBar snackBar = const SnackBar(
+                              content:
+                                  Text('You can only edit your rented storage'),
+                              duration: Duration(seconds: 2),
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          };
                   },
                   child: Row(
                     children: [
@@ -98,7 +109,9 @@ class _SingleDeiveState extends State<SingleDeive> {
                                     fontSize:
                                         ResponsiveWidget.isSmallScreen(context)
                                             ? 18
-                                            : MediaQuery.of(context).size.width *
+                                            : MediaQuery.of(context)
+                                                    .size
+                                                    .width *
                                                 0.015,
                                     fontWeight: FontWeight.w700)),
                             Row(
@@ -111,14 +124,18 @@ class _SingleDeiveState extends State<SingleDeive> {
                                   color: kContainerMiddleColor,
                                 ),
                                 const SizedBox(width: 10),
-                                Text("Total Space: ${snapshot.data!.size}GB",
+                                Text(
+                                    "Total Space: ${int.parse(snapshot.data!.size) / 1024 / 1024 / 1024}GB",
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: ResponsiveWidget.isSmallScreen(
-                                                context)
-                                            ? 12
-                                            : MediaQuery.of(context).size.width *
-                                                0.013,
+                                        fontSize:
+                                            ResponsiveWidget.isSmallScreen(
+                                                    context)
+                                                ? 12
+                                                : MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.013,
                                         fontWeight: FontWeight.bold)),
                               ],
                             ),
@@ -132,33 +149,42 @@ class _SingleDeiveState extends State<SingleDeive> {
                                       : 30,
                                 ),
                                 const SizedBox(width: 10),
-                                Text("Used Space: ${snapshot.data!.used}GB",
+                                Text(
+                                    "Used Space: ${(int.parse(snapshot.data!.used) / 1024 / 1024 / 1024).toStringAsFixed(2)}GB",
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: ResponsiveWidget.isSmallScreen(
-                                                context)
-                                            ? 12
-                                            : MediaQuery.of(context).size.width *
-                                                0.013,
+                                        fontSize:
+                                            ResponsiveWidget.isSmallScreen(
+                                                    context)
+                                                ? 12
+                                                : MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.013,
                                         fontWeight: FontWeight.bold)),
                               ],
                             ),
                             Row(
                               children: [
                                 Icon(Icons.pending,
-                                    size: ResponsiveWidget.isSmallScreen(context)
-                                        ? 20
-                                        : 30,
+                                    size:
+                                        ResponsiveWidget.isSmallScreen(context)
+                                            ? 20
+                                            : 30,
                                     color: kSecondaryColor),
                                 const SizedBox(width: 10),
-                                Text("Rem Space: ${rem}GB",
+                                Text(
+                                    "Rem Space: ${(int.parse(rem) / 1024 / 1024 / 1024).toStringAsFixed(2)}GB",
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: ResponsiveWidget.isSmallScreen(
-                                                context)
-                                            ? 12
-                                            : MediaQuery.of(context).size.width *
-                                                0.013,
+                                        fontSize:
+                                            ResponsiveWidget.isSmallScreen(
+                                                    context)
+                                                ? 12
+                                                : MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.013,
                                         fontWeight: FontWeight.bold)),
                               ],
                             ),
@@ -168,16 +194,15 @@ class _SingleDeiveState extends State<SingleDeive> {
                     ],
                   ),
                 );
-  }else {
-          return const Center(
-            child: CircularProgressIndicator(
-            color: kSecondaryColor,
-            strokeWidth: 8,
-          ));
-        }}),
-            ),
-          );
-       
-  
+              } else {
+                return const Center(
+                    child: CircularProgressIndicator(
+                  color: kSecondaryColor,
+                  strokeWidth: 8,
+                ));
+              }
+            }),
+      ),
+    );
   }
 }

@@ -130,7 +130,7 @@ class _MyStoragesState extends State<MyStorages> {
                   height: ResponsiveWidget.isSmallScreen(context)
                       ? MediaQuery.of(context).size.height * 0.788
                       : MediaQuery.of(context).size.height * 0.83,
-                  width: MediaQuery.of(context).size.width * 0.9,
+                  width: MediaQuery.of(context).size.width,
                   child: FutureBuilder(
                     future: functions.getAccountStorages(widget.account.Id),
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
