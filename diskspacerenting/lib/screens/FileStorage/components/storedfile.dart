@@ -1,20 +1,19 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:diskspacerenting/Functions/functions.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firedart/firedart.dart';
 import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
 
 class StoredFile extends StatelessWidget {
   final String name;
   final String id;
-  final String ext;
 
   const StoredFile({
     required this.id,
     required this.name,
-    required this.ext,
+
     super.key,
   });
 
@@ -27,17 +26,11 @@ class StoredFile extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           // download the file
-          FirebaseFirestore.instance.collection(id).doc(name).get().then(
-            (value) {
-              String download_url = value.data()!['url'];
-              print(download_url);
-              // download the file
-            },
-          );
+          
         },
         onLongPress: () {
           Functions functions = Functions();
-          functions.deletefile(id, name, ext);
+          functions.deletefile(id, name);
           SnackBar snackBar = const SnackBar(
             content: Text(
               'File Deleted',

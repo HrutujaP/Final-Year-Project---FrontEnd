@@ -2,24 +2,26 @@
 
 import 'dart:convert';
 import 'dart:io';
+import 'package:firedart/firedart.dart';
+import 'package:path/path.dart' as path;
+import 'package:http_parser/http_parser.dart';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diskspacerenting/models/account.dart';
 import 'package:diskspacerenting/models/rent.dart';
 import 'package:diskspacerenting/models/storage.dart';
 import 'package:diskspacerenting/screens/GoogleSignInScreen/googleSignInScreen.dart';
 import 'package:diskspacerenting/screens/HomeScreen/homescreen.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Functions {
   // static const String apiUrl = "http://localhost:8080/api/account";
-  // static const String apiUrl =
-  //     "http://app-07824057-9a46-44d4-8c9a-6e76e325f03e.cleverapps.io/api/account";
-  static const String apiUrl = "http://10.0.2.2:8080/api/account";  // For emulator
+  static const String apiUrl =
+      "http://app-07824057-9a46-44d4-8c9a-6e76e325f03e.cleverapps.io/api/account";
+  // static const String apiUrl = "http://10.0.2.2:8080/api/account";  // For emulator
 
   Future<Account?> readAccountDetails(String id) async {
     Account account = Account();
@@ -157,7 +159,6 @@ class Functions {
 
   void checkAndCreateAccount(
       String name, String email, BuildContext context) async {
-    // const String apiUrl = "http://10.0.2.2:8080/api/account/create_account";
     const String url = "$apiUrl/create_account";
 
     final Map<String, String> headers = {
@@ -198,7 +199,6 @@ class Functions {
             ),
           );
         }
-        // ignore: use_build_context_synchronously
       }
     } else {
       print(response.body);
@@ -230,8 +230,8 @@ class Functions {
       var result = response.body;
 
       for (var node in jsonDecode(result)) {
-        if (min < int.parse(node["Space"])/1024/1024/1024 &&
-            int.parse(node["Space"])/1024/1024/1024 <= limit) {
+        if (min < int.parse(node["Space"]) / 1024 / 1024 / 1024 &&
+            int.parse(node["Space"]) / 1024 / 1024 / 1024 <= limit) {
           Storage storage = Storage();
           storage.id = node["Id"];
           storage.ownerId = node["OwnerPrincipal"];
@@ -316,88 +316,72 @@ class Functions {
   }
 
   void uploadFiles(String id, List<PlatformFile> files) async {
-    final Map<String, String> headers = {
-      "Content-type": "application/json; charset=UTF-8",
-    };
-    Reference strref = FirebaseStorage.instance.ref().child(id);
+    try {
+      String apiurl = "$apiUrl/add_file?id=$id";
+      var request = http.MultipartRequest('POST', Uri.parse(apiurl));
 
-    for (PlatformFile file in files) {
-      print(file.name);
-      try {
-        UploadTask uploadTask = strref.putFile(File(file.path!), SettableMetadata(
-  
-          customMetadata: {
-            "uploaded_by": id,
-            "file_name": file.name,
-          },
-        ));
-
-        await uploadTask.whenComplete(() async {
-          String downloadUrl = await strref.getDownloadURL();
-          print(downloadUrl);
-          FirebaseFirestore firestore = FirebaseFirestore.instance;
-          firestore.collection(id).doc(file.name).set({
-            "name": file.name,
-            "url": downloadUrl,
-            "size": file.size,
-            "extension": file.extension,
-            "path": file.path,
-          });
-
-          print("File uploaded");
-        });
-      } catch (e) {
-        print(e);
+      for (var ffile in files) {
+        File file = File(ffile.path!);
+        var fileBytes = await file.readAsBytes();
+        var stream = http.ByteStream.fromBytes(fileBytes);
+        var multipartFile = http.MultipartFile(
+          'files',
+          stream,
+          await file.length(),
+          filename: path.basename(file.path),
+          contentType: MediaType('application', 'octet-stream'),
+        );
+        request.files.add(multipartFile);
       }
-      String url = "$apiUrl/add_file";
-      final Map<String, dynamic> body = {
-        "storage_principal": id,
-        "file_name": file.name,
-        "file_size": file.size,
-        "file_ext": file.extension,
-      };
 
-      final http.Response response = await http.post(
-        Uri.parse(url),
-        headers: headers,
-        body: jsonEncode(body),
-      );
+      var response = await request.send();
 
       if (response.statusCode == 200) {
-        print("File added");
+        // Request was successful
+        var responseBody = await response.stream.bytesToString();
+        print('Response: $responseBody');
       } else {
-        print(response.statusCode);
-        print(response.body);
+        print('Request failed with status code ${response.statusCode}');
       }
+    } catch (e) {
+      print(e);
     }
   }
 
-  Future<void> deletefile(String id,String file,String ext) async {
+  Future<int> getFileSize(String downloadUrl) async {
+    final response = await http.head(Uri.parse(downloadUrl));
+    final contentLength = response.headers['content-length'];
+    if (contentLength != null) {
+      return int.parse(contentLength);
+    } else {
+      throw Exception('Failed to get file size');
+    }
+  }
+
+  Future<void> deletefile(
+    String id,
+    String file,
+  ) async {
+    var size = 0;
+
+    Document doc = await Firestore.instance.collection(id).document(file).get();
+    String url = doc["downloadUrl"].toString();
+    size = await getFileSize(url);
+    String apiurl = "$apiUrl/delete_file?collectionId=$id&size=$size&docId=$file";
+
     final Map<String, String> headers = {
       "Content-type": "application/json; charset=UTF-8",
     };
-    Reference strref = FirebaseStorage.instance.ref().child(id);
-    strref.child("$file.$ext").delete();
-    FirebaseFirestore firestore = FirebaseFirestore.instance;
-    firestore.collection(id).doc(file).delete();
-    String url = "$apiUrl/delete_file";
-    final Map<String, dynamic> body = {
-      "storage_principal": id,
-      "file_name": file,
-      "ext": ext,
-    };
 
     final http.Response response = await http.post(
-      Uri.parse(url),
+      Uri.parse(apiurl),
       headers: headers,
-      body: jsonEncode(body),
     );
 
-    if (response.statusCode == 200) {
+    if(response.statusCode == 200){
       print("File deleted");
-    } else {
+    }else{
       print(response.statusCode);
-      print(response.body);
     }
   }
 }

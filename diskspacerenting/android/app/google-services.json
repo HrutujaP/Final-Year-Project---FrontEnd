@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1052056528612-8i7kksrvi5nk2v208uoct11d7vnbq9ei.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.diskspacerenting",
+            "certificate_hash": "5c4533b90d702ba63bb0c3ce6570ac08c5a1c513"
+          }
+        },
+        {
           "client_id": "1052056528612-bdr0ll539butng12skj1kut5hfr03b2g.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -35,7 +43,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1052056528612-72cf6s7rphcoupmdi0f48dcu4fc2g3e4.apps.googleusercontent.com",
+              "client_id": "1052056528612-46dir4v3ur0pi4o8c5ssjsvdetqdjatp.apps.googleusercontent.com",
               "client_type": 3
             },
             {

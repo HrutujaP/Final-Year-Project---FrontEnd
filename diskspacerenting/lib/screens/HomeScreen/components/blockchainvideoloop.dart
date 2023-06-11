@@ -5,6 +5,7 @@ import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
+
 class BlockChainVideoLoop extends StatefulWidget {
   const BlockChainVideoLoop({Key? key}) : super(key: key);
 
@@ -16,7 +17,7 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
   late VideoPlayerController _controller;
 
   @override
-  void initState() {
+void initState() {
     super.initState();
     _controller = VideoPlayerController.asset('assets/new3.mp4');
     initializeVideoPlayer();
@@ -37,6 +38,8 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
       });
     }
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -64,39 +67,38 @@ class _BlockChainVideoLoopState extends State<BlockChainVideoLoop> {
                 : Radius.zero,
           ),
         ),
-        child: _controller.value.isInitialized
-            ? FittedBox(
-                fit: BoxFit.cover,
-                child: SizedBox(
-                  height: !ResponsiveWidget.isSmallScreen(context)
-                      ? MediaQuery.of(context).size.height * 0.5
-                      : MediaQuery.of(context).size.height * 0.28,
-                  width: ResponsiveWidget.isSmallScreen(context)
-                      ? MediaQuery.of(context).size.width
-                      : MediaQuery.of(context).size.width / 2,
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: const Radius.circular(25),
-                        bottomRight: const Radius.circular(25),
-                        topRight: ResponsiveWidget.isSmallScreen(context)
-                            ? Radius.zero
-                            : const Radius.circular(25),
-                        topLeft: ResponsiveWidget.isSmallScreen(context)
-                            ? Radius.zero
-                            : const Radius.circular(25),
-                      ),
-                      child: ColorFiltered(
+        child: FittedBox(
+          fit: BoxFit.cover,
+          child: SizedBox(
+            height: !ResponsiveWidget.isSmallScreen(context)
+                ? MediaQuery.of(context).size.height * 0.5
+                : MediaQuery.of(context).size.height * 0.28,
+            width: ResponsiveWidget.isSmallScreen(context)
+                ? MediaQuery.of(context).size.width
+                : MediaQuery.of(context).size.width / 2,
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                bottomLeft: const Radius.circular(25),
+                bottomRight: const Radius.circular(25),
+                topRight: ResponsiveWidget.isSmallScreen(context)
+                    ? Radius.zero
+                    : const Radius.circular(25),
+                topLeft: ResponsiveWidget.isSmallScreen(context)
+                    ? Radius.zero
+                    : const Radius.circular(25),
+              ),
+              child: ColorFiltered(
                         colorFilter: const ColorFilter.mode(
                             kContainerStartColor, BlendMode.color),
-                        child: VideoPlayer(_controller),
+                        child:Platform.isAndroid? VideoPlayer(_controller):Image.asset('assets/images/blockchaingif.gif',fit: BoxFit.cover,),
                       )
+                  
 
-                      // VideoPlayer(_controller),
-
-                      ),
-                ),
-              )
-            : Container(),
+                    // VideoPlayer(_controller),
+                  ,
+            ),
+          ),
+        ),
       ),
     );
   }

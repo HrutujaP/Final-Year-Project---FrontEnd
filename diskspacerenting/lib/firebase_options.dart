@@ -45,7 +45,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyBai02bGu3Fqq24Vf-wld8eTKHccn-B8n4',
-    appId: '1:1052056528612:web:ed1ccb59fab3da7ebfaef1',
+    appId: '1:1052056528612:web:6cf4de7f94d5e973bfaef1',
     messagingSenderId: '1052056528612',
     projectId: 'disk-space-renting',
     authDomain: 'disk-space-renting.firebaseapp.com',
@@ -66,19 +66,19 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1052056528612',
     projectId: 'disk-space-renting',
     storageBucket: 'disk-space-renting.appspot.com',
-    androidClientId: '1052056528612-bdr0ll539butng12skj1kut5hfr03b2g.apps.googleusercontent.com',
+    androidClientId: '1052056528612-8i7kksrvi5nk2v208uoct11d7vnbq9ei.apps.googleusercontent.com',
     iosClientId: '1052056528612-lal3pgetjbsvu1c38r88oe5p97fdf6g1.apps.googleusercontent.com',
     iosBundleId: 'com.example.diskspacerenting',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyDpce7uXITQX4R4esGbq71ZeOlEXAAf3XU',
-    appId: '1:1052056528612:ios:004ed78cceeab2cebfaef1',
+    appId: '1:1052056528612:ios:d89d5688d73d565dbfaef1',
     messagingSenderId: '1052056528612',
     projectId: 'disk-space-renting',
     storageBucket: 'disk-space-renting.appspot.com',
-    androidClientId: '1052056528612-bdr0ll539butng12skj1kut5hfr03b2g.apps.googleusercontent.com',
-    iosClientId: '1052056528612-lal3pgetjbsvu1c38r88oe5p97fdf6g1.apps.googleusercontent.com',
-    iosBundleId: 'com.example.diskspacerenting',
+    androidClientId: '1052056528612-8i7kksrvi5nk2v208uoct11d7vnbq9ei.apps.googleusercontent.com',
+    iosClientId: '1052056528612-uu52qqiutqfqui6b55r0htob0n5n22a8.apps.googleusercontent.com',
+    iosBundleId: 'com.example.diskspacerenting.RunnerTests',
   );
 }

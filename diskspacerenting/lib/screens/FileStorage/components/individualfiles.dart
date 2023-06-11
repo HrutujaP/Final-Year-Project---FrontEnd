@@ -122,7 +122,7 @@ class _IndividualFilesState extends State<IndividualFiles> {
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.done) {
                         List<String> fileNames = snapshot.data?.files ?? [];
-                        List<String> exts = snapshot.data?.fileExts ?? [];
+                    
                         print(snapshot.data?.files);
 
                         return GridView.builder(
@@ -150,7 +150,7 @@ class _IndividualFilesState extends State<IndividualFiles> {
                               child: StoredFile(
                                 name: fileNames[index],
                                 id: widget.storage.id,
-                                ext: exts[index],
+                           
                               ),
                             );
                           },

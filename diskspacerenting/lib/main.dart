@@ -6,21 +6,26 @@ import 'package:diskspacerenting/screens/HomeScreen/homescreen.dart';
 import 'package:diskspacerenting/screens/GoogleSignInScreen/googleSignInScreen.dart';
 import 'package:diskspacerenting/screens/SplashScreen/splashscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firedart/firedart.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 
 void main() async {
+  const projectId = "disk-space-renting";
   WidgetsFlutterBinding.ensureInitialized();
 
   if (!Platform.isWindows) {
+    Firestore.initialize(projectId);
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
+  } else {
+    Firestore.initialize(projectId);
   }
 
-  Map<Permission, PermissionStatus> statuses = await [
+  await [
     Permission.storage,
     Permission.manageExternalStorage,
   ].request();
@@ -65,7 +70,6 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-    
       debugShowCheckedModeBanner: false,
       home: FutureBuilder(
           future: checkSavedUser(),
@@ -79,7 +83,6 @@ class _MyAppState extends State<MyApp> {
       routes: {
         registerScreen.id: (context) => const registerScreen(),
       },
-      
     );
   }
 }
