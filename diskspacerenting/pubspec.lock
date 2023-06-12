@@ -233,6 +233,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.3.2"
+  filesystem_picker:
+    dependency: "direct main"
+    description:
+      name: filesystem_picker
+      sha256: cf790e033b3e0c07b5bc9f71458b39f1f45017641aae508ffdfb86a59baa0c1d
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   firebase_auth:
     dependency: "direct main"
     description:

@@ -1,21 +1,77 @@
+import 'dart:io';
 
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:diskspacerenting/Functions/functions.dart';
+import 'package:file_picker/file_picker.dart';
+
 import 'package:firedart/firedart.dart';
+
+import 'package:http/http.dart' as http;
 import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
 
-class StoredFile extends StatelessWidget {
+class StoredFile extends StatefulWidget {
   final String name;
   final String id;
 
   const StoredFile({
     required this.id,
     required this.name,
-
     super.key,
   });
+
+  @override
+  State<StoredFile> createState() => _StoredFileState();
+}
+
+class _StoredFileState extends State<StoredFile> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getUrl(widget.id, widget.name);
+  }
+
+  String url = "";
+
+  Future<String> pickDirectory() async {
+    String? directory;
+
+    try {
+      directory = await FilePicker.platform.getDirectoryPath();
+    } catch (e) {
+      print('Error picking directory: $e');
+    }
+
+    if (directory != null) {
+      return directory;
+    } else {
+      return "";
+    }
+  }
+
+  Future<void> openFile(String furl) async {
+    var url = Uri.parse(furl); // Replace with your file URL
+    var response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      String path = await pickDirectory();
+      var file = File(path); // Replace with your desired file path
+      await file.writeAsBytes(response.bodyBytes);
+      // Do something with the file, e.g., open it
+    } else {
+      print('Failed to download file. Error: ${response.statusCode}');
+    }
+  }
+
+  void getUrl(String id, String name) async {
+    Document doc = await Firestore.instance.collection(id).document(name).get();
+
+    setState(() {
+      url = doc.map["downloadUrl"];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +82,11 @@ class StoredFile extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           // download the file
-          
+          openFile(url);
         },
         onLongPress: () {
           Functions functions = Functions();
-          functions.deletefile(id, name);
+          functions.deletefile(widget.id, widget.name);
           SnackBar snackBar = const SnackBar(
             content: Text(
               'File Deleted',
@@ -86,7 +142,7 @@ class StoredFile extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                name,
+                                widget.name,
                                 softWrap: true,
                                 style: TextStyle(
                                   fontSize:
