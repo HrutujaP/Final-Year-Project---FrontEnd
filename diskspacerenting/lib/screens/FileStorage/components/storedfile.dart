@@ -57,8 +57,11 @@ class _StoredFileState extends State<StoredFile> {
 
     if (response.statusCode == 200) {
       String path = await pickDirectory();
-      var file = File(path); // Replace with your desired file path
-      await file.writeAsBytes(response.bodyBytes);
+      path = path.replaceAll("\\", "/");
+      var file = File("$path/${widget.name}"); // Replace with your desired file path
+      file.createSync();
+      // await file.writeAsyncBytes(response.bodyBytes);
+      file.writeAsBytesSync(response.bodyBytes);
       // Do something with the file, e.g., open it
     } else {
       print('Failed to download file. Error: ${response.statusCode}');
@@ -80,9 +83,9 @@ class _StoredFileState extends State<StoredFile> {
       elevation: 20,
       shadowColor: kTextLightColor,
       child: GestureDetector(
-        onTap: () {
+        onTap: ()async {
           // download the file
-          openFile(url);
+          await openFile(url);
         },
         onLongPress: () {
           Functions functions = Functions();

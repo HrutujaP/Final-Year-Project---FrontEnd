@@ -28,6 +28,7 @@ void main() async {
   await [
     Permission.storage,
     Permission.manageExternalStorage,
+    
   ].request();
 
   runApp(const MyApp());
