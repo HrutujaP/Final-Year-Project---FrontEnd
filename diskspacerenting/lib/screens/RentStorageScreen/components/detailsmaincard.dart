@@ -27,7 +27,7 @@ class DetailsMainCard extends StatelessWidget {
         child: Container(
           height: ResponsiveWidget.isSmallScreen(context)
               ? MediaQuery.of(context).size.height * 0.7
-              : MediaQuery.of(context).size.height * 0.8,
+              : MediaQuery.of(context).size.height * 0.7,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             gradient: LinearGradient(

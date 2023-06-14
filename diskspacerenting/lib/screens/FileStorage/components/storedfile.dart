@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:diskspacerenting/Constants/Constant%20Variables/constants.dart';
 import 'package:diskspacerenting/Constants/Responsive/responsiveWidget.dart';
 import 'package:diskspacerenting/Functions/functions.dart';
+import 'package:diskspacerenting/screens/file%20openers/imageScreen.dart';
+import 'package:diskspacerenting/screens/file%20openers/pdfScreen.dart';
 import 'package:file_picker/file_picker.dart';
 
 import 'package:firedart/firedart.dart';
@@ -52,19 +54,36 @@ class _StoredFileState extends State<StoredFile> {
   }
 
   Future<void> openFile(String furl) async {
-    var url = Uri.parse(furl); // Replace with your file URL
-    var response = await http.get(url);
+    try {
+      var url = Uri.parse(furl); // Replace with your file URL
+      var response = await http.get(url);
 
-    if (response.statusCode == 200) {
-      String path = await pickDirectory();
-      path = path.replaceAll("\\", "/");
-      var file = File("$path/${widget.name}"); // Replace with your desired file path
-      file.createSync();
-      // await file.writeAsyncBytes(response.bodyBytes);
-      file.writeAsBytesSync(response.bodyBytes);
-      // Do something with the file, e.g., open it
-    } else {
-      print('Failed to download file. Error: ${response.statusCode}');
+      if (response.statusCode == 200) {
+        String path = await pickDirectory();
+        path = path.replaceAll("\\", "/");
+        var file =
+            File("$path/${widget.name}"); // Replace with your desired file path
+        file.create();
+        await file.writeAsBytes(response.bodyBytes);
+        // file.writeAsBytesSync(response.bodyBytes);
+        // Do something with the file, e.g., open it
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.transparent,
+          content: Text(
+            "File saved to path: $path",
+            style: const TextStyle(
+              color: kTextColor,
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          duration: const Duration(seconds: 3),
+        ));
+      } else {
+        print('Failed to download file. Error: ${response.statusCode}');
+      }
+    } catch (e) {
+      print(e);
     }
   }
 
@@ -83,9 +102,25 @@ class _StoredFileState extends State<StoredFile> {
       elevation: 20,
       shadowColor: kTextLightColor,
       child: GestureDetector(
-        onTap: ()async {
+        onTap: () {
           // download the file
-          await openFile(url);
+          //  openFile(url);
+
+          if (widget.name.contains(".pdf")) {
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) => PDFScreen(
+            //               path: url,
+            //             )));
+          } else {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ImageScreen(
+                          url: url,
+                        )));
+          }
         },
         onLongPress: () {
           Functions functions = Functions();
@@ -144,8 +179,8 @@ class _StoredFileState extends State<StoredFile> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                widget.name,
+                              child: Text(widget.name.length>30?
+                                widget.name.substring(0, 30):widget.name,
                                 softWrap: true,
                                 style: TextStyle(
                                   fontSize:
